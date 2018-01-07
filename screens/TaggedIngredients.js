@@ -9,12 +9,11 @@ export default class TaggedIngredients extends React.Component {
   render() {
     return (
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
-        <Text onPress={this._handlePress}>To My Routine!</Text>
+        <Text onPress={this._handlePress}>Tagged Ingredients</Text>
       </View>
     )
   }
 
   _handlePress = () => {
-    this.props.navigation.navigate('MyRoutine');
   }
 }

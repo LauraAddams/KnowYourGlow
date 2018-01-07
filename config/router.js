@@ -3,7 +3,7 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import Home from '../screens/Home';
+import LogIn from '../screens/LogIn';
 import Landing from '../screens/Landing';
 import SearchProduct from '../screens/SearchProduct';
 import Product from '../screens/Product';
@@ -12,9 +12,24 @@ import CompareProduct from '../screens/CompareProduct';
 import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 
-export const Tabs = TabNavigator({
+export const HomeStack = StackNavigator({
   Home: {
     screen: Landing,
+    navigationOptions: {
+      title: 'Home',
+    },
+  },
+  Tagged: {
+    screen: TaggedIngredients,
+    navigationOptions: {
+      title: 'My Tagged Ingredients',
+    },
+  },
+})
+
+export const Tabs = TabNavigator({
+  Home: {
+    screen: HomeStack,
     navigationOptions: {
         tabBarLabel: 'Home',
         tabBarIcon: ({ tintColor }) => <Icon name="brightness-1" size={35} color={tintColor}/>

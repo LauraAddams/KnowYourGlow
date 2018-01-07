@@ -13,12 +13,11 @@ export default class SearchProduct extends React.Component {
   render() {
     return (
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
-        <Text onPress={this._handlePress}>Search!</Text>
+        <Text onPress={this._handlePress}>Search Products</Text>
       </View>
     )
   }
 
   _handlePress = () => {
-    this.props.navigation.navigate('Product');
   }
 }
