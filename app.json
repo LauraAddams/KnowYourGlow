@@ -1,5 +1,8 @@
 {
   "expo": {
     "sdkVersion": "23.0.0"
-  }
+  },
+  "splash": {
+    "image": "./assets/bee.png"
+  },
 }
