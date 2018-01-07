@@ -16,44 +16,69 @@ export const HomeStack = StackNavigator({
   Home: {
     screen: Landing,
     navigationOptions: {
-      title: 'Home',
+      title: 'MY ROUTINE',
     },
   },
   Tagged: {
     screen: TaggedIngredients,
     navigationOptions: {
-      title: 'My Tagged Ingredients',
+      title: 'MY IRRITANTS',
     },
   },
-})
+}, {
+  navigationOptions: {
+    headerTintColor: 'black',
+    headerBackTitle: null,
+    headerTitleStyle: {
+      fontSize: 12,
+      fontWeight: '900',
+      letterSpacing: 5,
+      fontFamily: 'Helvetica',
+    },
+    headerStyle: {
+      backgroundColor: 'white',
+      borderBottomColor: 'transparent',
+    },
+  },
+});
 
 export const Tabs = TabNavigator({
   Home: {
     screen: HomeStack,
     navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Icon name="brightness-1" size={35} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Icon name="home" size={30} color={tintColor}/>
     },
   },
   SearchProduct: {
     screen: SearchProduct,
     navigationOptions: {
         tabBarLabel: 'Search',
-        tabBarIcon: ({ tintColor }) => <Icon name="search" size={35} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Icon name="search" size={30} color={tintColor}/>
     },
   },
   AddProduct: {
     screen: AddProduct,
     navigationOptions: {
         tabBarLabel: 'Add',
-        tabBarIcon: ({ tintColor }) => <Icon name="add" size={35} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Icon name="add" size={30} color={tintColor}/>
     },
   },
   CompareProduct: {
     screen: CompareProduct,
     navigationOptions: {
         tabBarLabel: 'Compare',
-        tabBarIcon: ({ tintColor }) => <Icon name="tonality" size={35} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Icon name="tonality" size={30} color={tintColor}/>
+    },
+  },
+}, {
+  tabBarOptions: {
+    activeTintColor: 'black',
+    showLabel: false,
+    style: {
+      backgroundColor: 'white',
+      borderTopColor: 'transparent',
+      opacity: 0.8,
     },
   },
 });
