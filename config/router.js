@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -11,70 +12,33 @@ import CompareProduct from '../screens/CompareProduct';
 import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 
-export const HomeStack = StackNavigator({
+export const Tabs = TabNavigator({
   Home: {
-    screen: Home,
+    screen: Landing,
     navigationOptions: {
-      title: 'HEYO',
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ tintColor }) => <Icon name="brightness-1" size={35} color={tintColor}/>
     },
   },
   SearchProduct: {
     screen: SearchProduct,
     navigationOptions: {
-      title: 'YOLO',
-    },
-  },
-  Landing: {
-    screen: Landing,
-    navigationOptions: {
-      title: 'SOLO',
-    },
-  },
-  Product: {
-    screen: Product,
-    navigationOptions: {
-      title: 'SODO',
+        tabBarLabel: 'Search',
+        tabBarIcon: ({ tintColor }) => <Icon name="search" size={35} color={tintColor}/>
     },
   },
   AddProduct: {
     screen: AddProduct,
     navigationOptions: {
-      title: 'DODO',
+        tabBarLabel: 'Add',
+        tabBarIcon: ({ tintColor }) => <Icon name="add" size={35} color={tintColor}/>
     },
   },
   CompareProduct: {
     screen: CompareProduct,
     navigationOptions: {
-      title: 'ROLO',
-    },
-  },
-  MyRoutine: {
-    screen: MyRoutine,
-    navigationOptions: {
-      title: 'POPO',
-    },
-  },
-  TaggedIngredients: {
-    screen: TaggedIngredients,
-    navigationOptions: {
-      title: 'NONO',
-    },
-  },
-});
-
-export const Tabs = TabNavigator({
-  Home: {
-    screen: HomeStack,
-    navigationOptions: {
-        tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Icon name="list" size={35} color={tintColor}/>
-    },
-  },
-  Landing: {
-    screen: Landing,
-    navigationOptions: {
-        tabBarLabel: 'Landing',
-        tabBarIcon: ({ tintColor }) => <Icon name="account-circle" size={35} color={tintColor}/>
+        tabBarLabel: 'Compare',
+        tabBarIcon: ({ tintColor }) => <Icon name="tonality" size={35} color={tintColor}/>
     },
   },
 });

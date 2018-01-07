@@ -9,7 +9,7 @@ export default class Landing extends React.Component {
   render() {
     return (
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
-        <Text onPress={this._handlePress}>Landing!</Text>
+        <Text onPress={this._handlePress}>This is the landing page!</Text>
       </View>
     )
   }
