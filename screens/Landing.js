@@ -15,6 +15,6 @@ export default class Landing extends React.Component {
   }
 
   _handlePress = () => {
-
+    this.props.navigation.navigate('CompareProduct');
   }
 }

@@ -4,21 +4,17 @@ import {
   View,
 } from 'react-native';
 
-import {
-  StackNavigator,
-} from 'react-navigation';
-
-export default class SearchProduct extends React.Component {
+export default class Product extends React.Component {
 
   render() {
     return (
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
-        <Text onPress={this._handlePress}>Search!</Text>
+        <Text onPress={this._handlePress}>To Tagged!</Text>
       </View>
     )
   }
 
   _handlePress = () => {
-    this.props.navigation.navigate('Product');
+    this.props.navigation.navigate('TaggedIngredients');
   }
 }
