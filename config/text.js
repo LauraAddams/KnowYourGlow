@@ -5,13 +5,13 @@ const text = StyleSheet.create({
   smallBold: {
     fontSize: 12,
     fontWeight: FONT_BOLD,
-    letterSpacing: 5,
+    letterSpacing: 4,
     fontFamily: 'Helvetica',
   },
   medium: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '200',
-    letterSpacing: 2,
+    letterSpacing: 1,
   },
 });
 

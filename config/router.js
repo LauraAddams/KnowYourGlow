@@ -11,6 +11,7 @@ import AddProduct from '../screens/AddProduct';
 import CompareProduct from '../screens/CompareProduct';
 import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
+import Settings from '../screens/Settings';
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -25,6 +26,12 @@ export const HomeStack = StackNavigator({
       title: 'MY IRRITANTS',
     },
   },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      title: 'SETTINGS',
+    },
+  },
 }, {
   navigationOptions: {
     headerTintColor: 'black',
@@ -32,7 +39,7 @@ export const HomeStack = StackNavigator({
     headerTitleStyle: {
       fontSize: 12,
       fontWeight: '900',
-      letterSpacing: 5,
+      letterSpacing: 4,
       fontFamily: 'Helvetica',
     },
     headerStyle: {
@@ -47,7 +54,7 @@ export const Tabs = TabNavigator({
     screen: HomeStack,
     navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Icon name="home" size={30} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Icon name="person" size={30} color={tintColor}/>
     },
   },
   SearchProduct: {

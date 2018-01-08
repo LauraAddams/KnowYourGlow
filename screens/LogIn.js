@@ -10,14 +10,15 @@ import {
   SocialIcon
 } from 'react-native-elements';
 
+import { PINK } from '../config/styles';
+
 export default class LogIn extends React.Component {
   _handlePress = () => {
   }
 
   render() {
     return (
-      <View style={{alignItems: 'stretch', justifyContent: 'center', flex: 1}}>
-        <Text style={styles.detailText}>Know Your Glow</Text>
+      <View style={{alignItems: 'stretch', justifyContent: 'center', flex: 1, backgroundColor: PINK}}>
         <SocialIcon
           style={{margin: 30}}
           title='Sign In With Facebook'
