@@ -15,17 +15,17 @@ import { CONTAINER } from '../config/styles';
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/ingredient?q=${input}`;
+  return `https://skincare-api.herokuapp.com/product?q=${input}`;
 }
 
 export default class SearchProduct extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'Honey',
+      searchString: 'Cosrx Honey',
       isLoading: false,
       message: '',
-      ingredients: [],
+      products: [],
     };
   }
 
@@ -56,7 +56,7 @@ export default class SearchProduct extends Component<{}> {
       this.setState({
         isLoading: false,
         message: '',
-        ingredients: response,
+        products: response,
       });
     } else {
       this.setState({ message: 'No results, try again.'});
@@ -69,7 +69,7 @@ export default class SearchProduct extends Component<{}> {
 
     return (
       <View style={CONTAINER.container}>
-        <Text style={[text.smallBold, { marginTop: 35 }]}>SEARCH PRODUCTS</Text>
+        <Text style={[text.smallBold, { marginTop: 35, marginBottom: 20 }]}>SEARCH PRODUCTS</Text>
 
         <View style={CONTAINER.search}>
           <TextInput
@@ -88,7 +88,7 @@ export default class SearchProduct extends Component<{}> {
         {spinner}
 
         <ListView
-          ingredients={this.state.ingredients}
+          products={this.state.products}
         />
 
       </View>

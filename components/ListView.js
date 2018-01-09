@@ -16,15 +16,15 @@ class ListItem extends React.PureComponent {
 
   render() {
     const item = this.props.item;
-    const name = item.ingredient[0].toUpperCase() + item.ingredient.slice(1);
+    const brand = item.brand.toUpperCase();
+    const name = item.name[0].toUpperCase() + item.name.slice(1);
+
 
     return (
-          <View>
-            <View>
+          <View style={styles.container}>
+              <Text style={text.smallBold}>{brand}</Text>
               <Text style={text.medium}
                 numberOfLines={1}>{name}</Text>
-            </View>
-            <View style={styles.separator}/>
           </View>
     );
   }
@@ -43,7 +43,7 @@ export default class ListView extends Component<{}> {
   render() {
     return (
       <FlatList
-        data={this.props.ingredients}
+        data={this.props.products}
         keyExtractor={this._keyExtractor}
         renderItem={this._render}
       />
@@ -52,10 +52,9 @@ export default class ListView extends Component<{}> {
 }
 
 const styles = StyleSheet.create({
-  separator: {
-    marginTop: 15,
-    marginBottom: 15,
-    height: 1,
-    backgroundColor: 'red',
+  container: {
+    marginTop: 35,
+    borderWidth: 2,
+    padding: 10,
   },
 });

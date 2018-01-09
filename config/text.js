@@ -3,13 +3,13 @@ import { FONT_BOLD, FUTURA } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: FONT_BOLD,
     letterSpacing: 4,
     fontFamily: FUTURA,
   },
   medium: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '300',
     letterSpacing: 1,
   },
