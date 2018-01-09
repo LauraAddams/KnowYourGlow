@@ -17,6 +17,7 @@ export const CONTAINER = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
+    height: 50,
   },
   input: {
     flexGrow: 1,
