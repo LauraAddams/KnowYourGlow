@@ -12,7 +12,6 @@ import CompareProduct from '../screens/CompareProduct';
 import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 import Settings from '../screens/Settings';
-import ListView from '../components/ListView.js';
 
 import { FUTURA, FONT_BOLD } from './styles';
 
@@ -33,6 +32,36 @@ export const HomeStack = StackNavigator({
     screen: Settings,
     navigationOptions: {
       title: 'SETTINGS',
+    },
+  },
+}, {
+  navigationOptions: {
+    headerTintColor: 'black',
+    headerBackTitle: null,
+    headerTitleStyle: {
+      fontSize: 12,
+      fontWeight: FONT_BOLD,
+      letterSpacing: 4,
+      fontFamily: FUTURA,
+    },
+    headerStyle: {
+      backgroundColor: 'white',
+      borderBottomColor: 'transparent',
+    },
+  },
+});
+
+export const ProductStack = StackNavigator({
+  Home: {
+    screen: SearchProduct,
+    navigationOptions: {
+      title: 'SEARCH PRODUCTS',
+    },
+  },
+  Product: {
+    screen: Product,
+    navigationOptions: {
+      title: 'SINGLE PRODUCT',
     },
   },
 }, {

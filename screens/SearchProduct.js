@@ -9,8 +9,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import ListView from '../components/ListView';
+import List from '../components/List';
 import { CONTAINER } from '../config/styles';
+import SearchBar from '../components/SearchBar';
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
@@ -21,19 +22,14 @@ export default class SearchProduct extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'Cosrx Honey',
       isLoading: false,
       message: '',
       products: [],
     };
   }
 
-  _onSearchTextChanged = (event) => {
-    this.setState({ searchString: event.nativeEvent.text });
-  };
-
-  _onSearchPressed = () => {
-    const query = url(this.state.searchString);
+  onPressSearch = (term) => {
+    const query = url(term);
     this._query(query);
   };
 
@@ -68,23 +64,14 @@ export default class SearchProduct extends Component<{}> {
 
     return (
       <View style={CONTAINER.container}>
-        <View style={CONTAINER.search}>
-          <TextInput
-            style={CONTAINER.input}
-            value={this.state.searchString}
-            onChange={this._onSearchTextChanged}
-            placeholder="Search"
-          />
-          <Button
-            onPress={this._onSearchPressed}
-            color="#333333"
-            title="GO"
-          />
-        </View>
+        <SearchBar
+          loading={this.state.isLoading}
+          onPressSearch={this.onPressSearch}
+        />
 
         {spinner}
 
-        <ListView
+        <List
           products={this.state.products}
         />
 
