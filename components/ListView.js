@@ -1,18 +1,25 @@
+/* eslint-disable */
+
 import React, { Component } from 'react'
 
 import {
   StyleSheet,
   View,
   FlatList,
+  TouchableHighlight,
   Text,
-  Dimensions
 } from 'react-native';
 
 import text from '../config/text';
 
-const width = Dimensions.get('window').width;
+function url(id) {
+  return 'https://skincare-api.herokuapp.com/products/' + id;
+}
 
 class ListItem extends React.PureComponent {
+  _onPress = () => {
+    this.props.onPressItem(this.props.item.id);
+  }
 
   render() {
     const item = this.props.item;
@@ -21,11 +28,14 @@ class ListItem extends React.PureComponent {
 
 
     return (
-          <View style={styles.container}>
+        <TouchableHighlight
+        onPress={this._onPress}
+        underlayColor='pink'>
+            <View style={styles.container}>
               <Text style={text.smallBold}>{brand}</Text>
-              <Text style={text.medium}
-                numberOfLines={1}>{name}</Text>
-          </View>
+              <Text style={text.medium} numberOfLines={1}>{name}</Text>
+            </View>
+        </TouchableHighlight>
     );
   }
 }
@@ -37,8 +47,34 @@ export default class ListView extends Component<{}> {
     <ListItem
       item={item}
       index={index}
+      onPressItem={this._onPressItem}
     />
   );
+
+  _onPressItem = (id) => {
+    this._query(url(id));
+  };
+
+  _query = (query) => {
+    fetch(query)
+    .then(response => response.json())
+    .then(json => this._response(json))
+    .catch(error =>
+      this.setState({
+        message: 'Something bad happened ' + error
+      }));
+    };
+
+  _response = (response) => {
+    if (response) {
+      this.props.navigation.navigate({
+        component: Product,
+        passProps: {products: response}
+      });
+    } else {
+      this.setState({ message: 'Not recognized; please try again.'});
+    }
+  };
 
   render() {
     return (

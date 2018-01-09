@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import ListView from '../components/ListView';
-import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 function url(input) {
@@ -69,8 +68,6 @@ export default class SearchProduct extends Component<{}> {
 
     return (
       <View style={CONTAINER.container}>
-        <Text style={[text.smallBold, { marginTop: 35, marginBottom: 20 }]}>SEARCH PRODUCTS</Text>
-
         <View style={CONTAINER.search}>
           <TextInput
             style={CONTAINER.input}

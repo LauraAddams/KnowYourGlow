@@ -12,6 +12,7 @@ import CompareProduct from '../screens/CompareProduct';
 import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 import Settings from '../screens/Settings';
+import ListView from '../components/ListView.js';
 
 import { FUTURA, FONT_BOLD } from './styles';
 
