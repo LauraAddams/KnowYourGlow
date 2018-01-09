@@ -13,6 +13,8 @@ import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 import Settings from '../screens/Settings';
 
+import { FUTURA, FONT_BOLD } from './styles';
+
 export const HomeStack = StackNavigator({
   Home: {
     screen: Landing,
@@ -38,9 +40,9 @@ export const HomeStack = StackNavigator({
     headerBackTitle: null,
     headerTitleStyle: {
       fontSize: 12,
-      fontWeight: '900',
+      fontWeight: FONT_BOLD,
       letterSpacing: 4,
-      fontFamily: 'Helvetica',
+      fontFamily: FUTURA,
     },
     headerStyle: {
       backgroundColor: 'white',
@@ -54,7 +56,7 @@ export const Tabs = TabNavigator({
     screen: HomeStack,
     navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Icon name="person" size={30} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Icon name="sentiment-satisfied" size={30} color={tintColor}/>
     },
   },
   SearchProduct: {
