@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-  StyleSheet,
-  Text,
-  TextInput,
   View,
-  Button,
   ActivityIndicator,
 } from 'react-native';
 
@@ -79,6 +75,3 @@ export default class SearchProduct extends Component<{}> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-});
