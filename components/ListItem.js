@@ -15,7 +15,7 @@ export default class ListItem extends React.PureComponent {
     return (
       <TouchableHighlight
         onPress={this._onPress}
-        underlayColor='pink'>
+        underlayColor='#f7f7f7'>
             <View style={styles.container}>
               <Text style={text.smallBold}>{brand}</Text>
               <Text style={text.medium} numberOfLines={1}>{name}</Text>
@@ -27,8 +27,10 @@ export default class ListItem extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 35,
-    borderWidth: 2,
+    marginTop: 15,
+    borderColor: '#f1f1f1',
+    borderBottomWidth: 1,
     padding: 10,
+    paddingBottom: 25,
   },
 });
