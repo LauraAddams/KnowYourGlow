@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { FONT_BOLD, FUTURA } from './styles';
+import { FONT_BOLD, FUTURA, HELVETICA } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {
     fontSize: 12,
     fontWeight: FONT_BOLD,
     letterSpacing: 4,
+    fontFamily: FUTURA,
+  },
+  small: {
+    fontSize: 11,
+    fontWeight: FONT_BOLD,
     fontFamily: FUTURA,
   },
   medium: {
@@ -15,7 +20,7 @@ const text = StyleSheet.create({
   },
   p: {
     fontSize: 16,
-    fontFamily: FUTURA,
+    fontFamily: HELVETICA,
   },
   button: {
     fontSize: 11,

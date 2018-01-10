@@ -9,7 +9,8 @@ import {
   ScrollView,
 } from 'react-native';
 
-import { List, ListItem, ButtonGroup } from 'react-native-elements';
+import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
+
 import text from '../config/text';
 
 export default class Product extends React.Component {
@@ -26,27 +27,51 @@ export default class Product extends React.Component {
   }
 
   render() {
-    const buttons = ['Paragraph', 'List']
+    const icon1 = () => <Icon name="view-stream" size={24}/>
+    const icon2 = () => <Icon name="view-list" size={24}/>
+    const buttons = [{element: icon1}, {element: icon2}]
     const { selectedIndex } = this.state;
     const { brand, name, ingredient_list } = this.props.navigation.state.params;
     const listItems = ingredient_list.map((ing, i) => <ListItem title={ing} key={i} hideChevron={true}/>);
 
-    const content = this.state.selectedIndex === 0 ? (<Text style={text.p}>{ingredient_list}</Text>) :
-    (<List style={styles.list}>{listItems}</List>)
+    const content = this.state.selectedIndex === 0 ? (<Text style={[text.p, {textAlign: 'justify', lineHeight: 26}]}>{ingredient_list.join(', ')}</Text>) :
+    (<List style={[styles.list]} containerStyle={{marginTop: 0}}>{listItems}</List>)
 
     return (
-      <View style={{flex: 1}}>
-        <Text style={text.smallBold}>{brand.toUpperCase()}</Text>
-        <Text style={text.medium}>{name}</Text>
-        <ButtonGroup
-          onPress={this.updateIndex}
-          selectedIndex={selectedIndex}
-          buttons={buttons}
-          containerStyle={{height: 100}}
-        />
-        <ScrollView>
+      <View style={{flex: 1, paddingLeft: 20, paddingRight: 20, backgroundColor: 'white'}}>
+
+        <Text style={[text.smallBold, {textAlign: 'center'}]}>{brand.toUpperCase()}</Text>
+        <Text style={[text.medium, {textAlign: 'center', borderBottomWidth: 2, borderColor: 'pink'}]}>{name}</Text>
+
+        <View style={styles.details}>
+          <View style={styles.details}>
+            <Icon name="favorite" size={24} iconStyle={{color: 'red', marginRight: 10}}/>
+            <Icon name="add-circle" size={24} />
+          </View>
+          <ButtonGroup
+            onPress={this.updateIndex}
+            selectedIndex={selectedIndex}
+            buttons={buttons}
+            containerStyle={{height: 36, width: 74, backgroundColor: '#eeeeee', borderWidth: 0, marginTop: 15, marginBottom: 10}}
+            selectedBackgroundColor={'#f5f5f5'}
+            innerBorderStyle={{color: '#f5f5f5'}}
+            />
+        </View>
+
+        <Text style={[text.small, {marginTop: 20}]}>INGREDIENTS:</Text>
+
+        <ScrollView style={{margin: 10}}>
           {content}
         </ScrollView>
+
+        <View>
+          <Text style={[text.small, {textAlign: 'center'}]}>THIS INFORMATION IS CORRECT</Text>
+          <View style={[styles.details, {justifyContent: 'center'}]}>
+            <Icon name="sentiment-dissatisfied" size={30} iconStyle={{padding: 10}}/>
+            <Icon name="sentiment-satisfied" size={30} iconStyle={{padding: 10}}/>
+          </View>
+        </View>
+
       </View>
     )
   }
@@ -54,10 +79,15 @@ export default class Product extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: 'red',
   },
   list: {
     flex: 1,
     justifyContent: 'flex-start',
+  },
+  details: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 })

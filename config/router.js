@@ -60,9 +60,6 @@ export const ProductStack = StackNavigator({
   },
   Product: {
     screen: Product,
-    navigationOptions: {
-      title: 'SINGLE PRODUCT',
-    },
   },
 }, {
   navigationOptions: {

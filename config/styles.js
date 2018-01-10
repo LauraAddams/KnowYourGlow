@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export const FONT_BOLD = '900';
 export const FUTURA = 'Futura-Medium';
+export const HELVETICA = 'Helvetica-Light';
 export const PINK = '#FEE6E4';
 
 export const CONTAINER = StyleSheet.create({

@@ -7,7 +7,7 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 class SearchBar extends Component {
-  state = { term: 'Milky Jelly' };
+  state = { term: 'Cosrx snail' };
 
   render() {
     return (
