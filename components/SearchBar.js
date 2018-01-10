@@ -11,7 +11,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <View style={[CONTAINER.search, { marginTop: 30 }]}>
+      <View style={CONTAINER.search}>
         <TextInput
           style={CONTAINER.input}
           onChangeText={term => this.setState({ term })}
