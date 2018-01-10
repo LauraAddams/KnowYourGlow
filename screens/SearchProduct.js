@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   View,
   ActivityIndicator,
+  Text,
 } from 'react-native';
 
 import List from '../components/List';
@@ -54,12 +55,17 @@ export default class SearchProduct extends Component<{}> {
     }
   };
 
+  onProductPress = (response) => {
+    this.props.navigation.navigate('Product', response);
+  }
+
   render() {
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
 
     return (
       <View style={CONTAINER.container}>
+
         <SearchBar
           loading={this.state.isLoading}
           onPressSearch={this.onPressSearch}
@@ -69,6 +75,7 @@ export default class SearchProduct extends Component<{}> {
 
         <List
           products={this.state.products}
+          onProductPress={this.onProductPress}
         />
 
       </View>

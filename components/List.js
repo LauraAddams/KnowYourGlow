@@ -24,17 +24,17 @@ export default class List extends Component<{}> {
 
   _query = (query) => {
     fetch(query)
-    .then(response => response.json())
-    .then(json => this._response(json))
-    .catch(error =>
-      this.setState({
-        message: 'Something bad happened ' + error
-      }));
-    };
+      .then(response => response.json())
+      .then(json => this._response(json))
+      .catch(error =>
+        this.setState({
+          message: 'Something bad happened ' + error
+        }));
+  };
 
   _response = (response) => {
     if (response) {
-      console.log(response);
+      this.props.onProductPress(response);
     } else {
       this.setState({ message: 'Not recognized; please try again.'});
     }

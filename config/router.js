@@ -52,7 +52,7 @@ export const HomeStack = StackNavigator({
 });
 
 export const ProductStack = StackNavigator({
-  Home: {
+  SearchProduct: {
     screen: SearchProduct,
     navigationOptions: {
       title: 'SEARCH PRODUCTS',
@@ -90,7 +90,7 @@ export const Tabs = TabNavigator({
     },
   },
   SearchProduct: {
-    screen: SearchProduct,
+    screen: ProductStack,
     navigationOptions: {
         tabBarLabel: 'Search',
         tabBarIcon: ({ tintColor }) => <Icon name="search" size={30} color={tintColor}/>

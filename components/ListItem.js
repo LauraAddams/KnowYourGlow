@@ -12,16 +12,15 @@ export default class ListItem extends React.PureComponent {
     const brand = item.brand.toUpperCase();
     const name = item.name[0].toUpperCase() + item.name.slice(1);
 
-
     return (
-        <TouchableHighlight
+      <TouchableHighlight
         onPress={this._onPress}
         underlayColor='pink'>
             <View style={styles.container}>
               <Text style={text.smallBold}>{brand}</Text>
               <Text style={text.medium} numberOfLines={1}>{name}</Text>
             </View>
-        </TouchableHighlight>
+      </TouchableHighlight>
     );
   }
 }
