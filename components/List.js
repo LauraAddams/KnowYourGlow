@@ -43,6 +43,7 @@ export default class List extends Component<{}> {
   render() {
     return (
       <FlatList
+        style={{ alignSelf: 'stretch' }}
         data={this.props.products}
         keyExtractor={this._keyExtractor}
         renderItem={this._render}
