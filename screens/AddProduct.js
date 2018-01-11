@@ -19,9 +19,9 @@ export default class AddProduct extends React.Component {
       <View style={CONTAINER.container}>
         <Text style={text.smallBold}>ADD PRODUCT</Text>
         <View style={CONTAINER.form}>
-          <TextInput style={CONTAINER.input} placeholder='Brand'></TextInput>
-          <TextInput style={CONTAINER.input} placeholder='Name'></TextInput>
-          <TextInput style={CONTAINER.input} placeholder='Ingredients'></TextInput>
+          <TextInput style={CONTAINER.inputForm} placeholder='Brand'></TextInput>
+          <TextInput style={CONTAINER.inputForm} placeholder='Name'></TextInput>
+          <TextInput style={CONTAINER.inputForm} placeholder='Ingredients'></TextInput>
           <Button text={"GO"} onPress={this._handlePress}></Button>
         </View>
       </View>

@@ -13,6 +13,7 @@ export const CONTAINER = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 15,
+    backgroundColor: 'white',
   },
   search: {
     flexDirection: 'row',
@@ -34,6 +35,14 @@ export const CONTAINER = StyleSheet.create({
     fontSize: 16,
     fontWeight: '300',
     fontStyle: 'italic',
+  },
+  inputForm: {
+    flexGrow: 1,
+    borderBottomWidth: 1,
+    fontSize: 16,
+    fontWeight: '300',
+    borderColor: '#999999',
+    padding: 10,
   },
   form: {
     flexDirection: 'column',

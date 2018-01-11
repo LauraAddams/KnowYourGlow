@@ -16,8 +16,8 @@ export default class CompareProduct extends React.Component {
       <View style={CONTAINER.container}>
         <Text style={text.smallBold}>COMPARE PRODUCTS</Text>
         <View style={CONTAINER.form}>
-          <TextInput style={CONTAINER.input} placeholder='Product 1'></TextInput>
-          <TextInput style={CONTAINER.input} placeholder='Product 2'></TextInput>
+          <TextInput style={CONTAINER.inputForm} placeholder='Product 1'></TextInput>
+          <TextInput style={CONTAINER.inputForm} placeholder='Product 2'></TextInput>
           <Button text={"GO"} onPress={this._handlePress}></Button>
         </View>
       </View>

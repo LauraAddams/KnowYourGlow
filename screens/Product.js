@@ -31,11 +31,21 @@ export default class Product extends React.Component {
     const icon2 = () => <Icon name="view-list" size={24}/>
     const buttons = [{element: icon1}, {element: icon2}]
     const { selectedIndex } = this.state;
+
     let { brand, name, ingredient_list } = this.props.navigation.state.params;
     name = name[0].toUpperCase() + name.slice(1);
-    const listItems = ingredient_list.map((ing, i) => <ListItem title={ing} key={i} hideChevron={true}/>);
 
-    const content = this.state.selectedIndex === 0 ? (<Text style={[text.p, {textAlign: 'justify', lineHeight: 26}]}>{ingredient_list.join(', ')}</Text>) :
+    const tagged = 'betaine';
+
+    const listItems = ingredient_list.map((ing, i) =>
+    ing === tagged ? (<ListItem title={ing} key={i} containerStyle={{backgroundColor: '#FEE284'}} hideChevron={true}/>) :
+      (<ListItem title={ing} key={i} hideChevron={true}/>));
+
+    const paraItems = ingredient_list.map((ing, i) =>
+    ing === tagged ? (<Text key={i} style={{backgroundColor: '#FEE284'}}>{ing}, </Text>) :
+    (<Text key={i}>{ing}, </Text>));
+
+    const content = this.state.selectedIndex === 0 ? (<Text style={[text.p, {textAlign: 'justify', lineHeight: 26}]}>{paraItems}</Text>) :
     (<List style={[styles.list]} containerStyle={{marginTop: 0}}>{listItems}</List>)
 
     return (

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FONT_BOLD, FUTURA, HELVETICA } from './styles';
+import { FONT_BOLD, FUTURA, HELVETICA, OFFWHITE } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {
@@ -28,7 +28,7 @@ const text = StyleSheet.create({
     fontFamily: FUTURA,
     fontWeight: FONT_BOLD,
     textAlign: 'center',
-    color: 'white',
+    color: OFFWHITE,
   },
 });
 
