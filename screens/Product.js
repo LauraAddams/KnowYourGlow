@@ -49,10 +49,10 @@ export default class Product extends React.Component {
     (<List style={[styles.list]} containerStyle={{marginTop: 0}}>{listItems}</List>)
 
     return (
-      <View style={{flex: 1, paddingLeft: 20, paddingRight: 20, backgroundColor: 'white'}}>
+      <View style={{flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: 'white'}}>
 
         <Text style={[text.smallBold, {textAlign: 'center'}]}>{brand.toUpperCase()}</Text>
-        <Text style={[text.medium, {textAlign: 'center', borderBottomWidth: 2, borderColor: 'pink'}]}>{name}</Text>
+        <Text style={[text.medium, {textAlign: 'center'}]}>{name}</Text>
 
         <View style={styles.details}>
           <View style={styles.details}>

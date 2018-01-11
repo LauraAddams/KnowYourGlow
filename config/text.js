@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FONT_BOLD, FUTURA, HELVETICA, OFFWHITE } from './styles';
+import { FONT_BOLD, FUTURA, HELVETICA } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {
@@ -14,13 +14,14 @@ const text = StyleSheet.create({
     fontFamily: FUTURA,
   },
   medium: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '300',
     letterSpacing: 1,
   },
   p: {
     fontSize: 16,
     fontFamily: HELVETICA,
+    letterSpacing: 1,
   },
   button: {
     fontSize: 11,
@@ -28,7 +29,7 @@ const text = StyleSheet.create({
     fontFamily: FUTURA,
     fontWeight: FONT_BOLD,
     textAlign: 'center',
-    color: OFFWHITE,
+    color: 'white',
   },
 });
 

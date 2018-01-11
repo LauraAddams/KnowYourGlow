@@ -64,7 +64,7 @@ export default class SearchProduct extends Component<{}> {
       <ActivityIndicator size='large'/> : null;
 
     return (
-      <View style={[CONTAINER.container, { backgroundColor: 'white' }]}>
+      <View style={[CONTAINER.container, { paddingTop: 30, backgroundColor: 'white' }]}>
 
         <SearchBar
           loading={this.state.isLoading}

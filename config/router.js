@@ -72,7 +72,7 @@ export const ProductStack = StackNavigator({
       fontFamily: FUTURA,
     },
     headerStyle: {
-      backgroundColor: 'white',
+      backgroundColor: '#f1f1f1',
       borderBottomColor: 'transparent',
     },
   },

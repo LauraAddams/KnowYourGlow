@@ -38,13 +38,14 @@ export const CONTAINER = StyleSheet.create({
   },
   inputForm: {
     flexGrow: 1,
-    borderBottomWidth: 1,
+    backgroundColor: '#f1f1f1',
     fontSize: 16,
     fontWeight: '300',
-    borderColor: '#999999',
     padding: 10,
+    marginBottom: 20,
   },
   form: {
+    flex: 2,
     flexDirection: 'column',
     alignSelf: 'stretch',
   }
