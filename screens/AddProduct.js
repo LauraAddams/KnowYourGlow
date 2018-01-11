@@ -27,8 +27,8 @@ export default class AddProduct extends React.Component {
     super(props);
     this.state = {
       message: '',
-      inputBrand: 'New brand',
-      inputName: 'New name',
+      inputBrand: 'Generic',
+      inputName: 'Jojoba Oil',
       inputIng: 'Jojoba Oil',
       visibleModal: null,
       id: '',
@@ -119,7 +119,6 @@ export default class AddProduct extends React.Component {
          </Modal>
 
         <Image source={require('../assets/sample.jpg')} style={{ flex:2, resizeMode: 'contain', margin: 30 }}/>
-        <Text style={[text.smallBold, { marginBottom: 30 }]}>ADD PRODUCT</Text>
         <View style={CONTAINER.form}>
           <TextInput style={CONTAINER.inputForm} value={this.state.inputBrand} onChange={this._onBrandChanged} placeholder='BRAND'></TextInput>
           <TextInput style={CONTAINER.inputForm} value={this.state.inputName} onChange={this._onNameChanged} placeholder='NAME'></TextInput>
