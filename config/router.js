@@ -78,6 +78,33 @@ export const ProductStack = StackNavigator({
   },
 });
 
+export const AddStack = StackNavigator({
+  AddProduct: {
+    screen: AddProduct,
+    navigationOptions: {
+      title: 'ADD PRODUCT',
+    },
+  },
+  Product: {
+    screen: Product,
+  },
+}, {
+  navigationOptions: {
+    headerTintColor: 'black',
+    headerBackTitle: null,
+    headerTitleStyle: {
+      fontSize: 12,
+      fontWeight: FONT_BOLD,
+      letterSpacing: 4,
+      fontFamily: FUTURA,
+    },
+    headerStyle: {
+      backgroundColor: '#f1f1f1',
+      borderBottomColor: 'transparent',
+    },
+  },
+});
+
 export const Tabs = TabNavigator({
   Home: {
     screen: HomeStack,
@@ -94,7 +121,7 @@ export const Tabs = TabNavigator({
     },
   },
   AddProduct: {
-    screen: AddProduct,
+    screen: AddStack,
     navigationOptions: {
         tabBarLabel: 'Add',
         tabBarIcon: ({ tintColor }) => <Icon name="add" size={30} color={tintColor}/>
