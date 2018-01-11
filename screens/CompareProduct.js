@@ -9,6 +9,7 @@ import { Button } from 'react-native-elements';
 
 import text from '../config/text';
 import { CONTAINER } from '../config/styles';
+import CheckForm from '../components/CheckForm';
 
 export default class CompareProduct extends React.Component {
 
@@ -29,6 +30,7 @@ export default class CompareProduct extends React.Component {
               title='COMPARE'
               onPress={this._handlePress}
             />
+          <CheckForm />
         </View>
       </View>
     )
