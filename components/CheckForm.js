@@ -22,16 +22,14 @@ export default class CheckForm extends React.Component {
   }
 
   render() {
-    const { tag } = this.props;
+    const { name } = this.props;
     const { checked } = this.state;
 
     return (
-      <View style={CONTAINER.container}>
-        <View style={CONTAINER.form}>
         <CheckBox
-          key={tag}
+          key={name}
           center
-          title='water'
+          title={name}
           iconRight
           iconType='material'
           checkedIcon='check-box'
@@ -40,8 +38,6 @@ export default class CheckForm extends React.Component {
           checked={checked}
           onPress={() => this.setState({checked: !checked})}
         />
-        </View>
-      </View>
     );
   }
 }
