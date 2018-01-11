@@ -8,18 +8,25 @@ export default class ListItem extends React.PureComponent {
   }
 
   render() {
-    const item = this.props.item;
-    const brand = item.brand.toUpperCase();
-    const name = item.name[0].toUpperCase() + item.name.slice(1);
+    let { brand, name, ingredient } = this.props.item;
+
+    if (this.props.item.brand) {
+      brand = brand.toUpperCase();
+      name = name[0].toUpperCase() + name.slice(1);
+    } else {
+      ingredient = ingredient[0].toUpperCase() + ingredient.slice(1);
+    }
+
+    const textResult = brand ?
+      (<View style={styles.container}><Text style={text.smallBold}>{brand}</Text>
+        <Text style={text.medium} numberOfLines={1}>{name}</Text></View>) :
+      <View style={styles.container}><Text style={text.medium}>{ingredient}</Text></View>;
 
     return (
       <TouchableHighlight
         onPress={this._onPress}
         underlayColor='#f7f7f7'>
-            <View style={styles.container}>
-              <Text style={text.smallBold}>{brand}</Text>
-              <Text style={text.medium} numberOfLines={1}>{name}</Text>
-            </View>
+        {textResult}
       </TouchableHighlight>
     );
   }

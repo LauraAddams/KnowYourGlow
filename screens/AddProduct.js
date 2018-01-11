@@ -14,6 +14,8 @@ import { Button } from 'react-native-elements';
 import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
+import Modal from 'react-native-modal';
+
 export default class AddProduct extends React.Component {
 
   render() {
