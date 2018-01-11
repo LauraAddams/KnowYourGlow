@@ -37,7 +37,6 @@ export const CONTAINER = StyleSheet.create({
     fontStyle: 'italic',
   },
   inputForm: {
-    flexGrow: 1,
     backgroundColor: '#f1f1f1',
     fontSize: 16,
     fontWeight: '300',
