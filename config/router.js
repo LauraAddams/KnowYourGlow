@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import { Icon, Button } from 'react-native-elements';
 
 import LogIn from '../screens/LogIn';
 import Landing from '../screens/Landing';
@@ -20,12 +20,14 @@ export const HomeStack = StackNavigator({
     screen: Landing,
     navigationOptions: {
       title: 'MY ROUTINE',
+      headerRight: <Icon name="settings" size={24} />,
     },
   },
   Tagged: {
     screen: TaggedIngredients,
     navigationOptions: {
       title: 'MY IRRITANTS',
+      headerRight: <Icon name="settings" size={24} />,
     },
   },
   Settings: {

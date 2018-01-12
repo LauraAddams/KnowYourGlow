@@ -32,14 +32,10 @@ export default class CompareProduct extends React.Component {
     this.state = {
       isLoading: false,
       message: '',
-      tagged: [],
+      tagged: 'cool',
       ing: [],
       ing2: [],
     };
-  };
-
-  onPressTagged = (term) => {
-    console.log(term);
   };
 
   onPressSearch = (term, term2) => {
@@ -58,6 +54,10 @@ export default class CompareProduct extends React.Component {
         });
       }).done();
     }).done();
+  };
+
+  _onPressTagged = (term) => {
+    console.log(term);
   };
 
   render() {
@@ -82,7 +82,7 @@ export default class CompareProduct extends React.Component {
           iconRight={{name: 'sentiment-neutral', color: 'black', size: 24}}
           color='black'
           backgroundColor='rgba(0,0,0,0)'
-          onPress={() => this.props.onPressTagged(this.state.tagged)}
+          onPress={() => this._onPressTagged(this.state.tagged)}
         />
       </View>
     )

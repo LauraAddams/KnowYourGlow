@@ -8,7 +8,7 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 class SearchCompare extends Component {
-  state = { term: 'Snail', term2: 'Honey' };
+  state = { term: 'Cosrx Snail 96', term2: 'Make Me Lovely Cream' };
 
   render() {
     return (
@@ -22,7 +22,7 @@ class SearchCompare extends Component {
           />
           <TextInput
             style={CONTAINER.inputForm}
-            onChangeText={term => this.setState({ term })}
+            onChangeText={term2 => this.setState({ term2 })}
             value={this.state.term2}
             placeholder="ex. Cosrx snail cream"
           />

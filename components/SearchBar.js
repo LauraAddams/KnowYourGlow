@@ -7,7 +7,7 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 class SearchBar extends Component {
-  state = { term: 'Snail' };
+  state = { term: 'Gold' };
 
   render() {
     return (
@@ -21,7 +21,7 @@ class SearchBar extends Component {
         <Button
           iconRight={{name: 'search', color: 'black', size: 24}}
           backgroundColor='rgba(0,0,0,0)'
-          onPress={() => this.props.onPressSearch(this.state.term, this.state.term2)}
+          onPress={() => this.props.onPressSearch(this.state.term)}
         />
       </View>
     );
