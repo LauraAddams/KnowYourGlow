@@ -28,13 +28,15 @@ export default class CheckForm extends React.Component {
     return (
         <CheckBox
           key={name}
-          center
+          right
           title={name}
           iconRight
           iconType='material'
           checkedIcon='check-box'
           uncheckedIcon='check-box-outline-blank'
           checkedColor='black'
+          textStyle={{flex: 1}}
+          containerStyle={{borderWidth: 0,width: 300, justifyContent: 'space-between'}}
           checked={checked}
           onPress={() => this.setState({checked: !checked})}
         />

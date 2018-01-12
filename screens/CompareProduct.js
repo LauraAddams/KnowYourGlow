@@ -10,7 +10,7 @@ import { Button } from 'react-native-elements';
 
 import text from '../config/text';
 import { CONTAINER } from '../config/styles';
-import SearchBar from '../components/SearchBar';
+import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
 
 function url(input) {
@@ -25,7 +25,12 @@ export default class CompareProduct extends React.Component {
       isLoading: false,
       message: '',
       products: [],
+      tagged: [],
     };
+  };
+
+  onPressTagged = (term) => {
+    console.log(term);
   };
 
   onPressSearch = (term) => {
@@ -66,25 +71,23 @@ export default class CompareProduct extends React.Component {
 
     return (
       <View style={CONTAINER.container}>
-        <Text style={[text.smallBold, {marginTop: 30, marginBottom: 30}]}>COMPARE PRODUCTS</Text>
-        <View style={CONTAINER.form}>
-          <SearchBar
-            loading={this.state.isLoading}
-            onPressSearch={this.onPressSearch}
-            />
-          <Button
-            iconRight={{name: 'add-circle', color: 'black', size: 20}}
-            backgroundColor='rgba(0,0,0,0)'
-            onPress={this._handlePress}
-            />
-          <View style={{margin: 10}}>
-            {ingredients}
-          </View>
-        </View>
+        <SearchCompare
+          loading={this.state.isLoading}
+          onPressSearch={this.onPressSearch}
+        />
+
+        <ScrollView style={{marginTop: 20}} automaticallyAdjustContentInsets={false}>
+          {ingredients}
+        </ScrollView>
+
+        <Button
+          title='Tag selected ingredients'
+          iconRight={{name: 'sentiment-neutral', color: 'black', size: 24}}
+          color='black'
+          backgroundColor='rgba(0,0,0,0)'
+          onPress={() => this.props.onPressTagged(this.state.tagged)}
+        />
       </View>
     )
-  }
-
-  _handlePress = () => {
   }
 }
