@@ -2,9 +2,11 @@ import React from 'react';
 import {
   View,
   ActivityIndicator,
+  ScrollView,
+  Text,
 } from 'react-native';
 
-import List from '../components/List';
+import CheckForm from '../components/CheckForm';
 import { CONTAINER } from '../config/styles';
 import SearchBar from '../components/SearchBar';
 
@@ -56,6 +58,9 @@ export default class TaggedIngredients extends React.Component {
   render() {
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
+    const ingredients = (this.state.products).map((name, index) => {
+      return <CheckForm key={index} name={name.ingredient} />;
+    });
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 30, backgroundColor: 'white' }]}>
@@ -67,9 +72,9 @@ export default class TaggedIngredients extends React.Component {
 
         {spinner}
 
-        <List
-          products={this.state.products}
-        />
+        <ScrollView style={{marginTop: 20}} automaticallyAdjustContentInsets={false}>
+          {ingredients}
+        </ScrollView>
 
       </View>
     );
