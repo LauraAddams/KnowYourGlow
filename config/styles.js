@@ -47,5 +47,8 @@ export const CONTAINER = StyleSheet.create({
     flex: 2,
     flexDirection: 'column',
     alignSelf: 'stretch',
+  },
+  tagged: {
+
   }
 });
