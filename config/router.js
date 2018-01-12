@@ -20,14 +20,12 @@ export const HomeStack = StackNavigator({
     screen: Landing,
     navigationOptions: {
       title: 'MY ROUTINE',
-      headerRight: <Icon name="settings" size={24} />,
     },
   },
   Tagged: {
     screen: TaggedIngredients,
     navigationOptions: {
       title: 'MY IRRITANTS',
-      headerRight: <Icon name="settings" size={24} />,
     },
   },
   Settings: {
