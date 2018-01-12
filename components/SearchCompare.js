@@ -28,7 +28,7 @@ class SearchCompare extends Component {
           />
           <Button
             iconRight={{name: 'search', color: 'black', size: 24}}
-            onPress={() => this.props.onPressSearch(this.state.term)}
+            onPress={() => this.props.onPressSearch(this.state.term, this.state.term2)}
           />
         </View>
     );

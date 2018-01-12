@@ -18,14 +18,23 @@ function url(input) {
   return `https://skincare-api.herokuapp.com/product?q=${input}`;
 }
 
+function intersect(a, b) {
+  var t;
+  if (b.length > a.length) t = b, b = a, a = t;
+  return a.filter(function (e) {
+    return b.indexOf(e) > -1;
+  });
+}
+
 export default class CompareProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
       message: '',
-      products: [],
       tagged: [],
+      ing: [],
+      ing2: [],
     };
   };
 
@@ -33,38 +42,26 @@ export default class CompareProduct extends React.Component {
     console.log(term);
   };
 
-  onPressSearch = (term) => {
+  onPressSearch = (term, term2) => {
     const query = url(term);
-    this._query(query);
-  };
+    const query2 = url(term2);
 
-  _query = (query) => {
-    this.setState({ isLoading: true });
-    fetch(query)
-      .then(response => response.json())
-      .then(json => this._response(json))
-      .catch(error =>
-        this.setState({
-          isLoading: false,
-          message: `An error occured ${error}`
-        }));
-  };
-
-  _response = (response) => {
-    this.setState({ isLoading: false, message: '' });
-    if (response.length) {
+    fetch(query).then((response) => response.json()).then((responseData)  => {
       this.setState({
         isLoading: false,
-        message: '',
-        products: response[0].ingredient_list,
+        ing: responseData[0].ingredient_list,
       });
-    } else {
-      this.setState({ message: 'No results, try again.'});
-    }
+    }).then(()=>{
+      fetch(query2).then((response) => response.json()).then((responseData) => {
+        this.setState({
+          ing2: responseData[0].ingredient_list,
+        });
+      }).done();
+    }).done();
   };
 
   render() {
-      const ing_list = this.state.products;
+      const ing_list = intersect(this.state.ing, this.state.ing2);
       const ingredients = ing_list.map((name, index) => {
         return <CheckForm key={index} name={name} />;
       });
