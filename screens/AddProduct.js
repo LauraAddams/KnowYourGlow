@@ -28,8 +28,8 @@ export default class AddProduct extends React.Component {
     this.state = {
       message: '',
       inputBrand: 'Generic',
-      inputName: 'Jojoba Oil',
-      inputIng: 'Jojoba Oil',
+      inputName: 'Rose Mist',
+      inputIng: 'Water, Rose Water, Rose Oil',
       visibleModal: null,
       id: '',
     };

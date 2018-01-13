@@ -7,17 +7,21 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 
 import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
 
 import text from '../config/text';
 
+import Modal from 'react-native-modal';
+
 export default class Product extends React.Component {
   constructor() {
     super()
     this.state = {
-      selectedIndex: 0
+      visibleModal: null,
+      selectedIndex: 0,
     };
     this.updateIndex = this.updateIndex.bind(this)
   }
@@ -25,6 +29,25 @@ export default class Product extends React.Component {
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex })
   }
+
+  _onVoteUpPress = () => {
+    this.setState({ visibleModal: 1 });
+  };
+
+  _renderButton = (text, onPress) => (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.button}>
+        <Text>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  _renderModalContent = () => (
+    <View style={styles.modalContent}>
+      <Text style={styles.great}>OK</Text>
+      {this._renderButton(`CLOSE`,this._addedProduct)}
+    </View>
+  );
 
   render() {
     const icon1 = () => <Icon name="view-stream" size={24}/>
@@ -50,6 +73,10 @@ export default class Product extends React.Component {
 
     return (
       <View style={{flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: 'white'}}>
+
+        <Modal isVisible={this.state.visibleModal === 1}>
+           {this._renderModalContent()}
+         </Modal>
 
         <Text style={[text.smallBold, {textAlign: 'center'}]}>{brand.toUpperCase()}</Text>
         <Text style={[text.medium, {textAlign: 'center'}]}>{name}</Text>
@@ -79,7 +106,7 @@ export default class Product extends React.Component {
           <Text style={[text.small, {textAlign: 'center'}]}>THIS INFORMATION IS CORRECT</Text>
           <View style={[styles.details, {justifyContent: 'center'}]}>
             <Icon name="sentiment-dissatisfied" size={30} iconStyle={{padding: 10}}/>
-            <Icon name="sentiment-satisfied" size={30} iconStyle={{padding: 10}}/>
+            <Icon name="sentiment-satisfied" size={30} iconStyle={{padding: 10}} onPress={this._onVoteUpPress}/>
           </View>
         </View>
 
@@ -100,5 +127,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  great: {
+    width: 144,
+    height: 144,
+    backgroundColor: 'gold',
+    borderRadius: 70,
+    overflow: 'hidden',
+    paddingTop: 23,
+    fontSize: 80,
+    color: 'white',
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: 'pink',
+    marginTop: 15,
+    padding: 10,
+    borderRadius: 10,
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
   },
 })
