@@ -83,7 +83,7 @@ export default class Product extends React.Component {
 
         <View style={styles.details}>
           <View style={styles.details}>
-            <Icon name="favorite" size={24} iconStyle={{color: 'red', marginRight: 10}}/>
+            <Icon name="favorite" size={24} iconStyle={{color: '#e1e1e1', marginRight: 10}}/>
             <Icon name="add-circle" size={24} />
           </View>
           <ButtonGroup
@@ -102,12 +102,10 @@ export default class Product extends React.Component {
           {content}
         </ScrollView>
 
-        <View>
-          <Text style={[text.small, {textAlign: 'center'}]}>THIS INFORMATION IS CORRECT</Text>
-          <View style={[styles.details, {justifyContent: 'center'}]}>
-            <Icon name="sentiment-dissatisfied" size={30} iconStyle={{padding: 10}}/>
-            <Icon name="sentiment-satisfied" size={30} iconStyle={{padding: 10}} onPress={this._onVoteUpPress}/>
-          </View>
+        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 25, marginTop: 5}}>
+          <Text style={text.small}>100% ACCURATE</Text>
+          <Icon name="sentiment-dissatisfied" size={18} iconStyle={{padding: 4, marginLeft: 5}}/>
+          <Icon name="sentiment-satisfied" size={18} iconStyle={{padding: 4}} onPress={this._onVoteUpPress}/>
         </View>
 
       </View>
