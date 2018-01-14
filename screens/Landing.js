@@ -10,7 +10,7 @@ import text from '../config/text';
 
 export default class Landing extends React.Component {
   static navigationOptions=({ navigation }) => ({
-    headerRight: <Icon name="settings" size={24} color='#c5c5c5' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
+    headerRight: <Icon name="settings" size={24} color='#e1e1e1' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
   });
 
   _handlePress = () => {

@@ -13,6 +13,7 @@ import {
 import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
 
 import text from '../config/text';
+import { CONTAINER } from '../config/styles';
 
 import Modal from 'react-native-modal';
 
@@ -81,8 +82,8 @@ export default class Product extends React.Component {
         <Text style={[text.smallBold, {textAlign: 'center'}]}>{brand.toUpperCase()}</Text>
         <Text style={[text.medium, {textAlign: 'center'}]}>{name}</Text>
 
-        <View style={styles.details}>
-          <View style={styles.details}>
+        <View style={CONTAINER.details}>
+          <View style={CONTAINER.details}>
             <Icon name="favorite" size={24} iconStyle={{color: '#e1e1e1', marginRight: 10}}/>
             <Icon name="add-circle" size={24} />
           </View>
@@ -114,17 +115,9 @@ export default class Product extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'red',
-  },
   list: {
     flex: 1,
     justifyContent: 'flex-start',
-  },
-  details: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   great: {
     width: 144,

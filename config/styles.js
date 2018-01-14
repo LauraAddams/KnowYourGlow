@@ -49,6 +49,10 @@ export const CONTAINER = StyleSheet.create({
     alignSelf: 'stretch',
   },
   tagged: {
-
-  }
+  },
+  details: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });
