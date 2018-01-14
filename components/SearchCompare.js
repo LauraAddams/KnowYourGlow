@@ -8,7 +8,7 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 class SearchCompare extends Component {
-  state = { term: 'Cosrx Snail 96', term2: 'Make Me Lovely Cream' };
+  state = { term: 'Cosrx Snail 96', term2: 'Missha snail essential' };
 
   render() {
     return (

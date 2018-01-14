@@ -62,9 +62,10 @@ export default class CompareProduct extends React.Component {
 
   render() {
       const ing_list = intersect(this.state.ing, this.state.ing2);
-      const ingredients = ing_list.map((name, index) => {
-        return <CheckForm key={index} name={name} />;
-      });
+      const tagged = 'betaine';
+
+      const ingredients = ing_list.map((name, index) =>
+      name === tagged ? (<CheckForm key={index} name={name} tagColor='#FEE284' />) : (<CheckForm key={index} name={name} tagColor='#fbfbfb'/>));
 
     return (
       <View style={CONTAINER.container}>

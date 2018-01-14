@@ -66,9 +66,11 @@ export default class TaggedIngredients extends React.Component {
   render() {
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
-    const ingredients = (this.state.products).map((name, index) => {
-      return <CheckForm key={index} name={name.ingredient} />;
-    });
+    const tagged = 'fragrance';
+
+    const ingredients = (this.state.products).map((name, index) =>
+    name.ingredient === tagged ? (<CheckForm key={index} name={name.ingredient} tagColor='#FEE284' />) :
+    (<CheckForm key={index} name={name.ingredient} tagColor='#fbfbfb'/>));
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: 'white' }]}>

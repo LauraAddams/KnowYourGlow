@@ -24,6 +24,7 @@ export default class CheckForm extends React.Component {
   render() {
     const { name } = this.props;
     const { checked } = this.state;
+    const tagColor = this.props.tagColor;
 
     return (
         <CheckBox
@@ -36,7 +37,7 @@ export default class CheckForm extends React.Component {
           uncheckedIcon='check-box-outline-blank'
           checkedColor='black'
           textStyle={{flex: 1}}
-          containerStyle={{borderWidth: 0,width: 300, justifyContent: 'space-between'}}
+          containerStyle={{ borderWidth: 0,width: 300, justifyContent: 'space-between', backgroundColor: tagColor }}
           checked={checked}
           onPress={() => this.setState({checked: !checked})}
         />
