@@ -31,12 +31,11 @@ class TaggedIngredients extends React.Component {
       message: '',
       tagged: 'cooler',
       products: [],
-      taggedIngredients: []
     };
   }
 
   componentDidMount() {
-    this.setState({ taggedIngredients: Store.getState().main })
+    this.setState({ taggedIngredients: Store.getState().main });
   }
 
   onPressSearch = (term) => {
@@ -77,23 +76,32 @@ class TaggedIngredients extends React.Component {
 
   render() {
 
-    console.log('############');
-    console.log(this.state);
-
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
-    const tagged = 'fragrance';
+
+
+    const { taggedIngredients } = this.state;
+    let tagged = [];
+
+    if(taggedIngredients) {
+      tagged = taggedIngredients.map((name, index) => {
+        return (
+          <RemoveForm key={index} name={name} />
+        );
+      });
+    }
 
     const ingredients = (this.state.products).map((name, index) =>
-    name.ingredient === tagged ? (<CheckForm key={index} name={name.ingredient} tagColor='#FEE284' />) :
+    taggedIngredients.includes(name.ingredient) ? (<CheckForm key={index} name={name.ingredient} tagColor='#FEE284' />) :
     (<CheckForm key={index} name={name.ingredient} tagColor='#fbfbfb'/>));
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: 'white' }]}>
         <View style={{ height: 200, alignSelf: 'stretch', alignItems: 'center' }}>
           <Text style={[text.smallBold, { marginBottom: 20 }]}>Tagged Ingredients</Text>
-          <RemoveForm key={1} name="Betaine" />
-          <RemoveForm key={2} name="Fragrance" />
+          <ScrollView>
+            {tagged}
+          </ScrollView>
         </View>
 
         <SearchBar
