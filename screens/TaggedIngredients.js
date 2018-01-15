@@ -29,7 +29,6 @@ class TaggedIngredients extends React.Component {
     this.state = {
       isLoading: false,
       message: '',
-      tagged: 'cooler',
       products: [],
     };
   }
@@ -68,17 +67,20 @@ class TaggedIngredients extends React.Component {
     }
   };
 
-  _onPressTagged = (term) => {
-    // this.props.FetchTagged();
-    console.log('$$$$$$$$$$');
-    console.log(this.state);
+  _onPressTagged = () => {
+    // Trigger an action with the taggedIngredients as its payload
+  };
+
+  _onCheckPress = (index) => {
+    let currTagged = this.state.taggedIngredients;
+    currTagged.push(this.state.products[index].ingredient);
+    //this.setState({ taggedIngredients: currTagged });
+    //console.log(currTagged);
   };
 
   render() {
-
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
-
 
     const { taggedIngredients } = this.state;
     let tagged = [];
@@ -92,8 +94,8 @@ class TaggedIngredients extends React.Component {
     }
 
     const ingredients = (this.state.products).map((name, index) =>
-    taggedIngredients.includes(name.ingredient) ? (<CheckForm key={index} name={name.ingredient} tagColor='#FEE284' />) :
-    (<CheckForm key={index} name={name.ingredient} tagColor='#fbfbfb'/>));
+    taggedIngredients.includes(name.ingredient) ? (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} tagColor='#FEE284' />) :
+    (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} tagColor='#fbfbfb'/>));
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: 'white' }]}>
@@ -120,7 +122,7 @@ class TaggedIngredients extends React.Component {
           iconRight={{name: 'sentiment-neutral', color: 'black', size: 24}}
           color='black'
           backgroundColor='rgba(0,0,0,0)'
-          onPress={() => this._onPressTagged(this.state.tagged)}
+          onPress={() => this._onPressTagged(this.state.taggedIngredients)}
         />
 
       </View>

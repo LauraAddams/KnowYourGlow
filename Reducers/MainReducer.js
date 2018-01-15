@@ -1,4 +1,4 @@
-export default function(state = ['fragrance', 'edta fragrance', 'water', 'mineral oil'], action) {
+export default function(state = ['fragrance', 'mineral oil'], action) {
   switch(action.type) {
     case 'FETCH_TAGGED':
       return state;

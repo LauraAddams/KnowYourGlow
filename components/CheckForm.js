@@ -21,6 +21,11 @@ export default class CheckForm extends React.Component {
     };
   }
 
+  _handlePress(name, checked) {
+    this.setState({checked: !checked});
+    this.props.onPress(name);
+  }
+
   render() {
     const { name } = this.props;
     const { checked } = this.state;
@@ -39,7 +44,7 @@ export default class CheckForm extends React.Component {
           textStyle={{flex: 1}}
           containerStyle={{ borderWidth: 0,width: 300, justifyContent: 'space-between', backgroundColor: tagColor }}
           checked={checked}
-          onPress={() => this.setState({checked: !checked})}
+          onPress={() => this._handlePress(name, checked)}
         />
     );
   }
