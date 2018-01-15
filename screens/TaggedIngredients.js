@@ -6,19 +6,24 @@ import {
   Text,
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import FetchTagged from '../Actions/FetchTagged';
+import mapStateToProps from '../config/ReducerHelper';
+import Store from '../Store';
 import CheckForm from '../components/CheckForm';
 import RemoveForm from '../components/RemoveForm';
 import { CONTAINER } from '../config/styles';
 import text from '../config/text';
 import SearchBar from '../components/SearchBar';
 
+
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
   return `https://skincare-api.herokuapp.com/ingredient?q=${input}`;
 }
 
-export default class TaggedIngredients extends React.Component {
+class TaggedIngredients extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +31,12 @@ export default class TaggedIngredients extends React.Component {
       message: '',
       tagged: 'cooler',
       products: [],
+      taggedIngredients: []
     };
+  }
+
+  componentDidMount() {
+    this.setState({ taggedIngredients: Store.getState().main })
   }
 
   onPressSearch = (term) => {
@@ -60,10 +70,16 @@ export default class TaggedIngredients extends React.Component {
   };
 
   _onPressTagged = (term) => {
-    console.log(term);
+    // this.props.FetchTagged();
+    console.log('$$$$$$$$$$');
+    console.log(this.state);
   };
 
   render() {
+
+    console.log('############');
+    console.log(this.state);
+
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
     const tagged = 'fragrance';
@@ -103,3 +119,5 @@ export default class TaggedIngredients extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, { FetchTagged })(TaggedIngredients);

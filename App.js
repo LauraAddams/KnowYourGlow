@@ -2,6 +2,9 @@ import React from 'react';
 import { Tabs } from './config/router';
 import { Asset, AppLoading } from 'expo';
 
+import { Provider } from 'react-redux';
+import Store from './Store';
+
 export default class App extends React.Component {
   state = {
     isReady: false,
@@ -21,6 +24,10 @@ export default class App extends React.Component {
           />
       );
     }
-    return <Tabs />
+    return (
+      <Provider store={Store}>
+        <Tabs />
+      </Provider>
+    );
   }
 }
