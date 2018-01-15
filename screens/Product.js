@@ -24,9 +24,10 @@ export default class Product extends React.Component {
   }
 
   render() {
-    const icon1 = () => <Icon name="view-stream" size={24} />
-    const icon2 = () => <Icon name="view-list" size={24} />
-    const buttons = [{ element: icon1 }, { element: icon2 }]
+    const icon1 = () => <Icon name="view-stream" size={24} />;
+    const icon2 = () => <Icon name="view-list" size={24} />;
+    const buttons = [{ element: icon1 }, { element: icon2 }];
+
     const { selectedIndex } = this.state;
     const { brand, ingredient_list } = this.props.navigation.state.params;
     const { taggedIngredients } = this.state;
@@ -43,7 +44,6 @@ export default class Product extends React.Component {
       if (this.state.selectedIndex === 0) {
         return (<Text key={i} style={{ backgroundColor: info }}>{ingredient}, </Text>);
       }
-
       return (<ListItem key={i} title={ingredient} hideChevron={true} containerStyle={{ backgroundColor: info }} />);
     });
 
@@ -52,10 +52,7 @@ export default class Product extends React.Component {
       (<List style={{ flex: 1, justifyContent: 'flex-start' }} containerStyle={{ marginTop: 0 }}>{ingItems}</List>)
 
     return (
-      <View style={{
-          flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: 'white',
-        }}
-      >
+      <View style={{ flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: 'white' }}>
         <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toUpperCase()}</Text>
         <Text style={[text.medium, { textAlign: 'center' }]}>{name}</Text>
 
@@ -69,24 +66,16 @@ export default class Product extends React.Component {
             onPress={this.updateIndex}
             selectedIndex={selectedIndex}
             buttons={buttons}
-            containerStyle={{
-              height: 36, width: 74, backgroundColor: '#eeeeee', borderWidth: 0, marginTop: 15, marginBottom: 10,
-            }}
+            containerStyle={{ height: 36, width: 74, backgroundColor: '#eeeeee', borderWidth: 0, marginTop: 15, marginBottom: 10 }}
             selectedBackgroundColor="#f5f5f5"
             innerBorderStyle={{ color: '#f5f5f5' }}
           />
         </View>
 
         <Text style={[text.small, { marginTop: 20 }]}>INGREDIENTS:</Text>
+        <ScrollView style={{ margin: 10 }}>{content}</ScrollView>
 
-        <ScrollView style={{ margin: 10 }}>
-          {content}
-        </ScrollView>
-
-        <View style={{
-            flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 25, marginTop: 5,
-          }}
-        >
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 25, marginTop: 5 }}>
           <Text style={text.small}>100% ACCURATE</Text>
           <Icon name="sentiment-dissatisfied" size={18} iconStyle={{ padding: 4, marginLeft: 5 }} />
           <Icon name="sentiment-satisfied" size={18} iconStyle={{ padding: 4 }} />
