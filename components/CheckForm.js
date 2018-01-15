@@ -13,11 +13,11 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 export default class CheckForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      checked: false
+      checked: this.props.checked,
     };
   }
 

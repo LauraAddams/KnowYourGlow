@@ -5,7 +5,7 @@ import {
   ScrollView,
   Text,
 } from 'react-native';
-import { Button } from 'react-native-elements';
+
 import { connect } from 'react-redux';
 
 import PostTagged from '../Actions/PostTagged';
@@ -67,16 +67,19 @@ class TaggedIngredients extends React.Component {
     }
   };
 
-  _onPressTagged = () => {
-    // Trigger an action with the taggedIngredients as its payload
-    this.props.PostTagged(this.state.taggedIngredients);
-  };
-
   _onCheckPress = (index) => {
+    const { taggedIngredients, products } = this.state;
     let currTagged = this.state.taggedIngredients;
-    currTagged.push(this.state.products[index].ingredient);
-    //this.setState({ taggedIngredients: currTagged });
-    //console.log(currTagged);
+
+    const ingredientIndex = taggedIngredients.indexOf(products[index].ingredient);
+
+    if(ingredientIndex === -1) {
+      currTagged.push(this.state.products[index].ingredient);
+    }else {
+      currTagged.splice(ingredientIndex, 1);
+    }
+    this.props.PostTagged(currTagged);
+    this.setState({ taggedIngredients: currTagged });
   };
 
   render() {
@@ -86,7 +89,7 @@ class TaggedIngredients extends React.Component {
     const { taggedIngredients } = this.state;
     let tagged = [];
 
-    if(taggedIngredients) {
+    if (taggedIngredients) {
       tagged = taggedIngredients.map((name, index) => {
         return (
           <RemoveForm key={index} name={name} />
@@ -95,8 +98,8 @@ class TaggedIngredients extends React.Component {
     }
 
     const ingredients = (this.state.products).map((name, index) =>
-    taggedIngredients.includes(name.ingredient) ? (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} tagColor='#FEE284' />) :
-    (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} tagColor='#fbfbfb'/>));
+    taggedIngredients.includes(name.ingredient) ? (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} checked={true} tagColor='#FEE284' />) :
+    (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} tagColor='#fbfbfb' checked={false}/>));
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: 'white' }]}>
@@ -117,14 +120,6 @@ class TaggedIngredients extends React.Component {
         <ScrollView automaticallyAdjustContentInsets={false}>
           {ingredients}
         </ScrollView>
-
-        <Button
-          title='Tag selected ingredients'
-          iconRight={{name: 'sentiment-neutral', color: 'black', size: 24}}
-          color='black'
-          backgroundColor='rgba(0,0,0,0)'
-          onPress={() => this._onPressTagged(this.state.taggedIngredients)}
-        />
 
       </View>
     );
