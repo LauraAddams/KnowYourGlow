@@ -8,7 +8,6 @@ import {
 import List from '../components/List';
 import { CONTAINER } from '../config/styles';
 import SearchBar from '../components/SearchBar';
-import Query from '../components/Query';
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
