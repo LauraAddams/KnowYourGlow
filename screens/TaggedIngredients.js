@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-
 import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
@@ -16,7 +15,6 @@ import RemoveForm from '../components/RemoveForm';
 import { CONTAINER } from '../config/styles';
 import text from '../config/text';
 import SearchBar from '../components/SearchBar';
-
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
@@ -67,10 +65,17 @@ class TaggedIngredients extends React.Component {
     }
   };
 
+  _onRemovePress = (ingredientIndex) => {
+    const currTagged = this.state.taggedIngredients;
+
+    currTagged.splice(ingredientIndex, 1);
+    this.props.PostTagged(currTagged);
+    this.setState({ taggedIngredients: currTagged });
+  }
+
   _onCheckPress = (index) => {
     const { taggedIngredients, products } = this.state;
-    let currTagged = this.state.taggedIngredients;
-
+    const currTagged = this.state.taggedIngredients;
     const ingredientIndex = taggedIngredients.indexOf(products[index].ingredient);
 
     if(ingredientIndex === -1) {
@@ -83,23 +88,22 @@ class TaggedIngredients extends React.Component {
   };
 
   render() {
+    let tagged = [];
+    const { taggedIngredients } = this.state;
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
 
-    const { taggedIngredients } = this.state;
-    let tagged = [];
-
     if (taggedIngredients) {
-      tagged = taggedIngredients.map((name, index) => {
-        return (
-          <RemoveForm key={index} name={name} />
-        );
-      });
+      tagged = taggedIngredients.map((name, index) =>
+        <RemoveForm key={index} name={name} index={index} _handlePress={this._onRemovePress.bind(this)} />)
     }
 
-    const ingredients = (this.state.products).map((name, index) =>
-    taggedIngredients.includes(name.ingredient) ? (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} checked={true} tagColor='#FEE284' />) :
-    (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} tagColor='#fbfbfb' checked={false}/>));
+    const ingredients = (this.state.products).map((name, index) => {
+      const info = taggedIngredients.includes(name.ingredient) ? ['#FEE284', true] : ['#FBFBFB', false];
+      return (
+        <CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} checked={info[1]} tagColor={info[0]} />
+      );
+    });
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: 'white' }]}>

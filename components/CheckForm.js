@@ -26,6 +26,10 @@ export default class CheckForm extends React.Component {
     this.props.onPress(name);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ checked: nextProps.checked });
+  }
+
   render() {
     const { name } = this.props;
     const { checked } = this.state;

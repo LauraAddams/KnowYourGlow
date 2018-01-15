@@ -22,7 +22,7 @@ export default class RemoveForm extends React.Component {
   }
 
   render() {
-    const { name } = this.props;
+    const { index, name } = this.props;
     const { checked } = this.state;
 
     return (
@@ -38,7 +38,7 @@ export default class RemoveForm extends React.Component {
           textStyle={{flex: 1}}
           containerStyle={{borderWidth: 0,width: 300, justifyContent: 'space-between'}}
           checked={checked}
-          onPress={() => this.setState({checked: !checked})}
+          onPress={() => this.props._handlePress(index)}
         />
     );
   }
