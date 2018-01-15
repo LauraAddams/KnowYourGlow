@@ -1,22 +1,9 @@
-/* eslint-disable */
-
 import React from 'react';
-
-import {
-  Text,
-  View,
-  TextInput,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-
+import { Text, View, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
-
-import text from '../config/text';
-import { CONTAINER } from '../config/styles';
-
 import Modal from 'react-native-modal';
+
+import { CONTAINER } from '../config/styles';
 
 function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
@@ -25,6 +12,7 @@ function url(id) {
 export default class AddProduct extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       message: '',
       inputBrand: 'Generic',
@@ -48,7 +36,6 @@ export default class AddProduct extends React.Component {
   };
 
   _onButtonPress = () => {
-    this.setState({ isLoading: true });
     fetch('https://skincare-api.herokuapp.com/products', {
       method: 'POST',
       headers: {
@@ -59,17 +46,13 @@ export default class AddProduct extends React.Component {
         brand: this.state.inputBrand,
         name: this.state.inputName,
         ingredients: this.state.inputIng,
-      })
+      }),
     })
-    .then(json => json.json())
-    .then(json => this.setState({visibleModal: 1, isLoading: false, id: json.id}))
+      .then(json => json.json())
+      .then(json => this.setState({ visibleModal: 1, id: json.id }))
 
-    .catch(error =>
-      this.setState({
-        isLoading: false,
-        message: 'An error occured' + error
-      })
-    );
+      .catch(error =>
+        this.setState({ message: `An error occured ${error}` }));
   };
 
   _addedProduct = () => {
@@ -82,16 +65,14 @@ export default class AddProduct extends React.Component {
       .then(response => response.json())
       .then(json => this._response(json))
       .catch(error =>
-        this.setState({
-          message: 'Something bad happened ' + error
-        }));
+        this.setState({ message: `Something bad happened ${error}` }));
   };
 
   _response = (response) => {
     if (response) {
       this.props.navigation.navigate('Product', response);
     } else {
-      this.setState({ message: 'Not recognized; please try again.'});
+      this.setState({ message: 'Not recognized; please try again.' });
     }
   };
 
@@ -106,26 +87,23 @@ export default class AddProduct extends React.Component {
   _renderModalContent = () => (
     <View style={styles.modalContent}>
       <Text style={styles.great}>OK</Text>
-      {this._renderButton(`Go to Product`,this._addedProduct)}
+      {this._renderButton('Go to Product', this._addedProduct)}
     </View>
   );
 
   render() {
     return (
       <View style={CONTAINER.container}>
+        <Modal isVisible={this.state.visibleModal === 1}>{this._renderModalContent()}</Modal>
 
-        <Modal isVisible={this.state.visibleModal === 1}>
-           {this._renderModalContent()}
-         </Modal>
-
-        <Image source={require('../assets/sample.jpg')} style={{ flex:2, resizeMode: 'contain', margin: 30 }}/>
+        <Image source={require('../assets/sample.jpg')} style={{ flex:2, resizeMode: 'contain', margin: 30 }} />
         <View style={CONTAINER.form}>
-          <TextInput style={CONTAINER.inputForm} value={this.state.inputBrand} onChange={this._onBrandChanged} placeholder='BRAND'></TextInput>
-          <TextInput style={CONTAINER.inputForm} value={this.state.inputName} onChange={this._onNameChanged} placeholder='NAME'></TextInput>
-          <TextInput style={CONTAINER.inputForm} value={this.state.inputIng} onChange={this._onIngChanged} placeholder='INGREDIENTS'></TextInput>
+          <TextInput style={CONTAINER.inputForm} value={this.state.inputBrand} onChange={this._onBrandChanged} placeholder="BRAND" />
+          <TextInput style={CONTAINER.inputForm} value={this.state.inputName} onChange={this._onNameChanged} placeholder="NAME" />
+          <TextInput style={CONTAINER.inputForm} value={this.state.inputIng} onChange={this._onIngChanged} placeholder="INGREDIENTS" />
           <Button
-            iconRight={{name: 'add-circle', color: 'black', size: 40}}
-            backgroundColor='rgba(0,0,0,0)'
+            iconRight={{ name: 'add-circle', color: 'black', size: 40 }}
+            backgroundColor="rgba(0,0,0,0)"
             onPress={this._onButtonPress}
           />
         </View>
