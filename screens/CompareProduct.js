@@ -6,7 +6,13 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+
 import { Button } from 'react-native-elements';
+
+import { connect } from 'react-redux';
+import PostTagged from '../Actions/PostTagged';
+import mapStateToProps from '../config/ReducerHelper';
+import Store from '../Store';
 
 import text from '../config/text';
 import { CONTAINER } from '../config/styles';
@@ -26,17 +32,20 @@ function intersect(a, b) {
   });
 }
 
-export default class CompareProduct extends React.Component {
+class CompareProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
       message: '',
-      tagged: 'cool',
       ing: [],
       ing2: [],
     };
   };
+
+  componentDidMount() {
+    this.setState({ taggedIngredients: Store.getState().main.tagData });
+  }
 
   onPressSearch = (term, term2) => {
     const query = url(term);
@@ -56,16 +65,39 @@ export default class CompareProduct extends React.Component {
     }).done();
   };
 
-  _onPressTagged = (term) => {
-    console.log(term);
+  _onPressTagged = () => {
+    this.props.PostTagged(this.state.taggedIngredients);
+    this.setState({ taggedIngredients: this.state.taggedIngredients });
+  };
+
+  _onCheckPress = (index) => {
+    const products = intersect(this.state.ing, this.state.ing2);
+
+    const { taggedIngredients } = this.state;
+
+    let currTagged = this.state.taggedIngredients;
+
+    const ingredientIndex = taggedIngredients.indexOf(products[index]);
+
+    if(ingredientIndex === -1) {
+      currTagged.push(products[index]);
+    }else {
+      currTagged.splice(ingredientIndex, 1);
+    }
   };
 
   render() {
       const ing_list = intersect(this.state.ing, this.state.ing2);
-      const tagged = 'betaine';
+
+      const { taggedIngredients } = this.state;
+      let tagged = [];
+
+      if (!taggedIngredients) {
+        return <Text></Text>
+      }
 
       const ingredients = ing_list.map((name, index) =>
-      name === tagged ? (<CheckForm key={index} name={name} tagColor='#FEE284' />) : (<CheckForm key={index} name={name} tagColor='#fbfbfb'/>));
+      taggedIngredients.includes(name) ? (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor='#FEE284' checked={true} />) : (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor='#fbfbfb' checked={false}/>));
 
     return (
       <View style={CONTAINER.container}>
@@ -79,13 +111,14 @@ export default class CompareProduct extends React.Component {
         </ScrollView>
 
         <Button
-          title='Tag selected ingredients'
-          iconRight={{name: 'sentiment-neutral', color: 'black', size: 24}}
+          title='Save Tagged'
           color='black'
           backgroundColor='rgba(0,0,0,0)'
-          onPress={() => this._onPressTagged(this.state.tagged)}
+          onPress={() => this._onPressTagged()}
         />
       </View>
     )
   }
 }
+
+export default connect(mapStateToProps, { PostTagged })(CompareProduct);

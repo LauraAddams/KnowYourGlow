@@ -18,12 +18,14 @@ class SearchCompare extends Component {
             style={CONTAINER.inputForm}
             onChangeText={term => this.setState({ term })}
             value={this.state.term}
+            autoCorrect={false}
             placeholder="ex. Cosrx snail cream"
           />
           <TextInput
             style={CONTAINER.inputForm}
             onChangeText={term2 => this.setState({ term2 })}
             value={this.state.term2}
+            autoCorrect={false}
             placeholder="ex. Cosrx snail cream"
           />
           <Button

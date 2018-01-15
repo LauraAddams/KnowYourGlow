@@ -16,6 +16,7 @@ class SearchBar extends Component {
           style={CONTAINER.input}
           onChangeText={term => this.setState({ term })}
           value={this.state.term}
+          autoCorrect={false}
           placeholder="ex. Cosrx snail cream"
         />
         <Button

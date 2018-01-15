@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import Store from '../Store';
 import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
 
 import text from '../config/text';
@@ -25,6 +26,10 @@ export default class Product extends React.Component {
       selectedIndex: 0,
     };
     this.updateIndex = this.updateIndex.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({ taggedIngredients: Store.getState().main.tagData });
   }
 
   updateIndex(selectedIndex) {
@@ -59,14 +64,18 @@ export default class Product extends React.Component {
     let { brand, name, ingredient_list } = this.props.navigation.state.params;
     name = name[0].toUpperCase() + name.slice(1);
 
-    const tagged = 'betaine';
+    const { taggedIngredients } = this.state;
+
+    if(!taggedIngredients) {
+      return <Text></Text>
+    }
 
     const listItems = ingredient_list.map((ing, i) =>
-    ing === tagged ? (<ListItem title={ing} key={i} containerStyle={{backgroundColor: '#FEE284'}} hideChevron={true}/>) :
+    taggedIngredients.includes(ing) ? (<ListItem title={ing} key={i} containerStyle={{backgroundColor: '#FEE284'}} hideChevron={true}/>) :
       (<ListItem title={ing} key={i} hideChevron={true}/>));
 
     const paraItems = ingredient_list.map((ing, i) =>
-    ing === tagged ? (<Text key={i} style={{backgroundColor: '#FEE284'}}>{ing}, </Text>) :
+    taggedIngredients.includes(ing) ? (<Text key={i} style={{backgroundColor: '#FEE284'}}>{ing}, </Text>) :
     (<Text key={i}>{ing}, </Text>));
 
     const content = this.state.selectedIndex === 0 ? (<Text style={[text.p, {textAlign: 'justify', lineHeight: 26}]}>{paraItems}</Text>) :
