@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-
-import {
-  View,
-  ActivityIndicator,
-} from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 
 import List from '../components/List';
-import { CONTAINER } from '../config/styles';
 import SearchBar from '../components/SearchBar';
+import { CONTAINER } from '../config/styles';
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
@@ -29,38 +25,31 @@ export default class SearchProduct extends Component<{}> {
     this._query(query);
   };
 
+  onProductPress = (response) => {
+    this.props.navigation.navigate('Product', response);
+  }
+
   _query = (query) => {
     this.setState({ isLoading: true });
     fetch(query)
       .then(response => response.json())
       .then(json => this._response(json))
       .catch(error =>
-        this.setState({
-          isLoading: false,
-          message: `An error occured ${error}`
-        }));
+        this.setState({ isLoading: false, message: `An error occured ${error}` }));
   };
 
   _response = (response) => {
     this.setState({ isLoading: false, message: '' });
+
     if (response.length) {
-      this.setState({
-        isLoading: false,
-        message: '',
-        products: response,
-      });
+      this.setState({ isLoading: false, message: '', products: response });
     } else {
       this.setState({ message: 'No results, try again.'});
     }
   };
 
-  onProductPress = (response) => {
-    this.props.navigation.navigate('Product', response);
-  }
-
   render() {
-    const spinner = this.state.isLoading ?
-      <ActivityIndicator size='large'/> : null;
+    const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 30, backgroundColor: 'white' }]}>
