@@ -1,22 +1,17 @@
 import React from 'react';
 import { Icon } from 'react-native-elements';
-
-import {
-  Text,
-  View,
-  TouchableHighlight,
-} from 'react-native';
-import SortableListView from 'react-native-sortable-listview'
+import { Text, View, TouchableHighlight } from 'react-native';
+import SortableListView from 'react-native-sortable-listview';
 
 import text from '../config/text';
 
-let data = {
+const data = {
   hello: { text: 'world' },
   how: { text: 'are you' },
   test: { text: 123 },
 };
 
-let order = Object.keys(data);
+const order = Object.keys(data);
 
 class RowComponent extends React.Component {
   render() {

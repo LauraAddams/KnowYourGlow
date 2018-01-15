@@ -1,20 +1,16 @@
 import React from 'react';
-import {
-  View,
-  ActivityIndicator,
-  ScrollView,
-  Text,
-} from 'react-native';
-
+import { View, ActivityIndicator, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
+
 import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
+
 import CheckForm from '../components/CheckForm';
 import RemoveForm from '../components/RemoveForm';
+import SearchBar from '../components/SearchBar';
 import { CONTAINER } from '../config/styles';
 import text from '../config/text';
-import SearchBar from '../components/SearchBar';
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');

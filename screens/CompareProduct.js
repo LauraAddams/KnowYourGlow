@@ -1,12 +1,5 @@
-/* eslint-disable */
 import React from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-} from 'react-native';
-
+import { Text, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import { connect } from 'react-redux';
@@ -14,7 +7,6 @@ import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
-import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
@@ -25,23 +17,22 @@ function url(input) {
 }
 
 function intersect(a, b) {
-  var t;
+  let t;
   if (b.length > a.length) t = b, b = a, a = t;
-  return a.filter(function (e) {
-    return b.indexOf(e) > -1;
-  });
+  return a.filter(e => b.indexOf(e) > -1);
 }
 
 class CompareProduct extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isLoading: false,
       message: '',
       ing: [],
       ing2: [],
     };
-  };
+  }
 
   componentDidMount() {
     this.setState({ taggedIngredients: Store.getState().main.tagData });
@@ -51,18 +42,19 @@ class CompareProduct extends React.Component {
     const query = url(term);
     const query2 = url(term2);
 
-    fetch(query).then((response) => response.json()).then((responseData)  => {
+    fetch(query).then(response => response.json()).then((responseData) => {
       this.setState({
         isLoading: false,
         ing: responseData[0].ingredient_list,
       });
-    }).then(()=>{
-      fetch(query2).then((response) => response.json()).then((responseData) => {
+    }).then(() => {
+      fetch(query2).then(response => response.json()).then((responseData) => {
         this.setState({
           ing2: responseData[0].ingredient_list,
         });
       }).done();
-    }).done();
+    })
+      .done();
   };
 
   _onPressTagged = () => {
@@ -72,32 +64,29 @@ class CompareProduct extends React.Component {
 
   _onCheckPress = (index) => {
     const products = intersect(this.state.ing, this.state.ing2);
-
     const { taggedIngredients } = this.state;
-
-    let currTagged = this.state.taggedIngredients;
-
+    const currTagged = this.state.taggedIngredients;
     const ingredientIndex = taggedIngredients.indexOf(products[index]);
 
-    if(ingredientIndex === -1) {
+    if (ingredientIndex === -1) {
       currTagged.push(products[index]);
-    }else {
+    } else {
       currTagged.splice(ingredientIndex, 1);
     }
   };
 
   render() {
-      const ing_list = intersect(this.state.ing, this.state.ing2);
+    const ingList = intersect(this.state.ing, this.state.ing2);
+    const { taggedIngredients } = this.state;
 
-      const { taggedIngredients } = this.state;
-      let tagged = [];
+    if (!taggedIngredients) {
+      return <Text />;
+    }
 
-      if (!taggedIngredients) {
-        return <Text></Text>
-      }
-
-      const ingredients = ing_list.map((name, index) =>
-      taggedIngredients.includes(name) ? (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor='#FEE284' checked={true} />) : (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor='#fbfbfb' checked={false}/>));
+    const ingredients = ingList.map((name, index) => {
+      const info = taggedIngredients.includes(name) ? ['#FEE284', true] : ['#FBFBFB', false];
+      return (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor={info[0]} checked={info[1]} />);
+    });
 
     return (
       <View style={CONTAINER.container}>
@@ -106,18 +95,18 @@ class CompareProduct extends React.Component {
           onPressSearch={this.onPressSearch}
         />
 
-        <ScrollView style={{marginTop: 20}} automaticallyAdjustContentInsets={false}>
+        <ScrollView style={{ marginTop: 20 }} automaticallyAdjustContentInsets={false}>
           {ingredients}
         </ScrollView>
 
         <Button
-          title='Save Tagged'
-          color='black'
-          backgroundColor='rgba(0,0,0,0)'
+          title="Save Tagged"
+          color="black"
+          backgroundColor="rgba(0,0,0,0)"
           onPress={() => this._onPressTagged()}
         />
       </View>
-    )
+    );
   }
 }
 
