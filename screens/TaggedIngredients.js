@@ -8,7 +8,7 @@ import {
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import FetchTagged from '../Actions/FetchTagged';
+import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 import CheckForm from '../components/CheckForm';
@@ -34,7 +34,7 @@ class TaggedIngredients extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ taggedIngredients: Store.getState().main });
+    this.setState({ taggedIngredients: Store.getState().main.tagData });
   }
 
   onPressSearch = (term) => {
@@ -69,6 +69,7 @@ class TaggedIngredients extends React.Component {
 
   _onPressTagged = () => {
     // Trigger an action with the taggedIngredients as its payload
+    this.props.PostTagged(this.state.taggedIngredients);
   };
 
   _onCheckPress = (index) => {
@@ -130,4 +131,4 @@ class TaggedIngredients extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, { FetchTagged })(TaggedIngredients);
+export default connect(mapStateToProps, { PostTagged })(TaggedIngredients);
