@@ -10,14 +10,14 @@ import Store from '../Store';
 
 import text from '../config/text';
 
-const list = {
-  1: 'Glossier milky jelly cleanser',
-  2: 'Amorepacific Treatment cleansing oil',
-  3: 'Su:m37 Miracle rose cleansing stick',
-};
-
-const data = list;
-const order = Object.keys(data);
+// const list = {
+//   1: 'Glossier milky jelly cleanser',
+//   2: 'Amorepacific Treatment cleansing oil',
+//   3: 'Su:m37 Miracle rose cleansing stick',
+// };
+//
+// const data = list;
+// const order = Object.keys(data);
 
 class RowComponent extends React.Component {
   render() {
@@ -58,14 +58,15 @@ class Landing extends React.Component {
   }
 
   render() {
-    let myRoutine = {};
+    const list = {};
     const { routine } = this.state;
 
     if (routine) {
-      myRoutine = routine.map((name, index) => myRoutine[index] = name);
+      routine.forEach((name, index) => { list[index] = name });
     }
 
-    console.log(myRoutine);
+    const data = list;
+    const order = Object.keys(data);
 
     return (
       <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white' }}>
