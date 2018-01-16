@@ -1,12 +1,15 @@
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import PostRoutine from '../Actions/PostRoutine';
+import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
-export default class Product extends React.Component {
+class Product extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -16,11 +19,20 @@ export default class Product extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ taggedIngredients: Store.getState().main.tagData });
+    this.setState({
+      taggedIngredients: Store.getState().main.tagData,
+      routine: Store.getState().main.routineData,
+     });
   }
 
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex })
+  }
+
+  _onPressAdd = (name) => {
+    if (!this.state.routine.includes(name)) {
+      (this.state.routine).push(name);
+    }
   }
 
   render() {
@@ -59,7 +71,7 @@ export default class Product extends React.Component {
         <View style={CONTAINER.details}>
           <View style={CONTAINER.details}>
             <Icon name="favorite" size={24} iconStyle={{ color: '#e1e1e1', marginRight: 10 }} />
-            <Icon name="add-circle" size={24} />
+            <Icon name="add-circle" size={24} onPress={() => this._onPressAdd(name)} />
           </View>
 
           <ButtonGroup
@@ -84,3 +96,5 @@ export default class Product extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, { PostRoutine })(Product);

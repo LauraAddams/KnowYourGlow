@@ -10,15 +10,6 @@ import Store from '../Store';
 
 import text from '../config/text';
 
-// const list = {
-//   1: 'Glossier milky jelly cleanser',
-//   2: 'Amorepacific Treatment cleansing oil',
-//   3: 'Su:m37 Miracle rose cleansing stick',
-// };
-//
-// const data = list;
-// const order = Object.keys(data);
-
 class RowComponent extends React.Component {
   render() {
     return (
