@@ -3,12 +3,17 @@ import { Icon } from 'react-native-elements';
 import { Text, View, TouchableHighlight } from 'react-native';
 import SortableListView from 'react-native-sortable-listview';
 
+import { connect } from 'react-redux';
+import PostRoutine from '../Actions/PostRoutine';
+import mapStateToProps from '../config/ReducerHelper';
+import Store from '../Store';
+
 import text from '../config/text';
 
 const data = {
-  hello: { text: 'world' },
-  how: { text: 'are you' },
-  test: { text: 123 },
+  hello: { text: 'Glossier milky jelly cleanser' },
+  how: { text: 'Amorepacific Treatment cleansing oil' },
+  test: { text: 'Su:m37 Miracle rose cleansing stick' },
 };
 
 const order = Object.keys(data);
@@ -28,12 +33,22 @@ class RowComponent extends React.Component {
       >
         <Text>{this.props.data.text}</Text>
       </TouchableHighlight>
-    )
+    );
   }
 }
 
 
-export default class Landing extends React.Component {
+class Landing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ routine: Store.getState().main.tagData });
+  }
+
   static navigationOptions=({ navigation }) => ({
     headerRight: <Icon name="settings" size={24} color='#e1e1e1' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
   });
@@ -47,6 +62,7 @@ export default class Landing extends React.Component {
       <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white' }}>
         <Icon name="wb-sunny" size={30} />
         <Text style={[text.smallBold, { padding: 15 }]}>Good Morning</Text>
+        <Text>{this.state.routine}</Text>
         <Text style={text.p}onPress={this._handlePress}>My Tagged Ingredients</Text>
         <SortableListView
           style={{ flex: 1 , marginTop: 40}}
@@ -62,3 +78,5 @@ export default class Landing extends React.Component {
     )
   }
 }
+
+export default connect(mapStateToProps, { PostRoutine })(Landing);
