@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
+import { connect } from 'react-redux';
+
+import PostRoutine from '../Actions/PostRoutine';
+import mapStateToProps from '../config/ReducerHelper';
+import Store from '../Store';
 
 import ListItem from './ListItem';
 
@@ -7,7 +12,13 @@ function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
 }
 
-export default class List extends Component<{}> {
+class List extends Component<{}> {
+  componentDidMount() {
+    this.setState({
+      routine: Store.getState().main.routineData,
+     });
+  }
+
   _keyExtractor = (item, index) => index;
 
   _render = ({ item, index }) => (
@@ -15,11 +26,20 @@ export default class List extends Component<{}> {
       item={item}
       index={index}
       onPressItem={this._onPressItem}
+      onPressAdd={this._onPressAdd}
     />
   );
 
   _onPressItem = (id) => {
     this._query(url(id));
+  };
+
+  _onPressAdd = (brand, name) => {
+    const full = brand.toUpperCase() + ' ' + name;
+
+    if (!this.state.routine.includes(full)) {
+      (this.state.routine).push(full);
+    }
   };
 
   _query = (query) => {
@@ -51,3 +71,5 @@ export default class List extends Component<{}> {
     );
   }
 }
+
+export default connect(mapStateToProps, { PostRoutine })(List);

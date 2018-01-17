@@ -29,9 +29,11 @@ class Product extends React.Component {
     this.setState({ selectedIndex })
   }
 
-  _onPressAdd = (name) => {
-    if (!this.state.routine.includes(name)) {
-      (this.state.routine).push(name);
+  _onPressAdd = (brand, name) => {
+    const full = brand.toUpperCase() + ' ' + name;
+
+    if (!this.state.routine.includes(full)) {
+      (this.state.routine).push(full);
     }
   }
 
@@ -71,7 +73,7 @@ class Product extends React.Component {
         <View style={CONTAINER.details}>
           <View style={CONTAINER.details}>
             <Icon name="favorite" size={24} iconStyle={{ color: '#e1e1e1', marginRight: 10 }} />
-            <Icon name="add-circle" size={24} onPress={() => this._onPressAdd(name)} />
+            <Icon name="add-circle" size={24} onPress={() => this._onPressAdd(brand, name)} />
           </View>
 
           <ButtonGroup

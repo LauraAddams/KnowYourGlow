@@ -10,6 +10,10 @@ export default class ListItem extends React.PureComponent {
     this.props.onPressItem(this.props.item.id);
   }
 
+  _onPressAdd = () => {
+    this.props.onPressAdd(this.props.item.brand, this.props.item.name);
+  }
+
   render() {
     let { brand, name, ingredient } = this.props.item;
 
@@ -24,7 +28,7 @@ export default class ListItem extends React.PureComponent {
       (<View style={styles.container}>
         <View style={[CONTAINER.details, {paddingBottom: 8}]}>
         <Text style={text.smallBold}>{brand}</Text>
-        <Icon name="add" size={18} />
+        <Icon name="add" size={18} onPress={this._onPressAdd} />
         </View>
         <Text style={text.medium} numberOfLines={1}>{name}</Text>
         <View style={[CONTAINER.details, {width: 55, marginTop: 8}]}>

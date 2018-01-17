@@ -62,7 +62,6 @@ class Landing extends React.Component {
     return (
       <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white' }}>
         <Icon name="wb-sunny" size={30} />
-        <Text>{this.state.routine}</Text>
         <Text style={[text.smallBold, { padding: 15 }]}>Good Morning</Text>
         <Text style={text.p}onPress={this._handlePress}>My Tagged Ingredients</Text>
         <SortableListView

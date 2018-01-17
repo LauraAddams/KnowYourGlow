@@ -74,11 +74,12 @@ class TaggedIngredients extends React.Component {
     const currTagged = this.state.taggedIngredients;
     const ingredientIndex = taggedIngredients.indexOf(products[index].ingredient);
 
-    if(ingredientIndex === -1) {
+    if (ingredientIndex === -1) {
       currTagged.push(this.state.products[index].ingredient);
-    }else {
+    } else {
       currTagged.splice(ingredientIndex, 1);
     }
+
     this.props.PostTagged(currTagged);
     this.setState({ taggedIngredients: currTagged });
   };
@@ -86,8 +87,7 @@ class TaggedIngredients extends React.Component {
   render() {
     let tagged = [];
     const { taggedIngredients } = this.state;
-    const spinner = this.state.isLoading ?
-      <ActivityIndicator size='large'/> : null;
+    const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
 
     if (taggedIngredients) {
       tagged = taggedIngredients.map((name, index) =>
@@ -120,7 +120,6 @@ class TaggedIngredients extends React.Component {
         <ScrollView automaticallyAdjustContentInsets={false}>
           {ingredients}
         </ScrollView>
-
       </View>
     );
   }
