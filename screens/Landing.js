@@ -40,15 +40,27 @@ class Landing extends React.Component {
   }
 
   _onPressTime = () => {
-    Animated.timing(this.animatedValue, {
-      toValue: 1,
-      duration: 1500
-    }).start()
+    if (this.state.currentMessage !== timeStyle[2]) {
+      Animated.timing(this.animatedValue, {
+        toValue: 1,
+        duration: 1500
+      }).start()
 
-    this.setState({
-      currentMessage: timeStyle[2],
-      currentIcon: timeStyle[1],
-    });
+      this.setState({
+        currentMessage: timeStyle[2],
+        currentIcon: timeStyle[1],
+      });
+    } else {
+      Animated.timing(this.animatedValue, {
+        toValue: 0,
+        duration: 1500
+      }).start()
+
+      this.setState({
+        currentMessage: timeStyle[0],
+        currentIcon: timeStyle[3],
+      });
+    }
   }
 
   render() {
@@ -73,7 +85,7 @@ class Landing extends React.Component {
         </Animated.View>
 
         <View style={[CONTAINER.landing, { width: width, paddingLeft: 20 }]}>
-          <Image source={require('../assets/yellblob.png')} style={{ width: 250, height: 170, resizeMode: 'contain' }} />
+          <Image source={require('../assets/yellblob.png')} style={{ width: 260, height: 180, resizeMode: 'contain' }} />
         </View>
 
         <View style={{ flex: 1, width: width, marginTop: 100, paddingLeft: 50 }}>
