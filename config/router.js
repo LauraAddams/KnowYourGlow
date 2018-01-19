@@ -150,7 +150,7 @@ export const Tabs = TabNavigator({
     style: {
       backgroundColor: BG_COLOR,
       borderTopColor: 'transparent',
-      paddingBottom: 10,
+      paddingBottom: 20,
     },
   },
 });

@@ -30,6 +30,7 @@ export const CONTAINER = StyleSheet.create({
     shadowRadius: 6,
     shadowColor: 'black',
     shadowOpacity: 0.15,
+    backgroundColor: 'white',
   },
   input: {
     flexGrow: 1,

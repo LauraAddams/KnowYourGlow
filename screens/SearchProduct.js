@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Image } from 'react-native';
 
 import List from '../components/List';
 import SearchBar from '../components/SearchBar';
@@ -17,6 +17,7 @@ export default class SearchProduct extends Component<{}> {
       isLoading: false,
       message: '',
       products: [],
+      emptyState: true,
     };
   }
 
@@ -42,11 +43,21 @@ export default class SearchProduct extends Component<{}> {
     this.setState({ isLoading: false, message: '' });
 
     if (response.length) {
-      this.setState({ isLoading: false, message: '', products: response });
+      this.setState({ isLoading: false, message: '', products: response, emptyState: false });
     } else {
       this.setState({ message: 'No results, try again.'});
     }
   };
+
+  _renderEmpty = () => {
+    if (this.state.emptyState) {
+      return (
+        <View style={{ marginTop: 80, marginLeft: 20 }}>
+          <Image source={require('../assets/emptystate.png')} style={{ width: 200, height: 250, resizeMode: 'contain', opacity: 0.3 }} />
+        </View>
+      );
+    }
+  }
 
   render() {
     const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
@@ -60,6 +71,7 @@ export default class SearchProduct extends Component<{}> {
         />
 
         {spinner}
+        {this._renderEmpty()}
 
         <List
           products={this.state.products}
