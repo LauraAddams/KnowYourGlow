@@ -81,7 +81,7 @@ class Landing extends React.Component {
           <Text style={[text.smallBold, { fontSize: 24, paddingLeft: 120, backgroundColor: 'rgba(0,0,0,0)' }]}>{this.state.currentMessage}</Text>
         </View>
 
-        <View style={{ flex: 1, backgroundColor: 'pink'}}>
+        <View style={{ flex: 1 }}>
           <Text style={text.p} onPress={this._handlePress}>My Tagged Ingredients</Text>
         </View>
       </View>
