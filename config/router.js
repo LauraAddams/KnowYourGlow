@@ -61,6 +61,11 @@ export const ProductStack = StackNavigator({
   },
   Product: {
     screen: Product,
+    navigationOptions: {
+      title: <Image source={require('../assets/wave.png')}
+      style={{resizeMode: 'contain', width: 200, marginTop: 5}}
+      />,
+    },
   },
 }, {
   navigationOptions: {

@@ -68,17 +68,17 @@ class Landing extends React.Component {
         <Icon name={this.state.currentIcon} onPress={this._onPressTime} size={28} containerStyle={{position: 'absolute', right: 15 }} />
 
         <Animated.View style={[{position: 'absolute', top: 60}, animatedStyle]}>
-          <Icon name={timeStyle[1]} size={40} containerStyle={{paddingLeft: 80, paddingBottom: 25 }} />
-          <Icon name={timeStyle[3]} size={40} containerStyle={{paddingRight: 80, paddingTop: 25 }} />
+          <Icon name={timeStyle[1]} size={40} containerStyle={{paddingLeft: 70, paddingBottom: 20 }} />
+          <Icon name={timeStyle[3]} size={40} containerStyle={{paddingRight: 70, paddingTop: 20 }} />
         </Animated.View>
 
-        <View style={[CONTAINER.landing, { width: width }]}>
-          <Image source={require('../assets/yellblob.png')} style={{ width: 310, height: 180, resizeMode: 'contain' }} />
+        <View style={[CONTAINER.landing, { width: width, paddingLeft: 20 }]}>
+          <Image source={require('../assets/yellblob.png')} style={{ width: 250, height: 170, resizeMode: 'contain' }} />
         </View>
 
-        <View style={{ flex: 1, width: width, marginTop: 120 }}>
-          <Text style={[text.smallBold, { fontSize: 24, paddingLeft: 70, backgroundColor: 'rgba(0,0,0,0)' }]}>Good</Text>
-          <Text style={[text.smallBold, { fontSize: 24, paddingLeft: 120, backgroundColor: 'rgba(0,0,0,0)' }]}>{this.state.currentMessage}</Text>
+        <View style={{ flex: 1, width: width, marginTop: 100, paddingLeft: 50 }}>
+          <Text style={[text.smallBold, { fontSize: 26, backgroundColor: 'rgba(0,0,0,0)' }]}>Good</Text>
+          <Text style={[text.smallBold, { fontSize: 26, paddingLeft: 60, backgroundColor: 'rgba(0,0,0,0)' }]}>{this.state.currentMessage}</Text>
         </View>
 
         <View style={{ flex: 1 }}>

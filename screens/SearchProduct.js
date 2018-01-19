@@ -52,7 +52,7 @@ export default class SearchProduct extends Component<{}> {
   _renderEmpty = () => {
     if (this.state.emptyState) {
       return (
-        <View style={{ marginTop: 80, marginLeft: 20 }}>
+        <View style={{ position: 'absolute', paddingLeft: 15, paddingTop: 40 }}>
           <Image source={require('../assets/emptystate.png')} style={{ width: 200, height: 250, resizeMode: 'contain', opacity: 0.3 }} />
         </View>
       );
