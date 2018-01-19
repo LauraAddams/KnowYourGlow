@@ -6,6 +6,8 @@ export const FONT_BOLD = '900';
 export const FUTURA = 'Futura-Medium';
 export const HELVETICA = 'Helvetica-Light';
 export const PINK = '#FEE6E4';
+export const BG_COLOR = '#F6F3EC';
+export const HIGHLIGHT = '#F1BF62';
 
 export const CONTAINER = StyleSheet.create({
   container: {
@@ -13,7 +15,7 @@ export const CONTAINER = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 15,
-    backgroundColor: 'white',
+    backgroundColor: BG_COLOR,
   },
   search: {
     flexDirection: 'row',
@@ -37,7 +39,7 @@ export const CONTAINER = StyleSheet.create({
     fontStyle: 'italic',
   },
   inputForm: {
-    backgroundColor: '#f1f1f1',
+    backgroundColor: 'white',
     fontSize: 16,
     fontWeight: '300',
     padding: 10,

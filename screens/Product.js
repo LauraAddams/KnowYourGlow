@@ -7,7 +7,7 @@ import PostRoutine from '../Actions/PostRoutine';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BG_COLOR, HIGHLIGHT } from '../config/styles';
 
 class Product extends React.Component {
   constructor() {
@@ -53,7 +53,7 @@ class Product extends React.Component {
     }
 
     const ingItems = ingredient_list.map((ingredient, i) => {
-      const info = taggedIngredients.includes(ingredient) ? '#FEE284' : '#FFFFFF';
+      const info = taggedIngredients.includes(ingredient) ? HIGHLIGHT : '#FFFFFF';
 
       if (this.state.selectedIndex === 0) {
         return (<Text key={i} style={{ backgroundColor: info }}>{ingredient}, </Text>);
@@ -66,7 +66,7 @@ class Product extends React.Component {
       (<List style={{ flex: 1, justifyContent: 'flex-start' }} containerStyle={{ marginTop: 0 }}>{ingItems}</List>)
 
     return (
-      <View style={{ flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: 'white' }}>
+      <View style={{ flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: BG_COLOR }}>
         <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toUpperCase()}</Text>
         <Text style={[text.medium, { textAlign: 'center' }]}>{name}</Text>
 

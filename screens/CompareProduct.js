@@ -7,7 +7,7 @@ import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, HIGHLIGHT } from '../config/styles';
 import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
 
@@ -84,7 +84,7 @@ class CompareProduct extends React.Component {
     }
 
     const ingredients = ingList.map((name, index) => {
-      const info = taggedIngredients.includes(name) ? ['#FEE284', true] : ['#FBFBFB', false];
+      const info = taggedIngredients.includes(name) ? [HIGHLIGHT, true] : ['#FBFBFB', false];
       return (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor={info[0]} checked={info[1]} />);
     });
 

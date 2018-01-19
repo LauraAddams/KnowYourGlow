@@ -3,7 +3,7 @@ import { View, ActivityIndicator } from 'react-native';
 
 import List from '../components/List';
 import SearchBar from '../components/SearchBar';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BG_COLOR } from '../config/styles';
 
 function url(input) {
   input = input.replace(new RegExp(' ', 'g'), '+');
@@ -52,7 +52,7 @@ export default class SearchProduct extends Component<{}> {
     const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
 
     return (
-      <View style={[CONTAINER.container, { paddingTop: 30, backgroundColor: 'white' }]}>
+      <View style={[CONTAINER.container, { paddingTop: 30, backgroundColor: BG_COLOR }]}>
 
         <SearchBar
           loading={this.state.isLoading}

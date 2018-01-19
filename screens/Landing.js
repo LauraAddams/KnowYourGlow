@@ -41,7 +41,7 @@ class Landing extends React.Component {
   }
 
   static navigationOptions=({ navigation }) => ({
-    headerRight: <Icon name="settings" size={24} color='#e1e1e1' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
+    headerRight: <Icon name="settings" size={24} color='#929292' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
   });
 
   _handlePress = () => {
@@ -59,21 +59,23 @@ class Landing extends React.Component {
     const data = list;
     const order = Object.keys(data);
 
+    // <SortableListView
+    //   style={{ flex: 1 , marginTop: 40 }}
+    //   data={data}
+    //   order={order}
+    //   onRowMoved={(e) => {
+    //     order.splice(e.to, 0, order.splice(e.from, 1)[0]);
+    //     this.forceUpdate();
+    //   }}
+    //   renderRow={row => <RowComponent data={row} />}
+    // />
+
     return (
-      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white' }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#F6F3EC' }}>
         <Icon name="wb-sunny" size={30} />
         <Text style={[text.smallBold, { padding: 15 }]}>Good Morning</Text>
         <Text style={text.p}onPress={this._handlePress}>My Tagged Ingredients</Text>
-        <SortableListView
-          style={{ flex: 1 , marginTop: 40 }}
-          data={data}
-          order={order}
-          onRowMoved={(e) => {
-            order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-            this.forceUpdate();
-          }}
-          renderRow={row => <RowComponent data={row} />}
-        />
+
       </View>
     );
   }

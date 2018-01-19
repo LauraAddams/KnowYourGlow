@@ -9,7 +9,7 @@ import Store from '../Store';
 import CheckForm from '../components/CheckForm';
 import RemoveForm from '../components/RemoveForm';
 import SearchBar from '../components/SearchBar';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BG_COLOR, HIGHLIGHT } from '../config/styles';
 import text from '../config/text';
 
 function url(input) {
@@ -95,14 +95,14 @@ class TaggedIngredients extends React.Component {
     }
 
     const ingredients = (this.state.products).map((name, index) => {
-      const info = taggedIngredients.includes(name.ingredient) ? ['#FEE284', true] : ['#FBFBFB', false];
+      const info = taggedIngredients.includes(name.ingredient) ? [HIGHLIGHT, true] : ['#FBFBFB', false];
       return (
         <CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} checked={info[1]} tagColor={info[0]} />
       );
     });
 
     return (
-      <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: 'white' }]}>
+      <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: BG_COLOR }]}>
         <View style={{ height: 200, alignSelf: 'stretch', alignItems: 'center' }}>
           <Text style={[text.smallBold, { marginBottom: 20 }]}>Tagged Ingredients</Text>
           <ScrollView>

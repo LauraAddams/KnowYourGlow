@@ -13,7 +13,7 @@ import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 import Settings from '../screens/Settings';
 
-import { FUTURA, FONT_BOLD } from './styles';
+import { FUTURA, FONT_BOLD, BG_COLOR } from './styles';
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -45,7 +45,7 @@ export const HomeStack = StackNavigator({
       fontFamily: FUTURA,
     },
     headerStyle: {
-      backgroundColor: 'white',
+      backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
     },
   },
@@ -72,7 +72,7 @@ export const ProductStack = StackNavigator({
       fontFamily: FUTURA,
     },
     headerStyle: {
-      backgroundColor: '#f1f1f1',
+      backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
     },
   },
@@ -99,7 +99,7 @@ export const AddStack = StackNavigator({
       fontFamily: FUTURA,
     },
     headerStyle: {
-      backgroundColor: '#f1f1f1',
+      backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
     },
   },
@@ -139,9 +139,8 @@ export const Tabs = TabNavigator({
     activeTintColor: 'black',
     showLabel: false,
     style: {
-      backgroundColor: 'white',
+      backgroundColor: BG_COLOR,
       borderTopColor: 'transparent',
-      opacity: 0.8,
     },
   },
 });
