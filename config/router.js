@@ -116,27 +116,21 @@ export const Tabs = TabNavigator({
     screen: HomeStack,
     navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/user.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-        />
+        tabBarIcon: ({ tintColor }) => <Icon name="sentiment-satisfied" size={30} color={tintColor}/>
     },
   },
   SearchProduct: {
     screen: ProductStack,
     navigationOptions: {
         tabBarLabel: 'Search',
-        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/search.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-        />
+        tabBarIcon: ({ tintColor }) => <Icon name="search" size={30} color={tintColor}/>
     },
   },
   AddProduct: {
     screen: AddStack,
     navigationOptions: {
         tabBarLabel: 'Add',
-        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/add.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-        />
+        tabBarIcon: ({ tintColor }) => <Icon name="add" size={34} color={tintColor} />
     },
   },
   CompareProduct: {
@@ -144,7 +138,7 @@ export const Tabs = TabNavigator({
     navigationOptions: {
         tabBarLabel: 'Compare',
         tabBarIcon: ({ tintColor }) => <Image source={require('../assets/compare.png')}
-        style={[styles.icon, {tintColor: tintColor, width: 48}]}
+        style={[styles.icon, {tintColor: tintColor, width: 40}]}
         />
     },
   },
@@ -162,8 +156,8 @@ export const Tabs = TabNavigator({
 
 const styles = StyleSheet.create({
   icon: {
-    width: 30,
-    height: 30,
+    width: 26,
+    height: 26,
     resizeMode: 'contain',
   },
 });
