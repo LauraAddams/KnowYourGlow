@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator, ScrollView, Text } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import PostTagged from '../Actions/PostTagged';
@@ -18,6 +19,10 @@ function url(input) {
 }
 
 class TaggedIngredients extends React.Component {
+  static navigationOptions=({ navigation }) => ({
+    headerRight: <Icon name="settings" size={24} color='#929292' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
+  });
+
   constructor(props) {
     super(props);
     this.state = {

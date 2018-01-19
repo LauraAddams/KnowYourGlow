@@ -57,4 +57,11 @@ export const CONTAINER = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  landing: {
+    position: 'absolute',
+    top: 50,
+    left: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });

@@ -22,11 +22,11 @@ class Product extends React.Component {
     this.setState({
       taggedIngredients: Store.getState().main.tagData,
       routine: Store.getState().main.routineData,
-     });
+    });
   }
 
   updateIndex(selectedIndex) {
-    this.setState({ selectedIndex })
+    this.setState({ selectedIndex });
   }
 
   _onPressAdd = (brand, name) => {
