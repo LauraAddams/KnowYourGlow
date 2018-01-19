@@ -10,12 +10,26 @@ import PostRoutine from '../Actions/PostRoutine';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
+import RowComponent from '../components/RowComponent';
 import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 const {height, width} = Dimensions.get('window');
 const currTime = new Date().getHours();
-const timeStyle = currTime < 13 ? ['Morning', "wb-sunny", 'Evening', "brightness-2"] : ['Evening', "brightness-2", 'Morning', "wb-sunny"];
+const timeStyle = currTime < 13 ? ['Morning', "wb-sunny", 'Evening', "brightness-2"] :
+['Evening', "brightness-2", 'Morning', "wb-sunny"];
+
+const list = {
+  1: 'GLOSSIER milky jelly cleanser',
+  2: 'AMOREPACIFIC Treatment cleansing oil',
+  3: 'SU:M37 Miracle rose cleansing stick',
+};
+
+const list2 = {
+  1: 'COSRX Snail 96 essence cream',
+  2: 'GENERIC Jojoba oil',
+  3: 'CETAPHIL Gentle moisturizer lotion',
+};
 
 class Landing extends React.Component {
   constructor(props) {
@@ -24,7 +38,12 @@ class Landing extends React.Component {
     this.state = {
       currentMessage: timeStyle[0],
       currentIcon: timeStyle[3],
+      data: currTime < 13 ? list : list2,
     }
+  }
+
+  componentWillMount() {
+    this.animatedValue = new Animated.Value(0);
   }
 
   componentDidMount() {
@@ -33,10 +52,6 @@ class Landing extends React.Component {
 
   _handlePress = () => {
     this.props.navigation.navigate('Tagged');
-  }
-
-  componentWillMount() {
-    this.animatedValue = new Animated.Value(0);
   }
 
   _onPressTime = () => {
@@ -49,6 +64,7 @@ class Landing extends React.Component {
       this.setState({
         currentMessage: timeStyle[2],
         currentIcon: timeStyle[1],
+        data: list2,
       });
     } else {
       Animated.timing(this.animatedValue, {
@@ -59,11 +75,25 @@ class Landing extends React.Component {
       this.setState({
         currentMessage: timeStyle[0],
         currentIcon: timeStyle[3],
+        data: list,
       });
     }
   }
 
   render() {
+    // const list = {}
+    // const { routine } = this.state;
+    //
+    // if (routine) {
+    //   routine.forEach((name, index) => { list[index] = name });
+    // }
+    //
+    // const data = list;
+    // const order = Object.keys(data);
+
+    const data = this.state.data;
+    const order = Object.keys(data);
+
     const interpolateRotation = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '180deg'],
@@ -88,13 +118,23 @@ class Landing extends React.Component {
           <Image source={require('../assets/yellblob.png')} style={{ width: 260, height: 180, resizeMode: 'contain' }} />
         </View>
 
-        <View style={{ flex: 1, width: width, marginTop: 100, paddingLeft: 50 }}>
+        <View style={{ width: width, marginTop: 100, marginBottom: 50, paddingLeft: 50 }}>
           <Text style={[text.smallBold, { fontSize: 26, backgroundColor: 'rgba(0,0,0,0)' }]}>Good</Text>
           <Text style={[text.smallBold, { fontSize: 26, paddingLeft: 60, backgroundColor: 'rgba(0,0,0,0)' }]}>{this.state.currentMessage}</Text>
         </View>
 
-        <View style={{ flex: 1 }}>
-          <Text style={text.p} onPress={this._handlePress}>My Tagged Ingredients</Text>
+        <View style={{ flex: 1, marginBottom: 30 }}>
+          <SortableListView
+            style={{ }}
+            data={data}
+            order={order}
+            onRowMoved={(e) => {
+              order.splice(e.to, 0, order.splice(e.from, 1)[0]);
+              this.forceUpdate();
+            }}
+            renderRow={row => <RowComponent data={row} />}
+          />
+        <Text style={[text.smallBold, {textAlign: 'center'}]} onPress={this._handlePress}>My Tagged Ingredients</Text>
         </View>
       </View>
     );

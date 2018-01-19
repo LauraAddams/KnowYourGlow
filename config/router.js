@@ -138,7 +138,7 @@ export const Tabs = TabNavigator({
     navigationOptions: {
         tabBarLabel: 'Compare',
         tabBarIcon: ({ tintColor }) => <Image source={require('../assets/compare.png')}
-        style={[styles.icon, {tintColor: tintColor, width: 40}]}
+        style={[styles.icon, {tintColor: tintColor}]}
         />
     },
   },
@@ -156,7 +156,7 @@ export const Tabs = TabNavigator({
 
 const styles = StyleSheet.create({
   icon: {
-    width: 26,
+    width: 40,
     height: 26,
     resizeMode: 'contain',
   },
