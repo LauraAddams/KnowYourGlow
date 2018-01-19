@@ -73,7 +73,7 @@ class Landing extends React.Component {
         </Animated.View>
 
         <View style={[CONTAINER.landing, { width: width }]}>
-          <Image source={require('../assets/yellblob.png')} style={{ width: 320, height: 200, resizeMode: 'contain' }} />
+          <Image source={require('../assets/yellblob.png')} style={{ width: 310, height: 180, resizeMode: 'contain' }} />
         </View>
 
         <View style={{ flex: 1, width: width, marginTop: 110 }}>

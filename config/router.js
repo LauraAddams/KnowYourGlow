@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon, Button } from 'react-native-elements';
 
@@ -110,28 +111,36 @@ export const Tabs = TabNavigator({
     screen: HomeStack,
     navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Icon name="sentiment-satisfied" size={30} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/user.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+        />
     },
   },
   SearchProduct: {
     screen: ProductStack,
     navigationOptions: {
         tabBarLabel: 'Search',
-        tabBarIcon: ({ tintColor }) => <Icon name="search" size={30} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/search.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+        />
     },
   },
   AddProduct: {
     screen: AddStack,
     navigationOptions: {
         tabBarLabel: 'Add',
-        tabBarIcon: ({ tintColor }) => <Icon name="add" size={30} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/add.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+        />
     },
   },
   CompareProduct: {
     screen: CompareProduct,
     navigationOptions: {
         tabBarLabel: 'Compare',
-        tabBarIcon: ({ tintColor }) => <Icon name="tonality" size={30} color={tintColor}/>
+        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/compare.png')}
+        style={[styles.icon, {tintColor: tintColor, width: 48}]}
+        />
     },
   },
 }, {
@@ -141,6 +150,15 @@ export const Tabs = TabNavigator({
     style: {
       backgroundColor: BG_COLOR,
       borderTopColor: 'transparent',
+      paddingBottom: 10,
     },
+  },
+});
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
   },
 });
