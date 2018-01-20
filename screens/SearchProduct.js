@@ -52,7 +52,7 @@ export default class SearchProduct extends Component<{}> {
   _renderEmpty = () => {
     if (this.state.emptyState) {
       return (
-        <View style={{ position: 'absolute', paddingLeft: 15, paddingTop: 40 }}>
+        <View style={{ position: 'absolute', paddingLeft: 15, paddingTop: 30 }}>
           <Image source={require('../assets/emptystate.png')} style={{ width: 200, height: 250, resizeMode: 'contain', opacity: 0.3 }} />
         </View>
       );
@@ -63,7 +63,7 @@ export default class SearchProduct extends Component<{}> {
     const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
 
     return (
-      <View style={[CONTAINER.container, { paddingTop: 30, backgroundColor: BG_COLOR }]}>
+      <View style={[CONTAINER.container, { paddingTop: 20, backgroundColor: BG_COLOR }]}>
 
         <SearchBar
           loading={this.state.isLoading}

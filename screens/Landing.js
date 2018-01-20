@@ -12,7 +12,7 @@ import Store from '../Store';
 
 import RowComponent from '../components/RowComponent';
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BG_COLOR, BLACK } from '../config/styles';
 
 const {height, width} = Dimensions.get('window');
 const currTime = new Date().getHours();
@@ -29,6 +29,7 @@ const list2 = {
   1: 'COSRX Snail 96 essence cream',
   2: 'GENERIC Jojoba oil',
   3: 'CETAPHIL Gentle moisturizer lotion',
+  4: 'GENERIC Rosehip oil',
 };
 
 class Landing extends React.Component {
@@ -106,21 +107,17 @@ class Landing extends React.Component {
     };
 
     return (
-      <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#F6F3EC' }}>
-        <Icon name={this.state.currentIcon} onPress={this._onPressTime} size={28} containerStyle={{position: 'absolute', right: 15 }} />
+      <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
+        <Icon name={this.state.currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
 
         <Animated.View style={[{position: 'absolute', top: 60}, animatedStyle]}>
-          <Icon name={timeStyle[1]} size={40} containerStyle={{paddingLeft: 70, paddingBottom: 20 }} />
-          <Icon name={timeStyle[3]} size={40} containerStyle={{paddingRight: 70, paddingTop: 20 }} />
+          <Icon name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 70, paddingBottom: 20 }} />
+          <Icon name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 70, paddingTop: 20 }} />
         </Animated.View>
-
-        <View style={[CONTAINER.landing, { width: width, paddingLeft: 20 }]}>
-          <Image source={require('../assets/yellblob.png')} style={{ width: 260, height: 180, resizeMode: 'contain' }} />
-        </View>
 
         <View style={{ width: width, marginTop: 100, marginBottom: 50, paddingLeft: 50 }}>
           <Text style={[text.smallBold, { fontSize: 26, backgroundColor: 'rgba(0,0,0,0)' }]}>Good</Text>
-          <Text style={[text.smallBold, { fontSize: 26, paddingLeft: 60, backgroundColor: 'rgba(0,0,0,0)' }]}>{this.state.currentMessage}</Text>
+          <Text style={[text.smallBold, { fontSize: 26, paddingLeft: 60, paddingBottom: 20 }]}>{this.state.currentMessage}</Text>
         </View>
 
         <View style={{ flex: 1, marginBottom: 30 }}>

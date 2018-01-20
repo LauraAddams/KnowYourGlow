@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, GRAY } from '../config/styles';
 
 export default class ListItem extends React.PureComponent {
   _onPress = () => {
@@ -32,8 +32,8 @@ export default class ListItem extends React.PureComponent {
         </View>
         <Text style={text.medium} numberOfLines={1}>{name}</Text>
         <View style={[CONTAINER.details, {width: 55, marginTop: 8}]}>
-          <Text style={[text.small, {color: '#d4d4d4'}]}>100% </Text>
-          <Icon name="sentiment-satisfied" size={18} iconStyle={{color: '#d4d4d4'}}/>
+          <Text style={[text.small, {color: GRAY}]}>100% </Text>
+          <Icon name="sentiment-satisfied" size={18} iconStyle={{color: GRAY}}/>
         </View>
       </View>) :
       <View style={styles.container}><Text style={text.medium}>{ingredient}</Text></View>;
@@ -51,9 +51,11 @@ export default class ListItem extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     marginTop: 10,
-    borderColor: '#f1f1f1',
-    borderBottomWidth: 1,
     padding: 10,
-    paddingBottom: 20,
+    paddingBottom: 15,
+    borderLeftWidth: 5,
+    borderBottomColor: 'blue',
+    borderBottomWidth: 5,
+    borderLeftColor: 'pink',
   },
 });

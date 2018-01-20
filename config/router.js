@@ -1,8 +1,7 @@
-/* eslint-disable */
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Icon, Button } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
 import LogIn from '../screens/LogIn';
 import Landing from '../screens/Landing';
@@ -14,7 +13,8 @@ import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 import Settings from '../screens/Settings';
 
-import { FUTURA, FONT_BOLD, BG_COLOR } from './styles';
+import { BG_COLOR, BLACK } from './styles';
+import text from './text';
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -37,14 +37,9 @@ export const HomeStack = StackNavigator({
   },
 }, {
   navigationOptions: {
-    headerTintColor: 'black',
+    headerTintColor: BLACK,
     headerBackTitle: null,
-    headerTitleStyle: {
-      fontSize: 12,
-      fontWeight: FONT_BOLD,
-      letterSpacing: 4,
-      fontFamily: FUTURA,
-    },
+    headerTitleStyle: text.navHeader,
     headerStyle: {
       backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
@@ -61,22 +56,12 @@ export const ProductStack = StackNavigator({
   },
   Product: {
     screen: Product,
-    navigationOptions: {
-      title: <Image source={require('../assets/wave.png')}
-      style={{resizeMode: 'contain', width: 200, marginTop: 5}}
-      />,
-    },
   },
 }, {
   navigationOptions: {
-    headerTintColor: 'black',
+    headerTintColor: BLACK,
     headerBackTitle: null,
-    headerTitleStyle: {
-      fontSize: 12,
-      fontWeight: FONT_BOLD,
-      letterSpacing: 4,
-      fontFamily: FUTURA,
-    },
+    headerTitleStyle: text.navHeader,
     headerStyle: {
       backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
@@ -96,14 +81,9 @@ export const AddStack = StackNavigator({
   },
 }, {
   navigationOptions: {
-    headerTintColor: 'black',
+    headerTintColor: BLACK,
     headerBackTitle: null,
-    headerTitleStyle: {
-      fontSize: 12,
-      fontWeight: FONT_BOLD,
-      letterSpacing: 4,
-      fontFamily: FUTURA,
-    },
+    headerTitleStyle: text.navHeader,
     headerStyle: {
       backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
@@ -144,7 +124,7 @@ export const Tabs = TabNavigator({
   },
 }, {
   tabBarOptions: {
-    activeTintColor: 'black',
+    activeTintColor: BLACK,
     showLabel: false,
     style: {
       backgroundColor: BG_COLOR,

@@ -6,8 +6,10 @@ export const FONT_BOLD = '900';
 export const FUTURA = 'Futura-Medium';
 export const HELVETICA = 'Helvetica-Light';
 export const PINK = '#FEE6E4';
-export const BG_COLOR = '#F6F3EC';
+export const BG_COLOR = '#FCFCFC';
 export const HIGHLIGHT = '#F1BF62';
+export const BLACK = '#0F0F0F';
+export const GRAY = '#DBDBDB';
 
 export const CONTAINER = StyleSheet.create({
   container: {
@@ -24,20 +26,15 @@ export const CONTAINER = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 20,
-    height: 50,
-    borderRadius: 40,
-    shadowOffset: {width: 0, height: 3},
-    shadowRadius: 6,
-    shadowColor: 'black',
-    shadowOpacity: 0.15,
-    backgroundColor: 'white',
+    height: 40,
+    borderBottomColor: GRAY,
+    borderBottomWidth: 1,
   },
   input: {
     flexGrow: 1,
     marginLeft: 25,
     fontSize: 16,
-    fontWeight: '300',
-    fontStyle: 'italic',
+    fontWeight: '500',
   },
   inputForm: {
     backgroundColor: 'white',

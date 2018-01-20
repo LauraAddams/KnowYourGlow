@@ -10,6 +10,7 @@ import text from '../config/text';
 import { CONTAINER, BG_COLOR, HIGHLIGHT } from '../config/styles';
 
 class Product extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -43,17 +44,15 @@ class Product extends React.Component {
     const buttons = [{ element: icon1 }, { element: icon2 }];
 
     const { selectedIndex } = this.state;
-    const { brand, ingredient_list } = this.props.navigation.state.params;
+    const { brand, ingredient_list, name } = this.props.navigation.state.params;
     const { taggedIngredients } = this.state;
-    let { name } = this.props.navigation.state.params;
-    name = name[0].toUpperCase() + name.slice(1);
 
     if (!taggedIngredients) {
       return <Text />;
     }
 
     const ingItems = ingredient_list.map((ingredient, i) => {
-      const info = taggedIngredients.includes(ingredient) ? HIGHLIGHT : '#FFFFFF';
+      const info = taggedIngredients.includes(ingredient) ? HIGHLIGHT : 'rgba(0,0,0,0)';
 
       if (this.state.selectedIndex === 0) {
         return (<Text key={i} style={{ backgroundColor: info }}>{ingredient}, </Text>);
@@ -62,20 +61,16 @@ class Product extends React.Component {
     });
 
     const content = this.state.selectedIndex === 0 ?
-      (<Text style={[text.p, { textAlign: 'justify', lineHeight: 26 }]}>{ingItems}</Text>) :
+      (<Text style={[text.p, { lineHeight: 23 }]}>{ingItems}</Text>) :
       (<List style={{ flex: 1, justifyContent: 'flex-start' }} containerStyle={{ marginTop: 0 }}>{ingItems}</List>)
 
     return (
-      <View style={{ flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 30, backgroundColor: BG_COLOR }}>
-        <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toUpperCase()}</Text>
-        <Text style={[text.medium, { textAlign: 'center' }]}>{name}</Text>
+      <View style={{ flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 20, backgroundColor: BG_COLOR }}>
+        <Text style={[text.medium, { textAlign: 'center', paddingBottom: 5 }]}>{name.toUpperCase()}</Text>
+        <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toLowerCase()}</Text>
 
         <View style={CONTAINER.details}>
-          <View style={CONTAINER.details}>
-            <Icon name="favorite" size={24} iconStyle={{ color: '#e1e1e1', marginRight: 10 }} />
-            <Icon name="add-circle" size={24} onPress={() => this._onPressAdd(brand, name)} />
-          </View>
-
+          <Text style={[text.small, { marginTop: 20 }]}>INGREDIENTS:</Text>
           <ButtonGroup
             onPress={this.updateIndex}
             selectedIndex={selectedIndex}
@@ -86,8 +81,9 @@ class Product extends React.Component {
           />
         </View>
 
-        <Text style={[text.small, { marginTop: 20 }]}>INGREDIENTS:</Text>
+
         <ScrollView style={{ margin: 10 }}>{content}</ScrollView>
+        <Icon name="add" size={28} onPress={() => this._onPressAdd(brand, name)} />
 
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 25, marginTop: 5 }}>
           <Text style={text.small}>100% ACCURATE</Text>

@@ -1,27 +1,29 @@
 import { StyleSheet } from 'react-native';
-import { FONT_BOLD, FUTURA, HELVETICA } from './styles';
+import { FONT_BOLD, FUTURA, HELVETICA, BLACK } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {
-    fontSize: 12,
-    fontWeight: FONT_BOLD,
-    letterSpacing: 4,
-    fontFamily: FUTURA,
+    fontSize: 15,
+    letterSpacing: 0,
+    fontFamily: 'Georgia-Italic',
+    color: BLACK,
   },
   small: {
     fontSize: 11,
     fontWeight: FONT_BOLD,
     fontFamily: FUTURA,
+    color: BLACK,
   },
   medium: {
-    fontSize: 18,
-    fontWeight: '300',
-    letterSpacing: 1,
+    fontSize: 17,
+    letterSpacing: 2,
+    fontFamily: FUTURA,
+    color: BLACK,
   },
   p: {
-    fontSize: 16,
-    fontFamily: HELVETICA,
-    letterSpacing: 1,
+    fontSize: 15,
+    fontFamily: 'Georgia',
+    color: BLACK,
   },
   button: {
     fontSize: 11,
@@ -30,6 +32,12 @@ const text = StyleSheet.create({
     fontWeight: FONT_BOLD,
     textAlign: 'center',
     color: 'white',
+  },
+  navHeader: {
+    fontSize: 12,
+    letterSpacing: 5,
+    fontFamily: FUTURA,
+    color: BLACK,
   },
 });
 
