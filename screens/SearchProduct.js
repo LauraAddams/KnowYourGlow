@@ -63,7 +63,7 @@ export default class SearchProduct extends Component<{}> {
     const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
 
     return (
-      <View style={[CONTAINER.container, { paddingTop: 20, backgroundColor: BG_COLOR }]}>
+      <View style={[CONTAINER.container, { paddingTop: 20, paddingLeft: 0, paddingRight: 0, backgroundColor: BG_COLOR }]}>
 
         <SearchBar
           loading={this.state.isLoading}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator, ScrollView, Text } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, ButtonGroup } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import PostTagged from '../Actions/PostTagged';
@@ -29,6 +29,7 @@ class TaggedIngredients extends React.Component {
       isLoading: false,
       message: '',
       products: [],
+      selectedIndex: 0,
     };
   }
 
@@ -108,11 +109,16 @@ class TaggedIngredients extends React.Component {
 
     return (
       <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: BG_COLOR }]}>
-        <View style={{ height: 200, alignSelf: 'stretch', alignItems: 'center' }}>
-          <Text style={[text.smallBold, { marginBottom: 20 }]}>Tagged Ingredients</Text>
-          <ScrollView>
-            {tagged}
-          </ScrollView>
+        <ButtonGroup
+          onPress={this.updateIndex}
+          selectedIndex={this.state.selectedIndex}
+          buttons={['Tagged', 'Add']}
+          selectedBackgroundColor={BG_COLOR}
+          innerBorderStyle={{ color: BG_COLOR }}
+          />
+
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', width: 380 }}>
+          {tagged}
         </View>
 
         <SearchBar

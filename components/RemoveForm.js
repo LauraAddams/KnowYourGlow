@@ -28,15 +28,20 @@ export default class RemoveForm extends React.Component {
     return (
         <CheckBox
           key={name}
-          right
           title={name}
           iconRight
           iconType='material'
           checkedIcon='clear'
           uncheckedIcon='clear'
           checkedColor='red'
-          textStyle={{flex: 1}}
-          containerStyle={{borderWidth: 0,width: 300, justifyContent: 'space-between'}}
+          size={1}
+          textStyle={{fontSize: 12}}
+          containerStyle={{
+            borderWidth: 0,
+            backgroundColor: 'pink',
+            padding: 0,
+            borderRadius: 10,
+          }}
           checked={checked}
           onPress={() => this.props._handlePress(index)}
         />

@@ -18,44 +18,50 @@ export default class ListItem extends React.PureComponent {
     let { brand, name, ingredient } = this.props.item;
 
     if (this.props.item.brand) {
-      brand = brand.toUpperCase();
-      name = name[0].toUpperCase() + name.slice(1);
+      brand = brand[0].toUpperCase() + brand.slice(1);
+      name = name.toUpperCase();
     } else {
       ingredient = ingredient[0].toUpperCase() + ingredient.slice(1);
     }
 
     const textResult = brand ?
-      (<View style={styles.container}>
-        <View style={[CONTAINER.details, {paddingBottom: 8}]}>
+    (<View style={styles.container}>
+
+      <View style={CONTAINER.details}>
         <Text style={text.smallBold}>{brand}</Text>
-        <Icon name="add" size={18} onPress={this._onPressAdd} />
-        </View>
-        <Text style={text.medium} numberOfLines={1}>{name}</Text>
-        <View style={[CONTAINER.details, {width: 55, marginTop: 8}]}>
+
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={[text.small, {color: GRAY}]}>100% </Text>
           <Icon name="sentiment-satisfied" size={18} iconStyle={{color: GRAY}}/>
         </View>
-      </View>) :
+      </View>
+
+      <Text style={[text.medium, {fontSize: 14, marginTop: 5}]} numberOfLines={1}>{name}</Text>
+
+      <View style={{position: 'absolute', left: -15, top: 25}}>
+        <Icon name="add" size={20} iconStyle={{color: 'black'}} onPress={this._onPressAdd} />
+      </View>
+
+    </View>) :
       <View style={styles.container}><Text style={text.medium}>{ingredient}</Text></View>;
 
     return (
-      <TouchableHighlight
-        onPress={this._onPress}
-        underlayColor='#f7f7f7'>
-        {textResult}
-      </TouchableHighlight>
+      <View>
+        <TouchableHighlight
+          onPress={this._onPress}
+          underlayColor='#f7f7f7'>
+          {textResult}
+        </TouchableHighlight>
+        <Icon type="material-community" name="stairs" size={10} iconStyle={{margin: 5, color: 'rgba(0,0,0,0.5)'}}/>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    padding: 10,
-    paddingBottom: 15,
-    borderLeftWidth: 5,
-    borderBottomColor: 'blue',
-    borderBottomWidth: 5,
-    borderLeftColor: 'pink',
+    padding: 15,
+    margin: 10,
+    marginLeft: 25,
   },
 });

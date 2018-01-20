@@ -3,7 +3,7 @@ import { FONT_BOLD, FUTURA, HELVETICA, BLACK } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'Georgia-Italic',
     color: BLACK,
   },
