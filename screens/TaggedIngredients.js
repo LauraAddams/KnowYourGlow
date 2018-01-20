@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator, ScrollView, Text, StyleSheet } from 'react-native';
-import { Icon, ButtonGroup } from 'react-native-elements';
+import { Icon, ButtonGroup, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Swiper from 'react-native-swiper';
 
@@ -113,36 +113,40 @@ class TaggedIngredients extends React.Component {
       );
     });
 
-    const view = this.state.selectedIndex === 0 ?
-      <View style={CONTAINER.taggedContainer}>{tagged}</View> :
-      (<View>
-        <SearchBar loading={this.state.isLoading} onPressSearch={this.onPressSearch} />
-        {spinner}
-
-        <ScrollView automaticallyAdjustContentInsets={false}>
-          {ingredients}
-        </ScrollView>
-      </View>);
-
     return (
-      <Swiper style={styles.wrapper} showButtons={true}>
-        <View style={styles.slide1}>
+      <View style={{ flex: 1 }}>
           <ButtonGroup
             onPress={this.updateIndex}
             selectedIndex={this.state.selectedIndex}
             buttons={['Tagged', 'Add']}
-            containerStyle={{ marginTop: -3, width: '100%', borderRadius: 0, borderWidth: 0 }}
+            containerStyle={styles.buttonGroup}
             selectedBackgroundColor={BG_COLOR}
-            innerBorderStyle={{ color: BG_COLOR }}
+            innerBorderStyle={{ color: 'transparent' }}
             />
-          {view}
-        </View>
 
-        <View style={styles.slide2}>
-          <Text>Hey</Text>
-        </View>
+        <Swiper
+          style={styles.wrapper}
+          showsPagination={false}
+          loop={false}
+          index={this.state.selectedIndex}
+        >
 
-      </Swiper>
+          <View style={styles.slide1}>
+            <View style={[CONTAINER.taggedContainer, { marginTop: 50 }]}>
+              {tagged}
+            </View>
+          </View>
+
+          <View style={styles.slide2}>
+            <SearchBar loading={this.state.isLoading} onPressSearch={this.onPressSearch} />
+            {spinner}
+            <ScrollView automaticallyAdjustContentInsets={false}>
+              {ingredients}
+            </ScrollView>
+          </View>
+
+        </Swiper>
+      </View>
     );
   }
 }
@@ -152,7 +156,6 @@ const styles = StyleSheet.create({
   },
   slide1: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
   },
@@ -162,6 +165,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#97CAE5',
   },
+  buttonGroup: {
+    borderWidth: 0,
+    borderRadius: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0,
+  }
 });
 
 export default connect(mapStateToProps, { PostTagged })(TaggedIngredients);
