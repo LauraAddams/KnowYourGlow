@@ -32,6 +32,7 @@
     "react-native": "0.50.3",
     "react-native-elements": "^0.18.5",
     "react-native-modal": "^4.1.1",
+    "react-native-sortable-list": "0.0.20",
     "react-native-sortable-listview": "^0.2.7",
     "react-navigation": "^1.0.0-beta.23",
     "react-redux": "^5.0.6",

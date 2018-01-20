@@ -1,27 +1,24 @@
 /* eslint-disable */
 
 import React from 'react';
-import { Icon, Button } from 'react-native-elements';
-import { Text, View, TouchableHighlight, Image, Dimensions, Animated } from 'react-native';
-import SortableListView from 'react-native-sortable-listview';
+import { Icon } from 'react-native-elements';
+import { Text, View, Dimensions, Animated, StyleSheet, Easing } from 'react-native';
+import SortableList from 'react-native-sortable-list';
 
 import { connect } from 'react-redux';
 import PostRoutine from '../Actions/PostRoutine';
 import Store from '../Store';
 
-import RowComponent from '../components/RowComponent';
 import text from '../config/text';
 import { CONTAINER, BG_COLOR, BLACK } from '../config/styles';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 const currTime = new Date().getHours();
-const timeStyle = currTime < 13 ? ['Morning', "wb-sunny", 'Evening', "brightness-2"] :
-['Evening', "brightness-2", 'Morning', "wb-sunny"];
+const timeStyle = currTime < 13 ? ['Morning', 'wb-sunny', 'Evening', 'brightness-2'] :
+  ['Evening', 'brightness-2', 'Morning', 'wb-sunny'];
 
-function mapStateToProps(state, ownProps) {
-  return {
-    routine: state
-  }
+function mapStateToProps(state) {
+  return { routine: state.main };
 }
 
 class Landing extends React.Component {
@@ -31,7 +28,7 @@ class Landing extends React.Component {
     this.state = {
       currentMessage: timeStyle[0],
       currentIcon: timeStyle[3],
-    }
+    };
   }
 
   componentWillMount() {
@@ -39,11 +36,13 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ routine: Store.getState().main.routineData });
+    if (!this.state.routineData) {
+      this.setState({ routine: Store.getState().main.routineData });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({routine: nextProps.routine.main.routineData});
+    this.setState({ routine: nextProps.routine.routineData });
   }
 
   _handlePress = () => {
@@ -54,24 +53,22 @@ class Landing extends React.Component {
     if (this.state.currentMessage !== timeStyle[2]) {
       Animated.timing(this.animatedValue, {
         toValue: 1,
-        duration: 1500
-      }).start()
+        duration: 1500,
+      }).start();
 
       this.setState({
         currentMessage: timeStyle[2],
         currentIcon: timeStyle[1],
-        data: list2,
       });
     } else {
       Animated.timing(this.animatedValue, {
         toValue: 0,
-        duration: 1500
-      }).start()
+        duration: 1500,
+      }).start();
 
       this.setState({
         currentMessage: timeStyle[0],
         currentIcon: timeStyle[3],
-        data: list,
       });
     }
   }
@@ -96,7 +93,6 @@ class Landing extends React.Component {
     }
 
     const data = list;
-    const order = Object.keys(data);
 
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
@@ -106,29 +102,85 @@ class Landing extends React.Component {
           <Icon name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 70, paddingTop: 20 }} />
         </Animated.View>
 
-        <View style={{ width: width, marginTop: 100, marginBottom: 50, paddingLeft: 50 }}>
+        <View style={{ width: width, marginTop: 100, marginBottom: 20, paddingLeft: 50 }}>
           <Text style={[text.smallBold, { fontSize: 26, backgroundColor: 'rgba(0,0,0,0)' }]}>Good</Text>
           <Text style={[text.smallBold, { fontSize: 26, paddingLeft: 60, paddingBottom: 20 }]}>{this.state.currentMessage}</Text>
         </View>
 
         <View style={{ flex: 1, marginBottom: 30 }}>
-          <SortableListView
-            style={{ backgroundColor: 'red'}}
-            data={data}
-            order={order}
-            onRowMoved={(e) => {
-              order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-              const mapping = order.map((item) => data[item]);
-              this.props.PostRoutine(mapping);
-              this.setState({ routine: order.map((item) => data[item]) });
-            }}
-            renderRow={row => <RowComponent data={row} />}
-          />
+          <SortableList
+          style={styles.list}
+          contentContainerStyle={styles.contentContainer}
+          data={data}
+          renderRow={this._renderRow} />
         <Text style={[text.smallBold, {textAlign: 'center'}]} onPress={this._handlePress}>My Tagged Ingredients</Text>
         </View>
       </View>
     );
   }
+
+  _renderRow = ({ data, active }) => <Row data={data} active={active} />
 }
+
+class Row extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this._active = new Animated.Value(0);
+
+    this._style = {
+          transform: [{
+            scale: this._active.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, 1.1],
+            }),
+          }],
+          shadowRadius: this._active.interpolate({
+            inputRange: [0, 1],
+            outputRange: [2, 10],
+          }),
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.active !== nextProps.active) {
+      Animated.timing(this._active, {
+        duration: 300,
+        easing: Easing.bounce,
+        toValue: Number(nextProps.active),
+      }).start();
+    }
+  }
+
+  render() {
+   const {data, active} = this.props;
+
+    return (
+      <Animated.View style={[
+        styles.row,
+        this._style,
+      ]}>
+        <Text style={text.p}>{data}</Text>
+      </Animated.View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+  },
+  contentContainer: {
+    flex: 1,
+    width: width / 1.2,
+  },
+  row: {
+    backgroundColor: '#fff',
+    padding: 15,
+    marginBottom: 10,
+    borderRadius: 20,
+  },
+});
 
 export default connect(mapStateToProps, { PostRoutine })(Landing);

@@ -1,6 +1,6 @@
 const initialState = {
   tagData: ['fragrance', 'mineral oil', 'coconut oil'],
-  routineData: ['COSRX Good morning low ph cleasner', 'GLOSSIER Milky jelly cleanser'],
+  routineData: ['COSRX Good morning low ph cleanser', 'GLOSSIER Milky jelly cleanser'],
 };
 
 export default function (state = initialState, action) {
