@@ -48,7 +48,11 @@ export const CONTAINER = StyleSheet.create({
     flexDirection: 'column',
     alignSelf: 'stretch',
   },
-  tagged: {
+  taggedContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    width: 380,
   },
   details: {
     flexDirection: 'row',

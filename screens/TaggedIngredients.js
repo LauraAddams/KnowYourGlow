@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, ActivityIndicator, ScrollView, Text } from 'react-native';
+import { View, ActivityIndicator, ScrollView, Text, StyleSheet } from 'react-native';
 import { Icon, ButtonGroup } from 'react-native-elements';
 import { connect } from 'react-redux';
+import Swiper from 'react-native-swiper';
 
 import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
@@ -31,6 +32,7 @@ class TaggedIngredients extends React.Component {
       products: [],
       selectedIndex: 0,
     };
+    this.updateIndex = this.updateIndex.bind(this);
   }
 
   componentDidMount() {
@@ -67,6 +69,10 @@ class TaggedIngredients extends React.Component {
     }
   };
 
+  updateIndex(selectedIndex) {
+    this.setState({ selectedIndex });
+  }
+
   _onRemovePress = (ingredientIndex) => {
     const currTagged = this.state.taggedIngredients;
 
@@ -93,7 +99,7 @@ class TaggedIngredients extends React.Component {
   render() {
     let tagged = [];
     const { taggedIngredients } = this.state;
-    const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
+    const spinner = this.state.isLoading ? <ActivityIndicator size="large" /> : null;
 
     if (taggedIngredients) {
       tagged = taggedIngredients.map((name, index) =>
@@ -107,33 +113,55 @@ class TaggedIngredients extends React.Component {
       );
     });
 
-    return (
-      <View style={[CONTAINER.container, { paddingTop: 10, backgroundColor: BG_COLOR }]}>
-        <ButtonGroup
-          onPress={this.updateIndex}
-          selectedIndex={this.state.selectedIndex}
-          buttons={['Tagged', 'Add']}
-          selectedBackgroundColor={BG_COLOR}
-          innerBorderStyle={{ color: BG_COLOR }}
-          />
-
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', width: 380 }}>
-          {tagged}
-        </View>
-
-        <SearchBar
-          loading={this.state.isLoading}
-          onPressSearch={this.onPressSearch}
-        />
-
+    const view = this.state.selectedIndex === 0 ?
+      <View style={CONTAINER.taggedContainer}>{tagged}</View> :
+      (<View>
+        <SearchBar loading={this.state.isLoading} onPressSearch={this.onPressSearch} />
         {spinner}
 
         <ScrollView automaticallyAdjustContentInsets={false}>
           {ingredients}
         </ScrollView>
-      </View>
+      </View>);
+
+    return (
+      <Swiper style={styles.wrapper} showButtons={true}>
+        <View style={styles.slide1}>
+          <ButtonGroup
+            onPress={this.updateIndex}
+            selectedIndex={this.state.selectedIndex}
+            buttons={['Tagged', 'Add']}
+            containerStyle={{ marginTop: -3, width: '100%', borderRadius: 0, borderWidth: 0 }}
+            selectedBackgroundColor={BG_COLOR}
+            innerBorderStyle={{ color: BG_COLOR }}
+            />
+          {view}
+        </View>
+
+        <View style={styles.slide2}>
+          <Text>Hey</Text>
+        </View>
+
+      </Swiper>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+});
 
 export default connect(mapStateToProps, { PostTagged })(TaggedIngredients);
