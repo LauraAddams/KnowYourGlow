@@ -7,7 +7,6 @@ import SortableListView from 'react-native-sortable-listview';
 
 import { connect } from 'react-redux';
 import PostRoutine from '../Actions/PostRoutine';
-import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
 import RowComponent from '../components/RowComponent';
@@ -19,18 +18,11 @@ const currTime = new Date().getHours();
 const timeStyle = currTime < 13 ? ['Morning', "wb-sunny", 'Evening', "brightness-2"] :
 ['Evening', "brightness-2", 'Morning', "wb-sunny"];
 
-const list = {
-  1: 'GLOSSIER milky jelly cleanser',
-  2: 'AMOREPACIFIC Treatment cleansing oil',
-  3: 'SU:M37 Miracle rose cleansing stick',
-};
-
-const list2 = {
-  1: 'COSRX Snail 96 essence cream',
-  2: 'GENERIC Jojoba oil',
-  3: 'CETAPHIL Gentle moisturizer lotion',
-  4: 'GENERIC Rosehip oil',
-};
+function mapStateToProps(state, ownProps) {
+  return {
+    routine: state
+  }
+}
 
 class Landing extends React.Component {
   constructor(props) {
@@ -48,6 +40,10 @@ class Landing extends React.Component {
 
   componentDidMount() {
     this.setState({ routine: Store.getState().main.routineData });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({routine: nextProps.routine.main.routineData});
   }
 
   _handlePress = () => {
@@ -80,11 +76,6 @@ class Landing extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('hhhhhhhhhh');
-    console.log(nextProps);
-  }
-
   render() {
     const interpolateRotation = this.animatedValue.interpolate({
       inputRange: [0, 1],
@@ -92,9 +83,7 @@ class Landing extends React.Component {
     });
 
     const animatedStyle = {
-      transform: [
-        { rotate: interpolateRotation },
-      ],
+      transform: [ { rotate: interpolateRotation }, ],
     };
 
     const list = {}
@@ -112,7 +101,6 @@ class Landing extends React.Component {
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
         <Icon name={this.state.currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
-
         <Animated.View style={[{position: 'absolute', top: 60}, animatedStyle]}>
           <Icon name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 70, paddingBottom: 20 }} />
           <Icon name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 70, paddingTop: 20 }} />
@@ -125,7 +113,7 @@ class Landing extends React.Component {
 
         <View style={{ flex: 1, marginBottom: 30 }}>
           <SortableListView
-            style={{ }}
+            style={{ backgroundColor: 'red'}}
             data={data}
             order={order}
             onRowMoved={(e) => {
