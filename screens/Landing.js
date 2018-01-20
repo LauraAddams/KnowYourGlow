@@ -39,7 +39,6 @@ class Landing extends React.Component {
     this.state = {
       currentMessage: timeStyle[0],
       currentIcon: timeStyle[3],
-      data: currTime < 13 ? list : list2,
     }
   }
 
@@ -81,20 +80,12 @@ class Landing extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('hhhhhhhhhh');
+    console.log(nextProps);
+  }
+
   render() {
-    // const list = {}
-    // const { routine } = this.state;
-    //
-    // if (routine) {
-    //   routine.forEach((name, index) => { list[index] = name });
-    // }
-    //
-    // const data = list;
-    // const order = Object.keys(data);
-
-    const data = this.state.data;
-    const order = Object.keys(data);
-
     const interpolateRotation = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '180deg'],
@@ -105,6 +96,18 @@ class Landing extends React.Component {
         { rotate: interpolateRotation },
       ],
     };
+
+    const list = {}
+    const { routine } = this.state;
+
+    if (routine) {
+      routine.forEach((name, index) => { list[index] = name });
+    } else {
+      return (<Text>ERROR! NO ROUTINE!</Text>)
+    }
+
+    const data = list;
+    const order = Object.keys(data);
 
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
@@ -127,7 +130,9 @@ class Landing extends React.Component {
             order={order}
             onRowMoved={(e) => {
               order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-              this.forceUpdate();
+              const mapping = order.map((item) => data[item]);
+              this.props.PostRoutine(mapping);
+              this.setState({ routine: order.map((item) => data[item]) });
             }}
             renderRow={row => <RowComponent data={row} />}
           />

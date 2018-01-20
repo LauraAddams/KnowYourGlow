@@ -39,6 +39,7 @@ class List extends Component<{}> {
 
     if (!this.state.routine.includes(full)) {
       (this.state.routine).push(full);
+      this.props.PostRoutine(this.state.routine);
     }
   };
 
