@@ -1,5 +1,6 @@
+/* eslint-disable */
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, StyleSheet } from 'react-native';
 import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -35,6 +36,7 @@ class Product extends React.Component {
 
     if (!this.state.routine.includes(full)) {
       (this.state.routine).push(full);
+      this.props.PostRoutine(this.state.routine);
     }
   }
 
@@ -52,47 +54,80 @@ class Product extends React.Component {
     }
 
     const ingItems = ingredient_list.map((ingredient, i) => {
-      const info = taggedIngredients.includes(ingredient) ? HIGHLIGHT : 'rgba(0,0,0,0)';
+      const info = taggedIngredients.includes(ingredient) ? HIGHLIGHT : BG_COLOR;
 
       if (this.state.selectedIndex === 0) {
         return (<Text key={i} style={{ backgroundColor: info }}>{ingredient}, </Text>);
       }
-      return (<ListItem key={i} title={ingredient} hideChevron={true} containerStyle={{ backgroundColor: info }} />);
+      return (<ListItem key={i} title={ingredient} hideChevron={true} titleStyle={[text.p, {marginLeft: 0}]}
+        containerStyle={[styles.listItem, {backgroundColor: info}]} />);
     });
 
     const content = this.state.selectedIndex === 0 ?
-      (<Text style={[text.p, { lineHeight: 23 }]}>{ingItems}</Text>) :
-      (<List style={{ flex: 1, justifyContent: 'flex-start' }} containerStyle={{ marginTop: 0 }}>{ingItems}</List>)
+      (<Text style={[text.p, { lineHeight: 26, textAlign: 'justify' }]}>{ingItems}</Text>) :
+      (<List style={{ flex: 1, justifyContent: 'flex-start' }} containerStyle={styles.list}>{ingItems}</List>)
 
     return (
-      <View style={{ flex: 1, paddingLeft: 20, paddingRight: 20, paddingTop: 20, backgroundColor: BG_COLOR }}>
-        <Text style={[text.medium, { textAlign: 'center', paddingBottom: 5 }]}>{name.toUpperCase()}</Text>
-        <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toLowerCase()}</Text>
+      <View style={{ flex: 1, backgroundColor: BG_COLOR }}>
+        <View>
+          <View style={{marginTop: 40, marginBottom: 40}}>
+            <Text style={[text.medium, { textAlign: 'center', margin: 8 }]}>{name.toUpperCase()}</Text>
+            <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toLowerCase()}</Text>
+          </View>
 
-        <View style={CONTAINER.details}>
-          <Text style={[text.small, { marginTop: 20 }]}>INGREDIENTS:</Text>
-          <ButtonGroup
-            onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={buttons}
-            containerStyle={{ height: 36, width: 74, backgroundColor: '#eeeeee', borderWidth: 0, marginTop: 15, marginBottom: 10 }}
-            selectedBackgroundColor="#f5f5f5"
-            innerBorderStyle={{ color: '#f5f5f5' }}
-          />
+          <View style={[CONTAINER.details, {marginLeft: 20, marginRight: 3}]}>
+            <Text style={text.small}>INGREDIENTS:</Text>
+            <ButtonGroup
+              onPress={this.updateIndex}
+              selectedIndex={selectedIndex}
+              buttons={buttons}
+              containerStyle={styles.buttonGroup}
+              containerBorderRadius={10}
+              selectedBackgroundColor={BG_COLOR}
+              innerBorderStyle={{ color: BG_COLOR }}
+              />
+          </View>
         </View>
 
+        <ScrollView style={styles.scroll}>
+          {content}
+          <Text />
+        </ScrollView>
 
-        <ScrollView style={{ margin: 10 }}>{content}</ScrollView>
-        <Icon name="add" size={28} onPress={() => this._onPressAdd(brand, name)} />
-
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 25, marginTop: 5 }}>
-          <Text style={text.small}>100% ACCURATE</Text>
-          <Icon name="sentiment-dissatisfied" size={18} iconStyle={{ padding: 4, marginLeft: 5 }} />
-          <Icon name="sentiment-satisfied" size={18} iconStyle={{ padding: 4 }} />
+        <View style={styles.add}>
+          <Icon name="add-circle" size={40} onPress={() => this._onPressAdd(brand, name)} />
         </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  list: {
+    marginTop: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+  },
+  listItem: {
+    borderBottomWidth: 0,
+    height: 28,
+  },
+  scroll: {
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 0,
+  },
+  add: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
+  },
+  buttonGroup: {
+    height: 28,
+    width: 68,
+    backgroundColor: BG_COLOR,
+    borderWidth: 0,
+  }
+});
 
 export default connect(mapStateToProps, { PostRoutine })(Product);

@@ -129,14 +129,13 @@ export const Tabs = TabNavigator({
     style: {
       backgroundColor: BG_COLOR,
       borderTopColor: 'transparent',
-      paddingBottom: 20,
     },
   },
 });
 
 const styles = StyleSheet.create({
   icon: {
-    width: 40,
+    width: 37,
     height: 26,
     resizeMode: 'contain',
   },

@@ -4,7 +4,6 @@ import { FONT_BOLD, FUTURA, HELVETICA, BLACK } from './styles';
 const text = StyleSheet.create({
   smallBold: {
     fontSize: 15,
-    letterSpacing: 0,
     fontFamily: 'Georgia-Italic',
     color: BLACK,
   },
@@ -12,10 +11,11 @@ const text = StyleSheet.create({
     fontSize: 11,
     fontWeight: FONT_BOLD,
     fontFamily: FUTURA,
+    letterSpacing: 1,
     color: BLACK,
   },
   medium: {
-    fontSize: 17,
+    fontSize: 16,
     letterSpacing: 2,
     fontFamily: FUTURA,
     color: BLACK,
