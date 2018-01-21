@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
 import { CONTAINER } from '../config/styles';
+import ModalContainer from '../components/Modal';
 
 function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
@@ -98,9 +99,27 @@ export default class AddProduct extends React.Component {
 
         <Image source={require('../assets/addstate.png')} style={{ flex:2, resizeMode: 'contain', marginBottom: 30 }} />
         <View style={CONTAINER.form}>
-          <TextInput style={CONTAINER.inputForm} value={this.state.inputBrand} onChange={this._onBrandChanged} placeholder="BRAND" />
-          <TextInput style={CONTAINER.inputForm} value={this.state.inputName} onChange={this._onNameChanged} placeholder="NAME" />
-          <TextInput style={CONTAINER.inputForm} value={this.state.inputIng} onChange={this._onIngChanged} placeholder="INGREDIENTS" />
+          <TextInput
+            style={CONTAINER.inputForm}
+            value={this.state.inputBrand}
+            onChange={this._onBrandChanged}
+            placeholder="BRAND"
+          />
+
+          <TextInput
+            style={CONTAINER.inputForm}
+            value={this.state.inputName}
+            onChange={this._onNameChanged}
+            placeholder="NAME"
+          />
+
+          <TextInput
+            style={CONTAINER.inputForm}
+            value={this.state.inputIng}
+            onChange={this._onIngChanged}
+            placeholder="INGREDIENTS"
+          />
+
           <Button
             iconRight={{ name: 'add-circle', color: 'black', size: 40 }}
             backgroundColor="rgba(0,0,0,0)"
@@ -108,7 +127,7 @@ export default class AddProduct extends React.Component {
           />
         </View>
       </View>
-    )
+    );
   }
 }
 

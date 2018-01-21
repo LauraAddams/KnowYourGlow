@@ -8,6 +8,7 @@ import PostRoutine from '../Actions/PostRoutine';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 import text from '../config/text';
+import ModalContainer from '../components/Modal';
 import { CONTAINER, BG_COLOR, HIGHLIGHT } from '../config/styles';
 
 class Product extends React.Component {
@@ -16,6 +17,7 @@ class Product extends React.Component {
     super();
     this.state = {
       selectedIndex: 0,
+      visibleModal: false,
     };
     this.updateIndex = this.updateIndex.bind(this);
   }
@@ -38,6 +40,14 @@ class Product extends React.Component {
       (this.state.routine).push(full);
       this.props.PostRoutine(this.state.routine);
     }
+
+    this.setState({
+      visibleModal: true,
+    });
+  }
+
+  goBack() {
+    this.props.navigation.goBack();
   }
 
   render() {
@@ -95,8 +105,10 @@ class Product extends React.Component {
         </ScrollView>
 
         <View style={styles.add}>
-          <Icon name="add-circle" size={40} onPress={() => this._onPressAdd(brand, name)} />
+          <Icon reverse raised name="add" color="#E8C7C9" size={16} iconStyle={styles.addIcon}onPress={() => this._onPressAdd(brand, name)} />
         </View>
+
+        <ModalContainer goBack={this.goBack.bind(this)} isVisible={this.state.visibleModal} />
       </View>
     );
   }
@@ -121,6 +133,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     bottom: 20,
+  },
+  addIcon: {
+    color: 'black',
   },
   buttonGroup: {
     height: 28,
