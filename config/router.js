@@ -133,6 +133,15 @@ export const Tabs = TabNavigator({
   },
 });
 
+export const RootStack = StackNavigator({
+  LogIn: {
+    screen: LogIn,
+  },
+  Tabs: {
+    screen: Tabs,
+  },
+});
+
 const styles = StyleSheet.create({
   icon: {
     width: 37,

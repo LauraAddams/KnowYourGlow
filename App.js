@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tabs } from './config/router';
+
+import { RootStack } from './config/router';
 import { Asset, AppLoading } from 'expo';
 
 import { Provider } from 'react-redux';
@@ -26,7 +27,7 @@ export default class App extends React.Component {
     }
     return (
       <Provider store={Store}>
-        <Tabs />
+        <RootStack />
       </Provider>
     );
   }

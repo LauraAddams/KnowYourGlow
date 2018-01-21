@@ -5,7 +5,6 @@ import { StyleSheet } from 'react-native';
 export const FONT_BOLD = '900';
 export const FUTURA = 'Futura-Medium';
 export const HELVETICA = 'Helvetica-Light';
-export const PINK = '#FEE6E4';
 export const BG_COLOR = '#FCFCFC';
 export const HIGHLIGHT = '#F1BF62';
 export const BLACK = '#0F0F0F';
