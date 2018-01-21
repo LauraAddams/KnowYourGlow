@@ -36,25 +36,25 @@ export default class LoginScreen extends React.Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ error: '', loading: false });
-        this.props.navigation.navigate('Tabs');
+        this.props.navigation.navigate('Home');
       })
       .catch(() => {
-        this.setState({ error: 'Authentication failed', loading: false });
-      });
+        this.setState({error: 'Authentication failed', loading: false});
+      })
   }
 
   onSignUpPress() {
-    this.setState({ error: '', loading: true });
+    this.setState({error: '', loading: true});
 
     const { email, password } = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ error: '', loading: false });
-        this.props.navigation.navigate('Tabs');
+        this.props.navigation.navigate('Home');
       })
       .catch(() => {
-        this.setState({ error: 'Sign up failed', loading: false });
-      });
+        this.setState({error: 'Sign up failed', loading: false});
+      })
   }
 
   renderButtonOrLoading() {
@@ -80,9 +80,18 @@ export default class LoginScreen extends React.Component {
     return (
       <View>
         <FormLabel>Email</FormLabel>
-        <FormInput onChangeText={email => this.setState({ email })} />
+        <FormInput
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
+          placeholder="name@email.com"
+        />
         <FormLabel>Password</FormLabel>
-        <FormInput onChangeText={password => this.setState({ password })} />
+        <FormInput
+          value={this.state.password}
+          secureTextEntry
+          placeholder="********"
+          onChangeText={password => this.setState({ password })}
+        />
         {this.renderButtonOrLoading()}
       </View>
     );
