@@ -12,11 +12,13 @@ function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
 }
 
+const colors = ['#E8C7C9', '#F5CBAA', '#A7B8B6', '#496354'];
+
 class List extends Component<{}> {
   componentDidMount() {
     this.setState({
       routine: Store.getState().main.routineData,
-     });
+    });
   }
 
   _keyExtractor = (item, index) => index;
@@ -25,6 +27,7 @@ class List extends Component<{}> {
     <ListItem
       item={item}
       index={index}
+      borderColor={colors[index % colors.length]}
       onPressItem={this._onPressItem}
       onPressAdd={this._onPressAdd}
     />

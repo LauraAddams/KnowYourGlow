@@ -131,13 +131,13 @@ class TaggedIngredients extends React.Component {
           index={this.state.selectedIndex}
         >
 
-          <View style={styles.slide1}>
-            <View style={[CONTAINER.taggedContainer, { marginTop: 50 }]}>
+          <View style={styles.slide}>
+            <View style={CONTAINER.taggedContainer}>
               {tagged}
             </View>
           </View>
 
-          <View style={styles.slide2}>
+          <View style={styles.slide}>
             <SearchBar loading={this.state.isLoading} onPressSearch={this.onPressSearch} />
             {spinner}
             <ScrollView automaticallyAdjustContentInsets={false}>
@@ -154,16 +154,11 @@ class TaggedIngredients extends React.Component {
 const styles = StyleSheet.create({
   wrapper: {
   },
-  slide1: {
+  slide: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#9DD6EB',
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
+    backgroundColor: BG_COLOR,
+    paddingTop: 20,
   },
   buttonGroup: {
     borderWidth: 0,

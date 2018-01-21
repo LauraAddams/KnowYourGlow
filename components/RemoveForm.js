@@ -38,9 +38,9 @@ export default class RemoveForm extends React.Component {
           textStyle={{fontSize: 12}}
           containerStyle={{
             borderWidth: 0,
-            backgroundColor: 'pink',
-            padding: 0,
-            borderRadius: 10,
+            backgroundColor: '#dfdfdf',
+            padding: 3,
+            borderRadius: 12,
           }}
           checked={checked}
           onPress={() => this.props._handlePress(index)}
