@@ -21,6 +21,7 @@ export const HomeStack = StackNavigator({
     screen: Landing,
     navigationOptions: {
       title: 'MY ROUTINE',
+      headerLeft: null,
     },
   },
   Tagged: {
@@ -139,6 +140,10 @@ export const RootStack = StackNavigator({
   },
   Tabs: {
     screen: Tabs,
+  },
+}, {
+  navigationOptions: {
+    header: null,
   },
 });
 

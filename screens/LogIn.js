@@ -92,6 +92,7 @@ export default class LoginScreen extends React.Component {
           placeholder="********"
           onChangeText={password => this.setState({ password })}
         />
+        <Text>{this.state.error}</Text>
         {this.renderButtonOrLoading()}
       </View>
     );

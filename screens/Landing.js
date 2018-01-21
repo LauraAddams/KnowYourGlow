@@ -4,6 +4,7 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import { Text, View, Dimensions, Animated, StyleSheet, Easing } from 'react-native';
 import SortableList from 'react-native-sortable-list';
+import { NavigationActions } from 'react-navigation';
 
 import { connect } from 'react-redux';
 import PostRoutine from '../Actions/PostRoutine';
