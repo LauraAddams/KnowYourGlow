@@ -70,13 +70,13 @@ export default class LoginScreen extends React.Component {
           rounded={true}
           borderRadius={25}
           fontSize={12}
-          backgroundColor={BLACK}
+          backgroundColor="red"
           onPress={this.onLoginPress.bind(this)}
           title="LOGIN"
         />
 
         <Text
-          style={{ textAlign: 'center', color: BLACK, margin: 10, fontSize: 12 }}
+          style={{ textAlign: 'center', color: 'red', margin: 10, fontSize: 12 }}
           onPress={this.onSignUpPress.bind(this)}
         >
           SIGN UP
@@ -88,7 +88,7 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={CONTAINER.container}>
-        <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
           <Icon name='broken-image' size={100} />
         </View>
 

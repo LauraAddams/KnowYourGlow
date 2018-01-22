@@ -1,27 +1,23 @@
 /* eslint-disable */
-
 import React from 'react';
 import { Icon } from 'react-native-elements';
 import { Text, View, Dimensions, Animated, StyleSheet, Easing } from 'react-native';
 import SortableList from 'react-native-sortable-list';
 import { NavigationActions } from 'react-navigation';
+import { compose } from 'redux';
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 
 import { connect } from 'react-redux';
 import PostRoutine from '../Actions/PostRoutine';
 import Store from '../Store';
 
-
-import { compose } from 'redux';
-import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
-
-
 import text from '../config/text';
 import { CONTAINER, BG_COLOR, BLACK } from '../config/styles';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const currTime = new Date().getHours();
-const timeStyle = currTime < 13 ? ['Morning', 'wb-sunny', 'Evening', 'brightness-2'] :
-  ['Evening', 'brightness-2', 'Morning', 'wb-sunny'];
+const timeStyle = currTime < 15 ? ['Morning', 'ios-sunny', 'Evening ', 'ios-moon'] :
+  ['Evening ', 'ios-moon', 'Morning', 'ios-sunny'];
 
 
 const myRoutine = ({ routine, firebase }) => {
@@ -29,14 +25,14 @@ const myRoutine = ({ routine, firebase }) => {
     isEmpty(routine) ? 'Empty routine' : Object.keys(routine).map(
       (key, id) => (
         <Text key={key}>{key} {id}</Text>
-      )
-    )
-    return (
-      <View>
-        {myRoutineList}
-      </View>
-    )
-}
+      ),
+    );
+  return (
+    <View>
+      {myRoutineList}
+    </View>
+  );
+};
 
 function mapStateToProps(state) {
   return { routine: state.main };
@@ -97,7 +93,7 @@ class Landing extends React.Component {
   render() {
     const interpolateRotation = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ['0deg', '180deg'],
+      outputRange: ['30deg', '210deg'],
     });
 
     const animatedStyle = {
@@ -117,15 +113,14 @@ class Landing extends React.Component {
 
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
-        <Icon name={this.state.currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
-        <Animated.View style={[{position: 'absolute', top: 60}, animatedStyle]}>
-          <Icon name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 70, paddingBottom: 20 }} />
-          <Icon name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 70, paddingTop: 20 }} />
+        <Icon type="ionicon" name={this.state.currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
+        <Animated.View style={[{position: 'absolute', top: 25}, animatedStyle]}>
+          <Icon type="ionicon" name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
+          <Icon type="ionicon" name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 40, paddingTop: 25 }} />
         </Animated.View>
 
-        <View style={{ width: width, marginTop: 100, marginBottom: 20, paddingLeft: 50 }}>
-          <Text style={[text.smallBold, { fontSize: 26, backgroundColor: 'rgba(0,0,0,0)' }]}>Good</Text>
-          <Text style={[text.smallBold, { fontSize: 26, paddingLeft: 60, paddingBottom: 20 }]}>{this.state.currentMessage}</Text>
+        <View style={{ marginTop: 90 }}>
+          <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 40 }]}>Good {this.state.currentMessage}</Text>
         </View>
 
         <View style={{ flex: 1, marginBottom: 30 }}>
