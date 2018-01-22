@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import * as firebase from 'firebase';
 
-import { FormLabel, FormInput, Button } from 'react-native-elements';
-import { CONTAINER, GRAY } from '../config/styles';
+import { FormLabel, FormInput, Button, SocialIcon, Icon } from 'react-native-elements';
+import { CONTAINER, GRAY, BLACK } from '../config/styles';
 
 
 export default class LoginScreen extends React.Component {
@@ -64,27 +64,23 @@ export default class LoginScreen extends React.Component {
     }
 
     return (
-      <View style={{marginTop: 30}}>
+      <View style={{marginTop: 5}}>
         <Button
           raised
           rounded={true}
           borderRadius={25}
           fontSize={12}
-          backgroundColor="red"
+          backgroundColor={BLACK}
           onPress={this.onLoginPress.bind(this)}
-          title="LOG IN"
+          title="LOGIN"
         />
-      <Text style={{ textAlign: 'center', color: 'red', margin: 10 }}>OR</Text>
-        <Button
-          raised
-          rounded={true}
-          borderRadius={25}
-          outline={true}
-          color="red"
-          fontSize={12}
+
+        <Text
+          style={{ textAlign: 'center', color: BLACK, margin: 10, fontSize: 12 }}
           onPress={this.onSignUpPress.bind(this)}
-          title="SIGN UP"
-        />
+        >
+          SIGN UP
+        </Text>
       </View>
     );
   }
@@ -92,7 +88,11 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={CONTAINER.container}>
-        <View style={{ width: 300 }}>
+        <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center'}}>
+          <Icon name='broken-image' size={100} />
+        </View>
+
+        <View style={{ flex: 2, width: 300, justifyContent: 'center' }}>
           <FormLabel>Email</FormLabel>
           <FormInput
             value={this.state.email}
@@ -107,9 +107,26 @@ export default class LoginScreen extends React.Component {
             placeholder="********"
             onChangeText={password => this.setState({ password })}
             />
+          <Text style={{ color: GRAY, textAlign: 'right', marginTop: 5, marginRight: 18}}>
+            Forgot Password?
+          </Text>
 
           <Text>{this.state.error}</Text>
           {this.renderButtonOrLoading()}
+
+          <View style={{ flex: 2, margin: 20 }}>
+            <View>
+              <Text style={{ height: 1, backgroundColor: '#999', marginBottom: -8 }} />
+              <Text style={{ textAlign: 'center', width: 130, alignSelf: 'center', fontSize: 12, marginBottom: 5, color: '#999' }}>
+                OR CONNECT WITH
+              </Text>
+            </View>
+
+            <View style={{ flexDirection: 'row' }}>
+              <SocialIcon title="Facebook" button type="facebook" style={{ flex: 1, height: 30 }} fontStyle={{ fontSize: 11 }} iconSize={16} />
+              <SocialIcon title="Twitter" button type="twitter" style={{ flex: 1, height: 30 }} fontStyle={{ fontSize: 11 }} iconSize={16} />
+            </View>
+          </View>
         </View>
       </View>
     );
