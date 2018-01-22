@@ -114,7 +114,8 @@ class Landing extends React.Component {
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
         <Icon type="ionicon" name={this.state.currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
-        <Animated.View style={[{position: 'absolute', top: 25}, animatedStyle]}>
+
+        <Animated.View style={[{position: 'absolute', top: 20}, animatedStyle]}>
           <Icon type="ionicon" name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
           <Icon type="ionicon" name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 40, paddingTop: 25 }} />
         </Animated.View>
