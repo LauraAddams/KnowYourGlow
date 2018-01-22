@@ -10,6 +10,11 @@ import { connect } from 'react-redux';
 import PostRoutine from '../Actions/PostRoutine';
 import Store from '../Store';
 
+
+import { compose } from 'redux';
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+
+
 import text from '../config/text';
 import { CONTAINER, BG_COLOR, BLACK } from '../config/styles';
 
@@ -17,6 +22,21 @@ const { height, width } = Dimensions.get('window');
 const currTime = new Date().getHours();
 const timeStyle = currTime < 13 ? ['Morning', 'wb-sunny', 'Evening', 'brightness-2'] :
   ['Evening', 'brightness-2', 'Morning', 'wb-sunny'];
+
+
+const myRoutine = ({ routine, firebase }) => {
+  const myRoutineList = !isLoaded(routine) ? 'Loading' :
+    isEmpty(routine) ? 'Empty routine' : Object.keys(routine).map(
+      (key, id) => (
+        <Text key={key}>{key} {id}</Text>
+      )
+    )
+    return (
+      <View>
+        {myRoutineList}
+      </View>
+    )
+}
 
 function mapStateToProps(state) {
   return { routine: state.main };

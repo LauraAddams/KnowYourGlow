@@ -64,5 +64,5 @@ export const CONTAINER = StyleSheet.create({
     left: 0,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 });

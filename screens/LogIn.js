@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import * as firebase from 'firebase';
 
-import { FormLabel, FormInput } from 'react-native-elements';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
+import { CONTAINER, GRAY } from '../config/styles';
 
 
 export default class LoginScreen extends React.Component {
@@ -63,14 +64,26 @@ export default class LoginScreen extends React.Component {
     }
 
     return (
-      <View>
+      <View style={{marginTop: 30}}>
         <Button
+          raised
+          rounded={true}
+          borderRadius={25}
+          fontSize={12}
+          backgroundColor="red"
           onPress={this.onLoginPress.bind(this)}
-          title="Login"
+          title="LOG IN"
         />
+      <Text style={{ textAlign: 'center', color: 'red', margin: 10 }}>OR</Text>
         <Button
+          raised
+          rounded={true}
+          borderRadius={25}
+          outline={true}
+          color="red"
+          fontSize={12}
           onPress={this.onSignUpPress.bind(this)}
-          title="Sign Up"
+          title="SIGN UP"
         />
       </View>
     );
@@ -78,22 +91,26 @@ export default class LoginScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <FormLabel>Email</FormLabel>
-        <FormInput
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-          placeholder="name@email.com"
-        />
-        <FormLabel>Password</FormLabel>
-        <FormInput
-          value={this.state.password}
-          secureTextEntry
-          placeholder="********"
-          onChangeText={password => this.setState({ password })}
-        />
-        <Text>{this.state.error}</Text>
-        {this.renderButtonOrLoading()}
+      <View style={CONTAINER.container}>
+        <View style={{ width: 300 }}>
+          <FormLabel>Email</FormLabel>
+          <FormInput
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+            placeholder="name@email.com"
+            />
+
+          <FormLabel>Password</FormLabel>
+          <FormInput
+            value={this.state.password}
+            secureTextEntry
+            placeholder="********"
+            onChangeText={password => this.setState({ password })}
+            />
+
+          <Text>{this.state.error}</Text>
+          {this.renderButtonOrLoading()}
+        </View>
       </View>
     );
   }
