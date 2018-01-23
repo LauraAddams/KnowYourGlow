@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
+import text from '../config/text';
 
 export default class ModalContainer extends React.Component {
   constructor(props) {
@@ -31,36 +32,38 @@ export default class ModalContainer extends React.Component {
       <View>
         <Modal style={styles.modalContainer} isVisible={this.state.isModalVisible}>
           <View style={styles.content}>
-            <Text>Add to routine:</Text>
+            <View style={styles.content}>
+              <Text style={text.medium}>Add to Routine:</Text>
+              <Button
+                raised
+                buttonStyle={{ height: 30, width: 200, backgroundColor: '#F5CBAA' }}
+                borderRadius={25}
+                icon={{name: 'ios-sunny', type: 'ionicon'}}
+                title="Morning"
+                />
 
-            <Button
-              raised
-              buttonStyle={{ height: 30, width: 200, backgroundColor: 'gold' }}
-              borderRadius={25}
-              iconRight={{name: 'ios-sunny', type: 'ionicon'}}
-              title="Morning"
-            />
+              <Button
+                raised
+                buttonStyle={{ height: 30, width: 200, backgroundColor: '#A7B8B6' }}
+                borderRadius={25}
+                icon={{name: 'ios-moon', type: 'ionicon'}}
+                title="Evening"
+                />
 
-            <Button
-              raised
-              buttonStyle={{ height: 30, width: 200, backgroundColor: 'navy' }}
-              borderRadius={25}
-              iconRight={{name: 'ios-moon', type: 'ionicon'}}
-              title="Evening"
-            />
+              <Button
+                raised
+                buttonStyle={{ height: 30, width: 200, backgroundColor: '#496354' }}
+                borderRadius={25}
+                icon={{name: 'ios-sunny', type: 'ionicon'}}
+                iconRight={{name: 'ios-moon', type: 'ionicon'}}
 
-            <Button
-              raised
-              buttonStyle={{ height: 30, width: 200, backgroundColor: 'navy' }}
-              borderRadius={25}
-              iconRight={{name: 'ios-moon', type: 'ionicon'}}
-              title="Both"
-            />
+                title="Both"
+                />
+            </View>
 
             <TouchableOpacity onPress={this._navigate}>
               <Text>Go Back</Text>
             </TouchableOpacity>
-
           </View>
         </Modal>
       </View>
@@ -74,6 +77,7 @@ const styles = StyleSheet.create({
     margin: 150,
     marginLeft: 50,
     marginRight: 50,
+    borderRadius: 20,
   },
   content: {
     marginTop: 50,
