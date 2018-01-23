@@ -27,6 +27,18 @@ export default class ModalContainer extends React.Component {
     this.props.goBack();
   }
 
+  _onPressMorning = () => {
+    this.props.addType('morning');
+  }
+
+  _onPressEvening = () => {
+    this.props.addType('evening');
+  }
+
+  _onPressBoth = () => {
+    this.props.addType('both');
+  }
+
   render() {
     return (
       <View>
@@ -40,6 +52,7 @@ export default class ModalContainer extends React.Component {
                 borderRadius={25}
                 icon={{name: 'ios-sunny', type: 'ionicon'}}
                 title="Morning"
+                onPress={this._onPressMorning}
                 />
 
               <Button
@@ -48,6 +61,7 @@ export default class ModalContainer extends React.Component {
                 borderRadius={25}
                 icon={{name: 'ios-moon', type: 'ionicon'}}
                 title="Evening"
+                onPress={this._onPressEvening}
                 />
 
               <Button
@@ -56,8 +70,8 @@ export default class ModalContainer extends React.Component {
                 borderRadius={25}
                 icon={{name: 'ios-sunny', type: 'ionicon'}}
                 iconRight={{name: 'ios-moon', type: 'ionicon'}}
-
                 title="Both"
+                onPress={this._onPressBoth}
                 />
             </View>
 

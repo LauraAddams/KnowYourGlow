@@ -5,6 +5,7 @@ import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import PostRoutine from '../Actions/PostRoutine';
+import PostNightRoutine from '../Actions/PostNightRoutine';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 import text from '../config/text';
@@ -26,6 +27,7 @@ class Product extends React.Component {
     this.setState({
       taggedIngredients: Store.getState().main.tagData,
       routine: Store.getState().main.routineData,
+      nightRoutine: Store.getState().main.nightRoutineData,
     });
   }
 
@@ -33,14 +35,7 @@ class Product extends React.Component {
     this.setState({ selectedIndex });
   }
 
-  _onPressAdd = (brand, name) => {
-    const full = brand.toUpperCase() + ' ' + name;
-
-    if (!this.state.routine.includes(full)) {
-      (this.state.routine).push(full);
-      this.props.PostRoutine(this.state.routine);
-    }
-
+  _onPressAdd = () => {
     this.setState({
       visibleModal: true,
     });
@@ -49,6 +44,41 @@ class Product extends React.Component {
   goBack() {
     this.props.navigation.goBack();
   }
+
+  addType(type) {
+    const { brand, name } = this.props.navigation.state.params;
+    const full = brand.toUpperCase() + ' ' + name;
+    console.log(full);
+
+    switch (type) {
+      case 'morning':
+        if (!this.state.routine.includes(full)) {
+          (this.state.routine).push(full);
+          this.props.PostRoutine(this.state.routine);
+        }
+        break;
+      case 'evening':
+        if (!this.state.nightRoutine.includes(full)) {
+          (this.state.nightRoutine).push(full);
+          this.props.PostNightRoutine(this.state.nightRoutine);
+        }
+        break;
+      case 'both':
+        if (!this.state.routine.includes(full)) {
+          (this.state.routine).push(full);
+          this.props.PostRoutine(this.state.routine);
+        }
+        if (!this.state.nightRoutine.includes(full)) {
+          (this.state.nightRoutine).push(full);
+          this.props.PostNightRoutine(this.state.nightRoutine);
+        }
+        break;
+      default:
+        return console.log('error');
+    }
+  }
+
+
 
   render() {
     const icon1 = () => <Icon name="view-stream" size={24} />;
@@ -105,10 +135,10 @@ class Product extends React.Component {
         </ScrollView>
 
         <View style={styles.add}>
-          <Icon reverse raised name="add" color="#E8C7C9" size={16} iconStyle={styles.addIcon}onPress={() => this._onPressAdd(brand, name)} />
+          <Icon reverse raised name="add" color="#E8C7C9" size={16} iconStyle={styles.addIcon} onPress={() => this._onPressAdd()} />
         </View>
 
-        <ModalContainer goBack={this.goBack.bind(this)} isVisible={this.state.visibleModal} />
+        <ModalContainer goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
       </View>
     );
   }
@@ -145,4 +175,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, { PostRoutine })(Product);
+export default connect(mapStateToProps, { PostRoutine, PostNightRoutine })(Product);
