@@ -1,38 +1,21 @@
-/* eslint-disable */
+/* eslint-sable */
 import React from 'react';
 import { Icon } from 'react-native-elements';
 import { Text, View, Dimensions, Animated, StyleSheet, Easing } from 'react-native';
 import SortableList from 'react-native-sortable-list';
-import { NavigationActions } from 'react-navigation';
-import { compose } from 'redux';
-import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 
 import { connect } from 'react-redux';
 import PostRoutine from '../Actions/PostRoutine';
+import PostNightRoutine from '../Actions/PostNightRoutine';
 import Store from '../Store';
 
 import text from '../config/text';
-import { CONTAINER, BG_COLOR, BLACK } from '../config/styles';
+import { BG_COLOR, BLACK } from '../config/styles';
 
 const { width } = Dimensions.get('window');
 const currTime = new Date().getHours();
 const timeStyle = currTime < 15 ? ['Morning', 'ios-sunny', 'Evening ', 'ios-moon'] :
   ['Evening ', 'ios-moon', 'Morning', 'ios-sunny'];
-
-
-const myRoutine = ({ routine, firebase }) => {
-  const myRoutineList = !isLoaded(routine) ? 'Loading' :
-    isEmpty(routine) ? 'Empty routine' : Object.keys(routine).map(
-      (key, id) => (
-        <Text key={key}>{key} {id}</Text>
-      ),
-    );
-  return (
-    <View>
-      {myRoutineList}
-    </View>
-  );
-};
 
 function mapStateToProps(state) {
   return { routine: state.main };
@@ -54,12 +37,18 @@ class Landing extends React.Component {
 
   componentDidMount() {
     if (!this.state.routineData) {
-      this.setState({ routine: Store.getState().main.routineData });
+      this.setState({
+        routine: Store.getState().main.routineData,
+        nightRoutine: Store.getState().main.nightRoutineData,
+      });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ routine: nextProps.routine.routineData });
+    this.setState({
+      routine: nextProps.routine.routineData,
+      nightRoutine: nextProps.routine.nightRoutineData,
+    });
   }
 
   _handlePress = () => {
@@ -101,10 +90,12 @@ class Landing extends React.Component {
     };
 
     const list = {}
-    const { routine } = this.state;
+    const { routine, nightRoutine, currentMessage, currentIcon } = this.state;
 
-    if (routine) {
-      routine.forEach((name, index) => { list[index] = name });
+    const currentRoutine = (currentMessage === 'Morning') ? routine : nightRoutine;
+
+    if (currentRoutine) {
+      currentRoutine.forEach((name, index) => { list[index] = name });
     } else {
       return (<Text>ERROR! NO ROUTINE!</Text>)
     }
@@ -113,7 +104,7 @@ class Landing extends React.Component {
 
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
-        <Icon type="ionicon" name={this.state.currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
+        <Icon type="ionicon" name={currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
 
         <Animated.View style={[{position: 'absolute', top: 20}, animatedStyle]}>
           <Icon type="ionicon" name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
@@ -121,7 +112,7 @@ class Landing extends React.Component {
         </Animated.View>
 
         <View style={{ marginTop: 90 }}>
-          <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 40 }]}>Good {this.state.currentMessage}</Text>
+          <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 40 }]}>Good {currentMessage}</Text>
         </View>
 
         <View style={{ flex: 1, marginBottom: 30 }}>
