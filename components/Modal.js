@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -28,12 +29,38 @@ export default class ModalContainer extends React.Component {
   render() {
     return (
       <View>
-        <Modal style={styles.modalContent} isVisible={this.state.isModalVisible}>
-        <View>
-            <Text>Good job</Text>
+        <Modal style={styles.modalContainer} isVisible={this.state.isModalVisible}>
+          <View style={styles.content}>
+            <Text>Add to routine:</Text>
+
+            <Button
+              raised
+              buttonStyle={{ height: 30, width: 200, backgroundColor: 'gold' }}
+              borderRadius={25}
+              iconRight={{name: 'ios-sunny', type: 'ionicon'}}
+              title="Morning"
+            />
+
+            <Button
+              raised
+              buttonStyle={{ height: 30, width: 200, backgroundColor: 'navy' }}
+              borderRadius={25}
+              iconRight={{name: 'ios-moon', type: 'ionicon'}}
+              title="Evening"
+            />
+
+            <Button
+              raised
+              buttonStyle={{ height: 30, width: 200, backgroundColor: 'navy' }}
+              borderRadius={25}
+              iconRight={{name: 'ios-moon', type: 'ionicon'}}
+              title="Both"
+            />
+
             <TouchableOpacity onPress={this._navigate}>
               <Text>Go Back</Text>
             </TouchableOpacity>
+
           </View>
         </Modal>
       </View>
@@ -42,14 +69,17 @@ export default class ModalContainer extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  modalContent: {
+  modalContainer: {
     backgroundColor: 'white',
     margin: 150,
     marginLeft: 50,
     marginRight: 50,
-    justifyContent: 'center',
+  },
+  content: {
+    marginTop: 50,
+    marginBottom: 50,
     alignItems: 'center',
-    borderWidth: 20,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
+    justifyContent: 'space-between',
+    flex: 1,
   },
 });
