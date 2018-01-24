@@ -45,10 +45,15 @@ class Product extends React.Component {
     this.props.navigation.goBack();
   }
 
+  // _reset() {
+  //   this.setState({
+  //     visibleModal: false,
+  //   });
+  // }
+
   addType(type) {
     const { brand, name } = this.props.navigation.state.params;
     const full = brand.toUpperCase() + ' ' + name;
-    console.log(full);
 
     switch (type) {
       case 'morning':
