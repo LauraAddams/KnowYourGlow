@@ -45,8 +45,15 @@ export default class CheckForm extends React.Component {
           checkedIcon='check-box'
           uncheckedIcon='check-box-outline-blank'
           checkedColor='black'
-          textStyle={{flex: 1}}
-          containerStyle={{ borderWidth: 0,width: 300, justifyContent: 'space-between', backgroundColor: tagColor }}
+          textStyle={[text.smallBold, {flex: 1, fontWeight: '200', fontStyle: 'normal'}]}
+          containerStyle={{
+            borderWidth: 0,
+            width: 300,
+            justifyContent: 'space-between',
+            backgroundColor: tagColor,
+            padding: 5,
+            borderRadius: 0,
+          }}
           checked={checked}
           onPress={() => this._handlePress(name, checked)}
         />

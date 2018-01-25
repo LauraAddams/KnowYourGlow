@@ -8,6 +8,7 @@ import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
 import { CONTAINER, HIGHLIGHT } from '../config/styles';
+import text from '../config/text';
 import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
 
@@ -90,6 +91,10 @@ class CompareProduct extends React.Component {
 
     return (
       <View style={CONTAINER.container}>
+
+        <Text style={[text.smallBold, {paddingBottom: 5}]}>Multiple products irritating your skin?</Text>
+        <Text style={text.smallBold}>Find their common ingredients</Text>
+
         <SearchCompare
           loading={this.state.isLoading}
           onPressSearch={this.onPressSearch}
@@ -100,9 +105,12 @@ class CompareProduct extends React.Component {
         </ScrollView>
 
         <Button
-          title="Save Tagged"
-          color="black"
+          containerViewStyle={{alignSelf: 'flex-end'}}
+          iconRight={{ name: 'check', color: 'black', size: 24 }}
+          title="Add Checked"
           backgroundColor="rgba(0,0,0,0)"
+          textStyle={text.small}
+          color="black"
           onPress={() => this._onPressTagged()}
         />
       </View>

@@ -115,7 +115,7 @@ class Landing extends React.Component {
           <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 40 }]}>Good {currentMessage}</Text>
         </View>
 
-        <View style={{ flex: 1, marginBottom: 30 }}>
+        <View style={{ flex: 1, marginBottom: 30, width: '100%', alignItems: 'center' }}>
           <SortableList
           style={styles.list}
           contentContainerStyle={styles.contentContainer}
@@ -141,12 +141,12 @@ class Row extends React.Component {
           transform: [{
             scale: this._active.interpolate({
               inputRange: [0, 1],
-              outputRange: [1, 1.1],
+              outputRange: [1, 1.07],
             }),
           }],
           shadowRadius: this._active.interpolate({
             inputRange: [0, 1],
-            outputRange: [2, 10],
+            outputRange: [5, 10],
           }),
     };
   }
@@ -169,7 +169,7 @@ class Row extends React.Component {
         styles.row,
         this._style,
       ]}>
-        <Text style={text.p}>{data}</Text>
+        <Text style={text.smallBold}>{data}</Text>
       </Animated.View>
     );
   }
@@ -181,13 +181,19 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    width: width / 1.2,
+    width: width / 1.1,
+    padding: 10,
   },
   row: {
     backgroundColor: '#fff',
-    padding: 15,
-    marginBottom: 10,
+    padding: 10,
+    paddingLeft: 15,
+    margin: 10,
     borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
 });
 

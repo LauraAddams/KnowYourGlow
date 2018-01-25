@@ -98,8 +98,7 @@ export default class AddProduct extends React.Component {
       <View style={CONTAINER.container}>
         <Modal isVisible={this.state.visibleModal === 1}>{this._renderModalContent()}</Modal>
 
-        <Text style={[text.smallBold, {paddingBottom: 5}]}>Couldn't find your favorite product?</Text>
-        <Text style={text.smallBold}>Add it to our database</Text>
+        <Text style={text.smallBold}>Add your favorite product to our inventory</Text>
 
         <View style={CONTAINER.form}>
           <Text style={text.small}>BRAND</Text>

@@ -10,7 +10,7 @@ import {
 import { Button, CheckBox } from 'react-native-elements';
 
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, HIGHLIGHT } from '../config/styles';
 
 export default class RemoveForm extends React.Component {
   constructor() {
@@ -38,7 +38,7 @@ export default class RemoveForm extends React.Component {
           textStyle={{fontSize: 12}}
           containerStyle={{
             borderWidth: 0,
-            backgroundColor: '#dfdfdf',
+            backgroundColor: HIGHLIGHT,
             padding: 3,
             borderRadius: 12,
           }}
