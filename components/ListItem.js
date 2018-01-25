@@ -2,16 +2,74 @@
 import React from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import PostRoutine from '../Actions/PostRoutine';
+import PostNightRoutine from '../Actions/PostNightRoutine';
+import mapStateToProps from '../config/ReducerHelper';
+import Store from '../Store';
 import text from '../config/text';
+import ModalContainer from './Modal';
 import { CONTAINER, GRAY } from '../config/styles';
 
-export default class ListItem extends React.PureComponent {
+class ListItem extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      visibleModal: false,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      routine: Store.getState().main.routineData,
+      nightRoutine: Store.getState().main.nightRoutineData,
+    });
+  }
+
   _onPress = () => {
     this.props.onPressItem(this.props.item.id);
   }
 
   _onPressAdd = () => {
-    this.props.onPressAdd(this.props.item.brand, this.props.item.name);
+    this.setState({
+      visibleModal: true,
+    });
+  }
+
+  goBack() {
+  }
+
+  addType(type) {
+    const { brand, name } = this.props.item;
+    const full = brand.toUpperCase() + ' ' + name;
+
+    switch (type) {
+      case 'morning':
+        if (!this.state.routine.includes(full)) {
+          (this.state.routine).push(full);
+          this.props.PostRoutine(this.state.routine);
+        }
+        break;
+      case 'evening':
+        if (!this.state.nightRoutine.includes(full)) {
+          (this.state.nightRoutine).push(full);
+          this.props.PostNightRoutine(this.state.nightRoutine);
+        }
+        break;
+      case 'both':
+        if (!this.state.routine.includes(full)) {
+          (this.state.routine).push(full);
+          this.props.PostRoutine(this.state.routine);
+        }
+        if (!this.state.nightRoutine.includes(full)) {
+          (this.state.nightRoutine).push(full);
+          this.props.PostNightRoutine(this.state.nightRoutine);
+        }
+        break;
+      default:
+        return console.log('error');
+    }
   }
 
   render() {
@@ -43,6 +101,7 @@ export default class ListItem extends React.PureComponent {
           underlayColor='#f7f7f7'>
           {textResult}
         </TouchableHighlight>
+        <ModalContainer goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
       </View>
     );
   }
@@ -68,3 +127,5 @@ const styles = StyleSheet.create({
     marginRight: -12,
   },
 });
+
+export default connect(mapStateToProps, { PostRoutine, PostNightRoutine })(ListItem);
