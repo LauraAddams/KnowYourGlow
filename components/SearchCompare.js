@@ -23,7 +23,7 @@ class SearchCompare extends Component {
           />
         <Text style={text.small}>PRODUCT 2</Text>
           <TextInput
-            style={[CONTAINER.inputForm, {marginBottom: 45}]}
+            style={[CONTAINER.inputForm, {marginBottom: 30}]}
             onChangeText={term2 => this.setState({ term2 })}
             value={this.state.term2}
             autoCorrect={false}
@@ -31,6 +31,7 @@ class SearchCompare extends Component {
           />
           <Button
             containerViewStyle={{ position: 'absolute', bottom: 0, left: -15, right: -15}}
+            buttonStyle={{padding: 7}}
             textStyle={{ fontWeight: '600' }}
             title="COMPARE"
             backgroundColor="#C0D2E3"

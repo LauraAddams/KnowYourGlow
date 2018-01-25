@@ -1,11 +1,10 @@
 import React from 'react';
-import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Text, View, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
 import { CONTAINER, GRAY } from '../config/styles';
 import text from '../config/text';
-import ModalContainer from '../components/Modal';
 
 function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
@@ -78,27 +77,35 @@ export default class AddProduct extends React.Component {
     }
   };
 
-  _renderButton = (text, onPress) => (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.button}>
-        <Text>{text}</Text>
-      </View>
-    </TouchableOpacity>
+  _onPressClose = () => {
+    this.setState({ visibleModal: null });
+  }
+
+  _renderButton = (input, onPress) => (
+      <Text style={text.smallBold} onPress={onPress}>{input}</Text>
   );
 
   _renderModalContent = () => (
     <View style={styles.modalContent}>
-      <Text style={styles.great}>OK</Text>
-      {this._renderButton('Go to Product', this._addedProduct)}
+      <View style={{flex: 1}}>
+        <Icon name="close" size={18} borderRadius={20} iconStyle={styles.exitIcon} onPress={this._onPressClose}/>
+      </View>
+      <View style={{flex: 2, alignItems: 'center'}}>
+        <Icon type="material-community" name="heart" size={70} />
+        <Text style={[text.medium, {fontSize: 22}]}>THANK YOU FOR</Text>
+        <Text style={[text.medium, {fontSize: 22}]}>HELPING US GROW</Text>
+      </View>
+      <View style={{flex: 1}}>
+        {this._renderButton('Go to Product', this._addedProduct)}
+      </View>
     </View>
   );
 
   render() {
     return (
-      <View style={CONTAINER.container}>
+      <View style={[CONTAINER.container, {paddingTop: 0}]}>
         <Modal isVisible={this.state.visibleModal === 1}>{this._renderModalContent()}</Modal>
-
-        <Text style={text.smallBold}>Add your favorite product to our inventory</Text>
+        <Image source={require('../assets/addprod.png')} style={{ flex:1, resizeMode: 'contain', marginBottom: 30, marginTop: 25 }} />
 
         <View style={CONTAINER.form}>
           <Text style={text.small}>BRAND</Text>
@@ -117,14 +124,15 @@ export default class AddProduct extends React.Component {
           />
         <Text style={text.small}>INGREDIENTS</Text>
           <TextInput
-            style={[CONTAINER.inputForm, {marginBottom: 50}]}
+            style={[CONTAINER.inputForm, { marginBottom: 35 }]}
             value={this.state.inputIng}
             onChange={this._onIngChanged}
             placeholder="Water, Dimethicone, Aloe, ..."
           />
 
           <Button
-            containerViewStyle={{ position: 'absolute', bottom: 0, left: -15, right: -15}}
+            containerViewStyle={{ position: 'absolute', bottom: 0, left: -15, right: -15 }}
+            buttonStyle={{padding: 7}}
             textStyle={{ fontWeight: '600' }}
             iconRight={{ name: 'keyboard-arrow-right', size: 24 }}
             title="COMPLETE"
@@ -138,17 +146,6 @@ export default class AddProduct extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  great: {
-    width: 144,
-    height: 144,
-    backgroundColor: 'gold',
-    borderRadius: 70,
-    overflow: 'hidden',
-    paddingTop: 23,
-    fontSize: 80,
-    color: 'white',
-    textAlign: 'center',
-  },
   button: {
     backgroundColor: 'pink',
     marginTop: 15,
@@ -157,10 +154,22 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: 22,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 4,
     borderColor: 'rgba(0, 0, 0, 0.1)',
+    margin: 140,
+    marginLeft: 30,
+    marginRight: 30,
+    borderRadius: 20,
+    flex: 1,
+  },
+  exitIcon: {
+    color: '#999',
+    padding: 2,
+    borderWidth: 2,
+    borderColor: '#999',
+    borderRadius: 13,
+    marginLeft: 230,
+    marginTop: 10,
   },
 });

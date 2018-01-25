@@ -111,7 +111,7 @@ class Product extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: BG_COLOR }}>
         <View>
-          <View style={{marginTop: 40, marginBottom: 40}}>
+          <View style={{marginTop: 30, marginBottom: 40}}>
             <Text style={[text.medium, { textAlign: 'center', margin: 8 }]}>{name.toUpperCase()}</Text>
             <Text style={[text.smallBold, { textAlign: 'center' }]}>{brand.toLowerCase()}</Text>
           </View>

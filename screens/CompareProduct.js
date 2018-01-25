@@ -100,7 +100,7 @@ class CompareProduct extends React.Component {
           onPressSearch={this.onPressSearch}
         />
 
-        <ScrollView style={{ marginTop: 20 }} automaticallyAdjustContentInsets={false}>
+        <ScrollView automaticallyAdjustContentInsets={false}>
           {ingredients}
         </ScrollView>
 

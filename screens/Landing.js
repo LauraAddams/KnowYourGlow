@@ -112,15 +112,16 @@ class Landing extends React.Component {
         </Animated.View>
 
         <View style={{ marginTop: 90 }}>
-          <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 40 }]}>Good {currentMessage}</Text>
+          <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 20 }]}>Good {currentMessage}</Text>
         </View>
 
-        <View style={{ flex: 1, marginBottom: 30, width: '100%', alignItems: 'center' }}>
+        <View style={{ flex: 1, marginBottom: 30, width: '100%', alignItems: 'center', backgroundColor: BG_COLOR }}>
           <SortableList
           style={styles.list}
           contentContainerStyle={styles.contentContainer}
           data={data}
           renderRow={this._renderRow} />
+        <Icon type="material-community" name='tag-multiple'  size={28} color={BLACK} />
         <Text style={[text.smallBold, {textAlign: 'center'}]} onPress={this._handlePress}>My Tagged Ingredients</Text>
         </View>
       </View>
