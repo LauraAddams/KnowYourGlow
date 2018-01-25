@@ -91,6 +91,25 @@ export const AddStack = StackNavigator({
   },
 });
 
+export const CompareStack = StackNavigator({
+  CompareProduct: {
+    screen: CompareProduct,
+    navigationOptions: {
+      title: 'COMPARE PRODUCTS',
+    },
+  },
+}, {
+  navigationOptions: {
+    headerTintColor: BLACK,
+    headerBackTitle: null,
+    headerTitleStyle: text.navHeader,
+    headerStyle: {
+      backgroundColor: BG_COLOR,
+      borderBottomColor: 'transparent',
+    },
+  },
+});
+
 export const Tabs = TabNavigator({
   Home: {
     screen: HomeStack,
@@ -114,9 +133,8 @@ export const Tabs = TabNavigator({
     },
   },
   CompareProduct: {
-    screen: CompareProduct,
+    screen: CompareStack,
     navigationOptions: {
-      title: 'COMPARE PRODUCTS',
       tabBarLabel: 'Compare',
       tabBarIcon: ({ tintColor }) => (<Image source={require('../assets/compare.png')}
         style={[styles.icon, {tintColor: tintColor}]}

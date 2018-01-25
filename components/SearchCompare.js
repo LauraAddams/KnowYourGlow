@@ -23,14 +23,17 @@ class SearchCompare extends Component {
           />
         <Text style={text.small}>PRODUCT 2</Text>
           <TextInput
-            style={CONTAINER.inputForm}
+            style={[CONTAINER.inputForm, {marginBottom: 45}]}
             onChangeText={term2 => this.setState({ term2 })}
             value={this.state.term2}
             autoCorrect={false}
             placeholder="ex. Missha snail essential"
           />
           <Button
-            iconRight={{name: 'search', color: 'black', size: 24}}
+            containerViewStyle={{ position: 'absolute', bottom: 0, left: -15, right: -15}}
+            textStyle={{ fontWeight: '600' }}
+            title="COMPARE"
+            backgroundColor="#496354"
             onPress={() => this.props.onPressSearch(this.state.term, this.state.term2)}
           />
         </View>
