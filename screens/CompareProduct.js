@@ -89,6 +89,16 @@ class CompareProduct extends React.Component {
       return (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor={info[0]} checked={info[1]} />);
     });
 
+    const addButton = ingList.length > 0 ? (<Button
+      containerViewStyle={{alignSelf: 'flex-end'}}
+      iconRight={{ name: 'check', color: 'black', size: 24 }}
+      title="Add Checked"
+      backgroundColor="rgba(0,0,0,0)"
+      textStyle={text.small}
+      color="black"
+      onPress={() => this._onPressTagged()}
+    />) : (<Text />);
+
     return (
       <View style={CONTAINER.container}>
 
@@ -104,15 +114,8 @@ class CompareProduct extends React.Component {
           {ingredients}
         </ScrollView>
 
-        <Button
-          containerViewStyle={{alignSelf: 'flex-end'}}
-          iconRight={{ name: 'check', color: 'black', size: 24 }}
-          title="Add Checked"
-          backgroundColor="rgba(0,0,0,0)"
-          textStyle={text.small}
-          color="black"
-          onPress={() => this._onPressTagged()}
-        />
+        {addButton}
+
       </View>
     );
   }

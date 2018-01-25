@@ -1,4 +1,3 @@
-/* eslint-disle */
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';

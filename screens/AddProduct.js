@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TextInput, StyleSheet, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
-import { CONTAINER, GRAY } from '../config/styles';
+import { CONTAINER } from '../config/styles';
 import text from '../config/text';
 
 function url(id) {
@@ -82,18 +82,18 @@ export default class AddProduct extends React.Component {
   }
 
   _renderButton = (input, onPress) => (
-      <Text style={text.smallBold} onPress={onPress}>{input}</Text>
+    <Text style={text.smallBold} onPress={onPress}>{input}</Text>
   );
 
   _renderModalContent = () => (
     <View style={styles.modalContent}>
-      <View style={{flex: 1}}>
-        <Icon name="close" size={18} borderRadius={20} iconStyle={styles.exitIcon} onPress={this._onPressClose}/>
+      <View style={{ flex: 1 }}>
+        <Icon name="close" size={18} borderRadius={20} iconStyle={styles.exitIcon} onPress={this._onPressClose} />
       </View>
-      <View style={{flex: 2, alignItems: 'center'}}>
+      <View style={{ flex: 2, alignItems: 'center' }}>
         <Icon type="material-community" name="heart" size={70} />
-        <Text style={[text.medium, {fontSize: 22}]}>THANK YOU FOR</Text>
-        <Text style={[text.medium, {fontSize: 22}]}>HELPING US GROW</Text>
+        <Text style={[text.medium, { fontSize: 22 }]}>THANK YOU FOR</Text>
+        <Text style={[text.medium, { fontSize: 22 }]}>HELPING US GROW</Text>
       </View>
       <View style={{flex: 1}}>
         {this._renderButton('Go to Product', this._addedProduct)}
@@ -103,7 +103,7 @@ export default class AddProduct extends React.Component {
 
   render() {
     return (
-      <View style={[CONTAINER.container, {paddingTop: 0}]}>
+      <View style={[CONTAINER.container, { paddingTop: 0 }]}>
         <Modal isVisible={this.state.visibleModal === 1}>{this._renderModalContent()}</Modal>
         <Image source={require('../assets/addprod.png')} style={{ flex:1, resizeMode: 'contain', marginBottom: 30, marginTop: 25 }} />
 
@@ -115,14 +115,14 @@ export default class AddProduct extends React.Component {
             onChange={this._onBrandChanged}
             placeholder="Dr.Jart+"
           />
-        <Text style={text.small}>NAME</Text>
+          <Text style={text.small}>NAME</Text>
           <TextInput
             style={CONTAINER.inputForm}
             value={this.state.inputName}
             onChange={this._onNameChanged}
             placeholder="Essence serum"
           />
-        <Text style={text.small}>INGREDIENTS</Text>
+          <Text style={text.small}>INGREDIENTS</Text>
           <TextInput
             style={[CONTAINER.inputForm, { marginBottom: 35 }]}
             value={this.state.inputIng}

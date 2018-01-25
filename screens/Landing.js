@@ -198,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, { PostRoutine })(Landing);
+export default connect(mapStateToProps, { PostRoutine, PostNightRoutine })(Landing);
