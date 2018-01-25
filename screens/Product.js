@@ -36,20 +36,16 @@ class Product extends React.Component {
   }
 
   _onPressAdd = () => {
-    this.setState({
-      visibleModal: true,
-    });
+    this.setState({ visibleModal: true });
   }
 
   goBack() {
     this.props.navigation.goBack();
   }
 
-  // _reset() {
-  //   this.setState({
-  //     visibleModal: false,
-  //   });
-  // }
+  resetVisible() {
+    this.setState({ visibleModal: false });
+  }
 
   addType(type) {
     const { brand, name } = this.props.navigation.state.params;
@@ -143,7 +139,7 @@ class Product extends React.Component {
           <Icon reverse raised name="add" color="#E8C7C9" size={16} iconStyle={styles.addIcon} onPress={() => this._onPressAdd()} />
         </View>
 
-        <ModalContainer goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
+        <ModalContainer resetVisible={this.resetVisible.bind(this)} goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
       </View>
     );
   }

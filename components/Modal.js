@@ -29,7 +29,7 @@ export default class ModalContainer extends React.Component {
   }
 
   _onPressClose = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.resetVisible();
   }
 
   _onPressMorning = () => {

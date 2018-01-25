@@ -40,6 +40,10 @@ class ListItem extends React.PureComponent {
   goBack() {
   }
 
+  resetVisible() {
+    this.setState({ visibleModal: false });
+  }
+
   addType(type) {
     const { brand, name } = this.props.item;
     const full = brand.toUpperCase() + ' ' + name;
@@ -101,7 +105,7 @@ class ListItem extends React.PureComponent {
           underlayColor='#f7f7f7'>
           {textResult}
         </TouchableHighlight>
-        <ModalContainer goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
+        <ModalContainer resetVisible={this.resetVisible.bind(this)} goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
       </View>
     );
   }
