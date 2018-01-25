@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, GRAY } from '../config/styles';
+import text from '../config/text';
 import ModalContainer from '../components/Modal';
 
 function url(id) {
@@ -16,9 +17,9 @@ export default class AddProduct extends React.Component {
 
     this.state = {
       message: '',
-      inputBrand: 'Generic',
-      inputName: 'Rose Mist',
-      inputIng: 'Water, Rose Water, Rose Oil',
+      inputBrand: '',
+      inputName: '',
+      inputIng: '',
       visibleModal: null,
       id: '',
     };
@@ -97,32 +98,38 @@ export default class AddProduct extends React.Component {
       <View style={CONTAINER.container}>
         <Modal isVisible={this.state.visibleModal === 1}>{this._renderModalContent()}</Modal>
 
-        <Image source={require('../assets/addstate.png')} style={{ flex:2, resizeMode: 'contain', marginBottom: 30 }} />
+        <Text style={[text.smallBold, {paddingBottom: 5}]}>Couldn't find your favorite product?</Text>
+        <Text style={text.smallBold}>Add it to our database</Text>
+
         <View style={CONTAINER.form}>
+          <Text style={text.small}>BRAND</Text>
           <TextInput
             style={CONTAINER.inputForm}
             value={this.state.inputBrand}
             onChange={this._onBrandChanged}
-            placeholder="BRAND"
+            placeholder="Dr.Jart+"
           />
-
+        <Text style={text.small}>NAME</Text>
           <TextInput
             style={CONTAINER.inputForm}
             value={this.state.inputName}
             onChange={this._onNameChanged}
-            placeholder="NAME"
+            placeholder="Essence serum"
           />
-
+        <Text style={text.small}>INGREDIENTS</Text>
           <TextInput
-            style={CONTAINER.inputForm}
+            style={[CONTAINER.inputForm, {marginBottom: 50}]}
             value={this.state.inputIng}
             onChange={this._onIngChanged}
-            placeholder="INGREDIENTS"
+            placeholder="Water, Dimethicone, Aloe, ..."
           />
 
           <Button
-            iconRight={{ name: 'add-circle', color: 'black', size: 40 }}
-            backgroundColor="rgba(0,0,0,0)"
+            containerViewStyle={{ position: 'absolute', bottom: 0, left: -15, right: -15}}
+            textStyle={{ fontWeight: '600' }}
+            iconRight={{ name: 'keyboard-arrow-right', size: 24 }}
+            title="COMPLETE"
+            backgroundColor="#496354"
             onPress={this._onButtonPress}
           />
         </View>

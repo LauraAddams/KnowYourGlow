@@ -7,7 +7,7 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 class SearchBar extends Component {
-  state = { term: 'Jelly' };
+  state = { term: '' };
 
   render() {
     return (
@@ -17,7 +17,7 @@ class SearchBar extends Component {
           onChangeText={term => this.setState({ term })}
           value={this.state.term}
           autoCorrect={false}
-          placeholder="ex. Cosrx snail cream"
+          placeholder="Search"
         />
         <Button
           iconRight={{name: 'search', color: 'black', size: 24}}

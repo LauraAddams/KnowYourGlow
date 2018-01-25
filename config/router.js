@@ -9,7 +9,6 @@ import SearchProduct from '../screens/SearchProduct';
 import Product from '../screens/Product';
 import AddProduct from '../screens/AddProduct';
 import CompareProduct from '../screens/CompareProduct';
-import MyRoutine from '../screens/MyRoutine';
 import TaggedIngredients from '../screens/TaggedIngredients';
 import Settings from '../screens/Settings';
 
@@ -74,7 +73,7 @@ export const AddStack = StackNavigator({
   AddProduct: {
     screen: AddProduct,
     navigationOptions: {
-      title: 'ADD PRODUCT',
+      title: 'ADD A NEW PRODUCT',
     },
   },
   Product: {
@@ -96,31 +95,32 @@ export const Tabs = TabNavigator({
   Home: {
     screen: HomeStack,
     navigationOptions: {
-        tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Icon name="sentiment-satisfied" size={30} color={tintColor}/>
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => <Icon name="sentiment-satisfied" size={30} color={tintColor}/>
     },
   },
   SearchProduct: {
     screen: ProductStack,
     navigationOptions: {
-        tabBarLabel: 'Search',
-        tabBarIcon: ({ tintColor }) => <Icon name="search" size={30} color={tintColor}/>
+      tabBarLabel: 'Search',
+      tabBarIcon: ({ tintColor }) => <Icon name="search" size={30} color={tintColor}/>
     },
   },
   AddProduct: {
     screen: AddStack,
     navigationOptions: {
-        tabBarLabel: 'Add',
-        tabBarIcon: ({ tintColor }) => <Icon name="add" size={34} color={tintColor} />
+      tabBarLabel: 'Add',
+      tabBarIcon: ({ tintColor }) => <Icon name="add" size={34} color={tintColor} />
     },
   },
   CompareProduct: {
     screen: CompareProduct,
     navigationOptions: {
-        tabBarLabel: 'Compare',
-        tabBarIcon: ({ tintColor }) => <Image source={require('../assets/compare.png')}
+      title: 'COMPARE PRODUCTS',
+      tabBarLabel: 'Compare',
+      tabBarIcon: ({ tintColor }) => (<Image source={require('../assets/compare.png')}
         style={[styles.icon, {tintColor: tintColor}]}
-        />
+      />)
     },
   },
 }, {

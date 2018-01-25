@@ -8,12 +8,12 @@ import text from '../config/text';
 import { CONTAINER } from '../config/styles';
 
 class SearchCompare extends Component {
-  state = { term: 'Cosrx Snail 96', term2: 'Missha snail essential' };
+  state = { term: '', term2: '' };
 
   render() {
     return (
         <View style={[CONTAINER.form, {flex:0}]}>
-          <Text style={[text.smallBold, {marginTop: 30, marginBottom: 30, textAlign: 'center'}]}>COMPARE PRODUCTS</Text>
+        <Text style={text.small}>PRODUCT 1</Text>
           <TextInput
             style={CONTAINER.inputForm}
             onChangeText={term => this.setState({ term })}
@@ -21,12 +21,13 @@ class SearchCompare extends Component {
             autoCorrect={false}
             placeholder="ex. Cosrx snail cream"
           />
+        <Text style={text.small}>PRODUCT 2</Text>
           <TextInput
             style={CONTAINER.inputForm}
             onChangeText={term2 => this.setState({ term2 })}
             value={this.state.term2}
             autoCorrect={false}
-            placeholder="ex. Cosrx snail cream"
+            placeholder="ex. Missha snail essential"
           />
           <Button
             iconRight={{name: 'search', color: 'black', size: 24}}
