@@ -128,7 +128,7 @@ export default class AddProduct extends React.Component {
             textStyle={{ fontWeight: '600' }}
             iconRight={{ name: 'keyboard-arrow-right', size: 24 }}
             title="COMPLETE"
-            backgroundColor="#496354"
+            backgroundColor="#C0D2E3"
             onPress={this._onButtonPress}
           />
         </View>

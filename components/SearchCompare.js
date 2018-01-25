@@ -33,7 +33,7 @@ class SearchCompare extends Component {
             containerViewStyle={{ position: 'absolute', bottom: 0, left: -15, right: -15}}
             textStyle={{ fontWeight: '600' }}
             title="COMPARE"
-            backgroundColor="#496354"
+            backgroundColor="#C0D2E3"
             onPress={() => this.props.onPressSearch(this.state.term, this.state.term2)}
           />
         </View>

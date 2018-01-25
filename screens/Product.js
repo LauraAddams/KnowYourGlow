@@ -136,7 +136,7 @@ class Product extends React.Component {
         </ScrollView>
 
         <View style={styles.add}>
-          <Icon reverse raised name="add" color="#E8C7C9" size={16} iconStyle={styles.addIcon} onPress={() => this._onPressAdd()} />
+          <Icon reverse raised name="add" color="#C0D2E3" size={16} onPress={() => this._onPressAdd()} />
         </View>
 
         <ModalContainer resetVisible={this.resetVisible.bind(this)} goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />
@@ -164,9 +164,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     bottom: 20,
-  },
-  addIcon: {
-    color: 'black',
   },
   buttonGroup: {
     height: 28,

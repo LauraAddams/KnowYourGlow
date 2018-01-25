@@ -10,7 +10,7 @@ import {
 import { Button, CheckBox } from 'react-native-elements';
 
 import text from '../config/text';
-import { CONTAINER, HIGHLIGHT } from '../config/styles';
+import { CONTAINER } from '../config/styles';
 
 export default class RemoveForm extends React.Component {
   constructor() {
@@ -35,10 +35,10 @@ export default class RemoveForm extends React.Component {
           uncheckedIcon='clear'
           checkedColor='red'
           size={1}
-          textStyle={{fontSize: 12}}
+          textStyle={{fontSize: 12, color: 'white'}}
           containerStyle={{
             borderWidth: 0,
-            backgroundColor: HIGHLIGHT,
+            backgroundColor: "#C0D2E3",
             padding: 3,
             borderRadius: 12,
           }}

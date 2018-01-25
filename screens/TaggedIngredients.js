@@ -119,6 +119,7 @@ class TaggedIngredients extends React.Component {
             onPress={this.updateIndex}
             selectedIndex={this.state.selectedIndex}
             buttons={['Tagged', 'Add']}
+            textStyle={[text.smallBold, {fontWeight: '200'}]}
             containerStyle={styles.buttonGroup}
             selectedBackgroundColor={BG_COLOR}
             innerBorderStyle={{ color: 'transparent' }}
@@ -152,8 +153,6 @@ class TaggedIngredients extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-  },
   slide: {
     flex: 1,
     alignItems: 'center',
@@ -161,13 +160,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   buttonGroup: {
-    borderWidth: 0,
-    borderRadius: 0,
     marginLeft: 0,
     marginRight: 0,
     marginTop: 0,
     marginBottom: 0,
-  }
+    borderColor: '#eee',
+  },
 });
 
 export default connect(mapStateToProps, { PostTagged })(TaggedIngredients);
