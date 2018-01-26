@@ -27,7 +27,7 @@ export default class App extends React.Component {
     }
     return (
       <Provider store={Store}>
-        <Tabs />
+        <RootStack />
       </Provider>
     );
   }

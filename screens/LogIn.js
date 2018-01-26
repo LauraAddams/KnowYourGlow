@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 
 import { FormLabel, FormInput, Button, SocialIcon, Icon } from 'react-native-elements';
 import { CONTAINER, GRAY, BLACK } from '../config/styles';
+import text from '../config/text';
 
 
 export default class LoginScreen extends React.Component {
@@ -88,8 +89,10 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={CONTAINER.container}>
-        <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
-          <Icon name='broken-image' size={100} />
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
+          <Text style={[text.medium, {fontSize: 30, letterSpacing: 20, marginLeft: 20}]}>ADA</Text>
+          <Text style={[text.medium, {fontSize: 30, letterSpacing: 25, marginLeft: 25}]}>CAP</Text>
+          <Text style={[text.medium, {fontSize: 30, letterSpacing: 25, marginLeft: 25}]}>APP</Text>
         </View>
 
         <View style={{ flex: 2, width: 300, justifyContent: 'center' }}>
