@@ -53,7 +53,7 @@ export default class SearchProduct extends Component<{}> {
     if (this.state.emptyState) {
       return (
         <View style={{ position: 'absolute', paddingLeft: 15, paddingTop: 30 }}>
-          <Image source={require('../assets/emptystate.png')} style={{ width: 200, height: 250, resizeMode: 'contain', opacity: 0.3 }} />
+          <Image source={require('../assets/bee.png')} style={{ width: 200, height: 250, resizeMode: 'contain', opacity: 0.3 }} />
         </View>
       );
     }

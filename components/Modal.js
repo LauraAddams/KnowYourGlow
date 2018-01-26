@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
-import { BLACK, PINK, RED, TEAL } from '../config/styles';
+import { BLACK, PINK, TEAL, YELLOW } from '../config/styles';
 import text from '../config/text';
 
 export default class ModalContainer extends React.Component {
@@ -57,7 +57,7 @@ export default class ModalContainer extends React.Component {
         <Text style={text.medium}>Add to Routine:</Text>
         <Button
           raised
-          buttonStyle={{ height: 30, width: 200, backgroundColor: PINK }}
+          buttonStyle={{ height: 30, width: 200, backgroundColor: YELLOW }}
           borderRadius={25}
           icon={{ name: 'ios-sunny', type: 'ionicon' }}
           title="Morning"
@@ -75,7 +75,7 @@ export default class ModalContainer extends React.Component {
 
         <Button
           raised
-          buttonStyle={{ height: 30, width: 200, backgroundColor: RED }}
+          buttonStyle={{ height: 30, width: 200, backgroundColor: PINK }}
           borderRadius={25}
           icon={{ name: 'ios-sunny', type: 'ionicon' }}
           iconRight={{ name: 'ios-moon', type: 'ionicon' }}

@@ -37,12 +37,11 @@ export const HomeStack = StackNavigator({
   },
 }, {
   navigationOptions: {
-    headerColor: 'white',
-    headerTintColor: 'white',
+    headerTintColor: BLACK,
     headerBackTitle: null,
-    headerTitleStyle: text.navHeaderLight,
+    headerTitleStyle: text.navHeader,
     headerStyle: {
-      backgroundColor: BLACK,
+      backgroundColor: BG_COLOR,
       borderBottomColor: 'transparent',
     },
   },

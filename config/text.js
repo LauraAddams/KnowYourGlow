@@ -39,11 +39,6 @@ const text = StyleSheet.create({
     fontFamily: FUTURA,
     color: BLACK,
   },
-  navHeaderLight: {
-    fontSize: 12,
-    letterSpacing: 4,
-    fontFamily: FUTURA,
-  },
 });
 
 export default text;

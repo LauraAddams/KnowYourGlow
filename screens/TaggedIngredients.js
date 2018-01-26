@@ -125,7 +125,6 @@ class TaggedIngredients extends React.Component {
           buttons={buttons}
           textStyle={text.small}
           containerStyle={styles.buttonGroup}
-          selectedBackgroundColor={BG_COLOR}
           innerBorderStyle={{ color: 'transparent' }}
         />
 

@@ -105,7 +105,7 @@ export default class AddProduct extends React.Component {
     return (
       <View style={[CONTAINER.container, { paddingTop: 0 }]}>
         <Modal isVisible={this.state.visibleModal === 1}>{this._renderModalContent()}</Modal>
-        <Image source={require('../assets/addprod.png')} style={{ flex:1, resizeMode: 'contain', marginBottom: 30, marginTop: 25 }} />
+        <Image source={require('../assets/add.png')} style={{ flex:1, resizeMode: 'contain', marginBottom: 35, marginTop: 30 }} />
 
         <View style={CONTAINER.form}>
           <Text style={text.small}>BRAND</Text>

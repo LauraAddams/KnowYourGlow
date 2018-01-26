@@ -1,5 +1,5 @@
 const initialState = {
-  tagData: ['fragrance', 'mineral oil', 'betaine'],
+  tagData: ['fragrance', 'mineral oil', 'betaine', 'alcohol'],
   routineData: ['COSRX low ph good morning gel cleanser', 'CERAVE moisturizing cream', 'GLOSSIER invisible shield'],
   nightRoutineData: ['SENSIBIO h20 micellar water', 'COSRX aha 7 whitehead power liquid', 'ETUDE HOUSE darling cream', 'GENERIC jojoba oil'],
 };

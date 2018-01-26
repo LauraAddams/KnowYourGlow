@@ -107,8 +107,8 @@ class Landing extends React.Component {
         <Icon type="ionicon" name={currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
 
         <Animated.View style={[{position: 'absolute', top: 20}, animatedStyle]}>
-          <Icon type="ionicon" name={timeStyle[1]} size={40} color="gold" containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
-          <Icon type="ionicon" name={timeStyle[3]} size={40} color="gold" containerStyle={{paddingRight: 40, paddingTop: 25 }} />
+          <Icon type="ionicon" name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
+          <Icon type="ionicon" name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 40, paddingTop: 25 }} />
         </Animated.View>
 
         <View style={{ marginTop: 90 }}>
@@ -192,7 +192,9 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 15,
     margin: 10,
-    borderRadius: 20,
+    // borderRadius: 20,
+    borderLeftWidth: 4,
+    borderColor: BLACK,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
