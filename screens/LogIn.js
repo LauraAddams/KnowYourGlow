@@ -60,7 +60,7 @@ export default class LoginScreen extends React.Component {
 
   renderButtonOrLoading() {
     if (this.state.loading) {
-      return <Text>Loading</Text>
+      return <Text style={{alignSelf: 'center'}}>Loading</Text>
     }
 
     return (
@@ -70,13 +70,13 @@ export default class LoginScreen extends React.Component {
           rounded={true}
           borderRadius={25}
           fontSize={12}
-          backgroundColor="red"
+          backgroundColor={BLACK}
           onPress={this.onLoginPress.bind(this)}
           title="LOGIN"
         />
 
         <Text
-          style={{ textAlign: 'center', color: 'red', margin: 10, fontSize: 12 }}
+          style={{ textAlign: 'center', color: BLACK, margin: 10, fontSize: 12 }}
           onPress={this.onSignUpPress.bind(this)}
         >
           SIGN UP

@@ -113,11 +113,11 @@ class Landing extends React.Component {
           <Icon type="ionicon" name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 40, paddingTop: 25 }} />
         </Animated.View>
 
-        <View style={{ marginTop: 115 }}>
+        <View style={{ marginTop: 115, backgroundColor: 'white', paddingBottom: 40 }}>
           <Text style={[text.smallBold, { fontSize: 26 }]}>Good {currentMessage}</Text>
         </View>
 
-        <View style={{ flex: 1, width: '100%', alignItems: 'center', backgroundColor: BG_COLOR }}>
+        <View style={{ flex: 1, width: '100%', alignItems: 'center', marginTop: -40}}>
           <SortableList
             style={styles.list}
             contentContainerStyle={styles.contentContainer}
@@ -125,8 +125,11 @@ class Landing extends React.Component {
             renderRow={this._renderRow} />
         </View>
         <View style={{alignSelf: 'flex-start'}}>
-          <Icon reverse raised type="material-community" name='tag-multiple'  size={22}
+          <Icon reverse raised type="material-community" name='tag-multiple'  onPress={this._handlePress} size={22}
             color={BLACK} containerStyle={{width: 40, height: 40, marginLeft: 25, marginBottom: 20}} />
+        </View>
+        <View style={{ position: 'absolute', zIndex: -1, top: 0, left: 0, right: 0, bottom: 0 }}>
+          <Image source={require('../assets/whiteblob.png')} resizeMode="contain" />
         </View>
       </View>
     );
