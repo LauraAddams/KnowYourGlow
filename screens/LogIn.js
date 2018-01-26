@@ -90,9 +90,9 @@ export default class LoginScreen extends React.Component {
     return (
       <View style={CONTAINER.container}>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
-          <Text style={[text.medium, {fontSize: 30, letterSpacing: 20, marginLeft: 20}]}>ADA</Text>
-          <Text style={[text.medium, {fontSize: 30, letterSpacing: 25, marginLeft: 25}]}>CAP</Text>
-          <Text style={[text.medium, {fontSize: 30, letterSpacing: 25, marginLeft: 25}]}>APP</Text>
+          <Text style={[text.medium, {fontSize: 35, letterSpacing: 20, marginLeft: 20}]}>ADA</Text>
+          <Text style={[text.medium, {fontSize: 35, letterSpacing: 25, marginLeft: 25}]}>CAP</Text>
+          <Text style={[text.medium, {fontSize: 35, letterSpacing: 25, marginLeft: 25}]}>APP</Text>
         </View>
 
         <View style={{ flex: 2, width: 300, justifyContent: 'center' }}>
