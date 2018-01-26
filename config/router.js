@@ -37,11 +37,12 @@ export const HomeStack = StackNavigator({
   },
 }, {
   navigationOptions: {
-    headerTintColor: BLACK,
+    headerColor: 'white',
+    headerTintColor: 'white',
     headerBackTitle: null,
-    headerTitleStyle: text.navHeader,
+    headerTitleStyle: text.navHeaderLight,
     headerStyle: {
-      backgroundColor: BG_COLOR,
+      backgroundColor: BLACK,
       borderBottomColor: 'transparent',
     },
   },
@@ -144,6 +145,7 @@ export const Tabs = TabNavigator({
 }, {
   tabBarOptions: {
     activeTintColor: BLACK,
+    inactiveTintColor: '#8E9ACF',
     showLabel: false,
     style: {
       backgroundColor: BG_COLOR,

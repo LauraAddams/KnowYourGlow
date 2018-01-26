@@ -4,7 +4,7 @@ import { View, TextInput } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BLACK } from '../config/styles';
 
 class SearchBar extends Component {
   state = { term: '' };
@@ -20,7 +20,7 @@ class SearchBar extends Component {
           placeholder="Search"
         />
         <Button
-          iconRight={{name: 'search', color: 'black', size: 24}}
+          iconRight={{name: 'search', color: BLACK, size: 24}}
           backgroundColor='rgba(0,0,0,0)'
           onPress={() => this.props.onPressSearch(this.state.term)}
         />

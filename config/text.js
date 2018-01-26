@@ -35,9 +35,14 @@ const text = StyleSheet.create({
   },
   navHeader: {
     fontSize: 12,
-    letterSpacing: 5,
+    letterSpacing: 4,
     fontFamily: FUTURA,
     color: BLACK,
+  },
+  navHeaderLight: {
+    fontSize: 12,
+    letterSpacing: 4,
+    fontFamily: FUTURA,
   },
 });
 

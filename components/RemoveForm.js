@@ -1,16 +1,10 @@
 /* eslint-disable */
-
 import React from 'react';
-
-import {
-  View,
-  Text,
-} from 'react-native';
-
+import { View, Text } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
 
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BLACK } from '../config/styles';
 
 export default class RemoveForm extends React.Component {
   constructor() {
@@ -38,7 +32,7 @@ export default class RemoveForm extends React.Component {
           textStyle={{fontSize: 12, color: 'white'}}
           containerStyle={{
             borderWidth: 0,
-            backgroundColor: "#C0D2E3",
+            backgroundColor: BLACK,
             padding: 3,
             borderRadius: 12,
           }}

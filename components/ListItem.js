@@ -102,7 +102,7 @@ class ListItem extends React.PureComponent {
       <View>
         <TouchableHighlight
           onPress={this._onPress}
-          underlayColor='#f7f7f7'>
+          underlayColor='#ffffff'>
           {textResult}
         </TouchableHighlight>
         <ModalContainer resetVisible={this.resetVisible.bind(this)} goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />

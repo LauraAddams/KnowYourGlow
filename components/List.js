@@ -7,12 +7,13 @@ import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
 import ListItem from './ListItem';
+import { PINK, RED, YELLOW, TEAL } from '../config/styles';
 
 function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
 }
 
-const colors = ['#E8C7C9', '#F5CBAA', '#A7B8B6', '#496354'];
+const colors = [PINK, RED, YELLOW, TEAL];
 
 class List extends Component<{}> {
   componentDidMount() {

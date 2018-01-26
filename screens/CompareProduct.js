@@ -7,7 +7,7 @@ import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
-import { CONTAINER, HIGHLIGHT } from '../config/styles';
+import { CONTAINER, HIGHLIGHT, BLACK } from '../config/styles';
 import text from '../config/text';
 import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
@@ -91,11 +91,11 @@ class CompareProduct extends React.Component {
 
     const addButton = ingList.length > 0 ? (<Button
       containerViewStyle={{alignSelf: 'flex-end'}}
-      iconRight={{ name: 'check', color: 'black', size: 24 }}
+      iconRight={{ name: 'check', color: BLACK, size: 24 }}
       title="Add Checked"
       backgroundColor="rgba(0,0,0,0)"
       textStyle={text.small}
-      color="black"
+      color={BLACK}
       onPress={() => this._onPressTagged()}
     />) : (<Text />);
 

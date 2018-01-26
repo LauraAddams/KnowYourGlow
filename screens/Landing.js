@@ -10,7 +10,7 @@ import PostNightRoutine from '../Actions/PostNightRoutine';
 import Store from '../Store';
 
 import text from '../config/text';
-import { BG_COLOR, BLACK } from '../config/styles';
+import { BG_COLOR, BLACK, CONTAINER } from '../config/styles';
 
 const { width } = Dimensions.get('window');
 const currTime = new Date().getHours();
@@ -107,8 +107,8 @@ class Landing extends React.Component {
         <Icon type="ionicon" name={currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
 
         <Animated.View style={[{position: 'absolute', top: 20}, animatedStyle]}>
-          <Icon type="ionicon" name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
-          <Icon type="ionicon" name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 40, paddingTop: 25 }} />
+          <Icon type="ionicon" name={timeStyle[1]} size={40} color="gold" containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
+          <Icon type="ionicon" name={timeStyle[3]} size={40} color="gold" containerStyle={{paddingRight: 40, paddingTop: 25 }} />
         </Animated.View>
 
         <View style={{ marginTop: 90 }}>
@@ -117,12 +117,14 @@ class Landing extends React.Component {
 
         <View style={{ flex: 1, marginBottom: 30, width: '100%', alignItems: 'center', backgroundColor: BG_COLOR }}>
           <SortableList
-          style={styles.list}
-          contentContainerStyle={styles.contentContainer}
-          data={data}
-          renderRow={this._renderRow} />
-        <Icon type="material-community" name='tag-multiple'  size={28} color={BLACK} />
-        <Text style={[text.smallBold, {textAlign: 'center'}]} onPress={this._handlePress}>My Tagged Ingredients</Text>
+            style={styles.list}
+            contentContainerStyle={styles.contentContainer}
+            data={data}
+            renderRow={this._renderRow} />
+          <View style={CONTAINER.details}>
+            <Icon type="material-community" name='tag-multiple'  size={28} color={BLACK} />
+            <Text style={[text.smallBold, {textAlign: 'center'}]} onPress={this._handlePress}> My Irritants</Text>
+          </View>
         </View>
       </View>
     );

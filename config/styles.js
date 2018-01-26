@@ -6,9 +6,13 @@ export const FONT_BOLD = '900';
 export const FUTURA = 'Futura-Medium';
 export const HELVETICA = 'Helvetica-Light';
 export const BG_COLOR = '#FCFCFC';
-export const HIGHLIGHT = '#F1BF62';
-export const BLACK = '#0F0F0F';
+export const HIGHLIGHT = '#F4CD4E';
+export const BLACK = '#283EA7';
 export const GRAY = '#DBDBDB';
+export const PINK = '#EBC8BC';
+export const RED = '#CE2630';
+export const YELLOW = '#F4CD4E';
+export const TEAL = '#C5D4F0';
 
 export const CONTAINER = StyleSheet.create({
   container: {
@@ -22,12 +26,14 @@ export const CONTAINER = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: 30,
+    marginRight: 30,
     marginBottom: 20,
     height: 40,
-    borderBottomColor: GRAY,
-    borderBottomWidth: 1,
+    borderColor: GRAY,
+    borderWidth: 1,
+    borderRadius: 20,
+    backgroundColor: 'white',
   },
   input: {
     flexGrow: 1,

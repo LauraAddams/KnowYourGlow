@@ -4,7 +4,7 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import { CONTAINER, BG_COLOR } from '../config/styles';
+import { CONTAINER, BG_COLOR, BLACK, PINK, RED, YELLOW, TEAL } from '../config/styles';
 import text from '../config/text';
 
 export default class Settings extends React.Component {
@@ -12,7 +12,7 @@ export default class Settings extends React.Component {
     super(props)
 
     this.state = {
-      highlight: '#F1BF62',
+      highlight: YELLOW,
     };
   }
 
@@ -28,20 +28,20 @@ export default class Settings extends React.Component {
           <Text style={[text.smallBold, {textAlign: 'center'}]}>PICK YOUR HIGHLIGHT</Text>
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
             <Text
-              style={[styles.select, {backgroundColor: '#F1BF62'}]}
-              onPress={() => this._onButtonPress('#F1BF62')}
+              style={[styles.select, {backgroundColor: PINK}]}
+              onPress={() => this._onButtonPress(PINK)}
               />
             <Text
-              style={[styles.select, {backgroundColor: '#A9BAB8'}]}
-              onPress={() => this._onButtonPress('#A9BAB8')}
+              style={[styles.select, {backgroundColor: RED}]}
+              onPress={() => this._onButtonPress(RED)}
               />
             <Text
-              style={[styles.select, {backgroundColor: '#486555'}]}
-              onPress={() => this._onButtonPress('#486555')}
+              style={[styles.select, {backgroundColor: YELLOW}]}
+              onPress={() => this._onButtonPress(YELLOW)}
               />
             <Text
-              style={[styles.select, {backgroundColor: '#E89C87'}]}
-              onPress={() => this._onButtonPress('#E89C87')}
+              style={[styles.select, {backgroundColor: TEAL}]}
+              onPress={() => this._onButtonPress(TEAL)}
               />
           </View>
         </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   block: {
     marginBottom: 30,
-    backgroundColor: 'black',
+    backgroundColor: BLACK,
     height: 20,
     alignSelf: 'stretch',
   },

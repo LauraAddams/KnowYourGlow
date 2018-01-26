@@ -10,7 +10,7 @@ import {
 import { Button, CheckBox } from 'react-native-elements';
 
 import text from '../config/text';
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BLACK } from '../config/styles';
 
 export default class CheckForm extends React.Component {
   constructor(props) {
@@ -44,7 +44,7 @@ export default class CheckForm extends React.Component {
           iconType='material'
           checkedIcon='check-box'
           uncheckedIcon='check-box-outline-blank'
-          checkedColor='black'
+          checkedColor={BLACK}
           textStyle={[text.smallBold, {flex: 1, fontWeight: '200', fontStyle: 'normal'}]}
           containerStyle={{
             borderWidth: 0,

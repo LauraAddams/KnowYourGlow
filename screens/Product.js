@@ -10,7 +10,7 @@ import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 import text from '../config/text';
 import ModalContainer from '../components/Modal';
-import { CONTAINER, BG_COLOR, HIGHLIGHT } from '../config/styles';
+import { CONTAINER, BG_COLOR, HIGHLIGHT, BLACK } from '../config/styles';
 
 class Product extends React.Component {
 
@@ -82,8 +82,8 @@ class Product extends React.Component {
 
 
   render() {
-    const icon1 = () => <Icon name="view-stream" size={24} />;
-    const icon2 = () => <Icon name="view-list" size={24} />;
+    const icon1 = () => <Icon name="view-stream" size={24} color={BLACK} />;
+    const icon2 = () => <Icon name="view-list" size={24} color={BLACK} />;
     const buttons = [{ element: icon1 }, { element: icon2 }];
 
     const { selectedIndex } = this.state;
@@ -136,7 +136,7 @@ class Product extends React.Component {
         </ScrollView>
 
         <View style={styles.add}>
-          <Icon reverse raised name="add" color="#C0D2E3" size={16} onPress={() => this._onPressAdd()} />
+          <Icon reverse raised name="add" color={BLACK} size={16} onPress={() => this._onPressAdd()} />
         </View>
 
         <ModalContainer resetVisible={this.resetVisible.bind(this)} goBack={this.goBack.bind(this)} addType={this.addType.bind(this)} isVisible={this.state.visibleModal} />

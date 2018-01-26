@@ -3,7 +3,7 @@ import { Text, View, TextInput, StyleSheet, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
-import { CONTAINER } from '../config/styles';
+import { CONTAINER, BLACK } from '../config/styles';
 import text from '../config/text';
 
 function url(id) {
@@ -91,7 +91,7 @@ export default class AddProduct extends React.Component {
         <Icon name="close" size={18} borderRadius={20} iconStyle={styles.exitIcon} onPress={this._onPressClose} />
       </View>
       <View style={{ flex: 2, alignItems: 'center' }}>
-        <Icon type="material-community" name="heart" size={70} />
+        <Icon type="material-community" name="heart" color={BLACK} size={70} />
         <Text style={[text.medium, { fontSize: 22 }]}>THANK YOU FOR</Text>
         <Text style={[text.medium, { fontSize: 22 }]}>HELPING US GROW</Text>
       </View>
@@ -136,7 +136,7 @@ export default class AddProduct extends React.Component {
             textStyle={{ fontWeight: '600' }}
             iconRight={{ name: 'keyboard-arrow-right', size: 24 }}
             title="COMPLETE"
-            backgroundColor="#C0D2E3"
+            backgroundColor={BLACK}
             onPress={this._onButtonPress}
           />
         </View>
@@ -164,10 +164,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   exitIcon: {
-    color: '#999',
+    color: BLACK,
     padding: 2,
     borderWidth: 2,
-    borderColor: '#999',
+    borderColor: BLACK,
     borderRadius: 13,
     marginLeft: 230,
     marginTop: 10,

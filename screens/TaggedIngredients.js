@@ -11,7 +11,7 @@ import Store from '../Store';
 import CheckForm from '../components/CheckForm';
 import RemoveForm from '../components/RemoveForm';
 import SearchBar from '../components/SearchBar';
-import { CONTAINER, BG_COLOR, HIGHLIGHT } from '../config/styles';
+import { CONTAINER, BG_COLOR, HIGHLIGHT, BLACK } from '../config/styles';
 import text from '../config/text';
 
 function url(input) {
@@ -21,7 +21,7 @@ function url(input) {
 
 class TaggedIngredients extends React.Component {
   static navigationOptions=({ navigation }) => ({
-    headerRight: <Icon name="settings" size={24} color='#929292' containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
+    headerRight: <Icon name="settings" size={24} color="white" containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
   });
 
   constructor(props) {
@@ -113,17 +113,21 @@ class TaggedIngredients extends React.Component {
       );
     });
 
+    const icon1 = () => <Icon type="material-community" name="tag-multiple" size={24} color={BLACK} />;
+  const icon2 = () => <Icon name="add" size={24} color={BLACK} />;
+    const buttons = [{ element: icon1 }, { element: icon2 }];
+
     return (
       <View style={{ flex: 1 }}>
-          <ButtonGroup
-            onPress={this.updateIndex}
-            selectedIndex={this.state.selectedIndex}
-            buttons={['Tagged', 'Add']}
-            textStyle={[text.smallBold, {fontWeight: '200'}]}
-            containerStyle={styles.buttonGroup}
-            selectedBackgroundColor={BG_COLOR}
-            innerBorderStyle={{ color: 'transparent' }}
-            />
+        <ButtonGroup
+          onPress={this.updateIndex}
+          selectedIndex={this.state.selectedIndex}
+          buttons={buttons}
+          textStyle={text.small}
+          containerStyle={styles.buttonGroup}
+          selectedBackgroundColor={BG_COLOR}
+          innerBorderStyle={{ color: 'transparent' }}
+        />
 
         <Swiper
           style={styles.wrapper}
@@ -164,7 +168,7 @@ const styles = StyleSheet.create({
     marginRight: 0,
     marginTop: 0,
     marginBottom: 0,
-    borderColor: '#eee',
+    borderWidth: 0,
   },
 });
 
