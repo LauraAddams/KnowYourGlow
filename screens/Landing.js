@@ -1,7 +1,7 @@
 /* eslint-sable */
 import React from 'react';
 import { Icon } from 'react-native-elements';
-import { Text, View, Dimensions, Animated, StyleSheet, Easing } from 'react-native';
+import { Text, View, Dimensions, Animated, StyleSheet, Easing, Image } from 'react-native';
 import SortableList from 'react-native-sortable-list';
 
 import { connect } from 'react-redux';
@@ -104,27 +104,29 @@ class Landing extends React.Component {
 
     return (
       <View style={{ alignItems: 'center', flex: 1, backgroundColor: BG_COLOR }}>
-        <Icon type="ionicon" name={currentIcon} onPress={this._onPressTime} size={28} color={BLACK} containerStyle={{position: 'absolute', right: 15 }} />
 
-        <Animated.View style={[{position: 'absolute', top: 20}, animatedStyle]}>
+        <Icon reverse raised type="ionicon" name={currentIcon} onPress={this._onPressTime} size={22}
+          color={BLACK} containerStyle={{position: 'absolute', right: 20, width: 40, height: 40 }} />
+
+        <Animated.View style={[{position: 'absolute', top: 50}, animatedStyle]}>
           <Icon type="ionicon" name={timeStyle[1]} size={40} color={BLACK} containerStyle={{paddingLeft: 40, paddingBottom: 25}} />
           <Icon type="ionicon" name={timeStyle[3]} size={40} color={BLACK} containerStyle={{paddingRight: 40, paddingTop: 25 }} />
         </Animated.View>
 
-        <View style={{ marginTop: 90 }}>
-          <Text style={[text.smallBold, { fontSize: 26, paddingBottom: 20 }]}>Good {currentMessage}</Text>
+        <View style={{ marginTop: 115 }}>
+          <Text style={[text.smallBold, { fontSize: 26 }]}>Good {currentMessage}</Text>
         </View>
 
-        <View style={{ flex: 1, marginBottom: 30, width: '100%', alignItems: 'center', backgroundColor: BG_COLOR }}>
+        <View style={{ flex: 1, width: '100%', alignItems: 'center', backgroundColor: BG_COLOR }}>
           <SortableList
             style={styles.list}
             contentContainerStyle={styles.contentContainer}
             data={data}
             renderRow={this._renderRow} />
-          <View style={CONTAINER.details}>
-            <Icon type="material-community" name='tag-multiple'  size={28} color={BLACK} />
-            <Text style={[text.smallBold, {textAlign: 'center'}]} onPress={this._handlePress}> My Irritants</Text>
-          </View>
+        </View>
+        <View style={{alignSelf: 'flex-start'}}>
+          <Icon reverse raised type="material-community" name='tag-multiple'  size={22}
+            color={BLACK} containerStyle={{width: 40, height: 40, marginLeft: 25, marginBottom: 20}} />
         </View>
       </View>
     );
@@ -192,9 +194,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 15,
     margin: 10,
-    // borderRadius: 20,
-    borderLeftWidth: 4,
-    borderColor: BLACK,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,

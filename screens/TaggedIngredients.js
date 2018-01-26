@@ -21,7 +21,7 @@ function url(input) {
 
 class TaggedIngredients extends React.Component {
   static navigationOptions=({ navigation }) => ({
-    headerRight: <Icon name="settings" size={24} color="white" containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
+    headerRight: <Icon name="settings" size={24} color={BLACK} containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
   });
 
   constructor(props) {
