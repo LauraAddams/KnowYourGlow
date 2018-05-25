@@ -96,9 +96,13 @@ class Product extends React.Component {
 
     const ingItems = ingredient_list.map((ingredient, i) => {
       const info = taggedIngredients.includes(ingredient) ? HIGHLIGHT : BG_COLOR;
+      const length = ingredient_list.length;
 
       if (this.state.selectedIndex === 0) {
-        return (<Text key={i} style={{ backgroundColor: info }}>{ingredient}, </Text>);
+        if (length === i + 1) {
+          return (<Text key={i} style={{ backgroundColor: info }}>{ingredient}</Text>);
+        }
+        return (<Text key={i}><Text key={i} style={{ backgroundColor: info }}>{ingredient}</Text><Text>, </Text></Text>);
       }
       return (<ListItem key={i} title={ingredient} hideChevron={true} titleStyle={[text.p, {marginLeft: 0}]}
         containerStyle={[styles.listItem, {backgroundColor: info}]} />);
