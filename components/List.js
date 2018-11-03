@@ -16,11 +16,7 @@ function url(id) {
 const colors = [PINK, RED, YELLOW, TEAL];
 
 class List extends Component<{}> {
-  componentDidMount() {
-    this.setState({
-      routine: Store.getState().main.routineData,
-    });
-  }
+  state = { routine: Store.getState().main.routineData };
 
   _keyExtractor = (item, index) => index;
 
@@ -39,7 +35,7 @@ class List extends Component<{}> {
   };
 
   _onPressAdd = (brand, name) => {
-    const full = brand.toUpperCase() + ' ' + name;
+    const full = `${brand.toUpperCase()} ${name}`;
 
     if (!this.state.routine.includes(full)) {
       (this.state.routine).push(full);

@@ -1,9 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { AppLoading } from 'expo';
 
 import { RootStack, Tabs } from './config/router';
-import { Asset, AppLoading } from 'expo';
-
-import { Provider } from 'react-redux';
 import Store from './Store';
 
 export default class App extends React.Component {
@@ -16,7 +15,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if(!this.state.isReady) {
+    if (!this.state.isReady) {
       return (
         <AppLoading
           startAsync={this._cacheResourcesAsync}
@@ -27,7 +26,7 @@ export default class App extends React.Component {
     }
     return (
       <Provider store={Store}>
-        <RootStack />
+        <Tabs />
       </Provider>
     );
   }

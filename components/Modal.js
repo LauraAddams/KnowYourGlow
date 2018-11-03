@@ -1,9 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import { BLACK, PINK, TEAL, YELLOW } from '../config/styles';
 import text from '../config/text';
+
+const styles = StyleSheet.create({
+  modalContainer: {
+    backgroundColor: 'white',
+    margin: 150,
+    marginLeft: 50,
+    marginRight: 50,
+    borderRadius: 20,
+  },
+  content: {
+    marginTop: 25,
+    marginBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  exitIcon: {
+    color: BLACK,
+    padding: 2,
+    borderWidth: 2,
+    borderColor: BLACK,
+    borderRadius: 13,
+    alignSelf: 'flex-end',
+    margin: 10,
+  },
+});
 
 export default class ModalContainer extends React.Component {
   constructor(props) {
@@ -101,28 +128,9 @@ export default class ModalContainer extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  modalContainer: {
-    backgroundColor: 'white',
-    margin: 150,
-    marginLeft: 50,
-    marginRight: 50,
-    borderRadius: 20,
-  },
-  content: {
-    marginTop: 25,
-    marginBottom: 50,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flex: 1,
-  },
-  exitIcon: {
-    color: BLACK,
-    padding: 2,
-    borderWidth: 2,
-    borderColor: BLACK,
-    borderRadius: 13,
-    alignSelf: 'flex-end',
-    margin: 10,
-  },
-});
+ModalContainer.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+  goBack: PropTypes.func.isRequired,
+  resetVisible: PropTypes.func.isRequired,
+  addType: PropTypes.func.isRequired,
+};
