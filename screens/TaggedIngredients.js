@@ -8,6 +8,7 @@ import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
+import { searchIngredients } from '../api/helper';
 import CheckForm from '../components/CheckForm';
 import RemoveForm from '../components/RemoveForm';
 import SearchBar from '../components/SearchBar';
@@ -30,11 +31,6 @@ const styles = StyleSheet.create({
   },
 });
 
-function url(input) {
-  const inputFormatted = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/ingredient?q=${inputFormatted}`;
-}
-
 class TaggedIngredients extends React.Component {
   static navigationOptions=({ navigation }) => ({
     headerRight: <Icon name="settings" size={24} color={BLACK} containerStyle={{paddingRight: 10}} onPress={()=> navigation.navigate('Settings')} />
@@ -53,7 +49,7 @@ class TaggedIngredients extends React.Component {
   }
 
   onPressSearch = (term) => {
-    const query = url(term);
+    const query = searchIngredients(term);
     this._query(query);
   };
 

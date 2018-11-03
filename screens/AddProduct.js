@@ -3,6 +3,7 @@ import { Text, View, TextInput, StyleSheet, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
+import { fetchProduct, fetchProducts } from '../api/helper';
 import { CONTAINER, BLACK } from '../config/styles';
 import text from '../config/text';
 
@@ -35,10 +36,6 @@ const styles = StyleSheet.create({
   },
 });
 
-function url(id) {
-  return `https://skincare-api.herokuapp.com/products/${id}`;
-}
-
 export default class AddProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -66,10 +63,10 @@ export default class AddProduct extends React.Component {
   };
 
   _onButtonPress = () => {
-    fetch('https://skincare-api.herokuapp.com/products', {
+    fetch(fetchProducts(), {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -87,7 +84,7 @@ export default class AddProduct extends React.Component {
 
   _addedProduct = () => {
     this.setState({ visibleModal: null });
-    this._query(url(this.state.id));
+    this._query(fetchProduct(this.state.id));
   };
 
   _query = (query) => {

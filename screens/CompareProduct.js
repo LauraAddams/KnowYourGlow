@@ -7,15 +7,11 @@ import PostTagged from '../Actions/PostTagged';
 import mapStateToProps from '../config/ReducerHelper';
 import Store from '../Store';
 
+import { searchProducts } from '../api/helper';
 import { CONTAINER, HIGHLIGHT, BLACK } from '../config/styles';
 import text from '../config/text';
 import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
-
-function url(input) {
-  const inputFormatted = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/product?q=${inputFormatted}`;
-}
 
 function intersect(a, b) {
   let t;
@@ -37,8 +33,8 @@ class CompareProduct extends React.Component {
   }
 
   onPressSearch = (term, term2) => {
-    const query = url(term);
-    const query2 = url(term2);
+    const query = searchProducts(term);
+    const query2 = searchProducts(term2);
 
     fetch(query).then(response => response.json()).then((responseData) => {
       this.setState({

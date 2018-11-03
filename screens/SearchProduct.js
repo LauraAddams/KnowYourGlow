@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, Image } from 'react-native';
 
+import { searchProducts } from '../api/helper';
 import List from '../components/List';
 import SearchBar from '../components/SearchBar';
 import { CONTAINER, BG_COLOR } from '../config/styles';
-
-function url(input) {
-  const inputFormatted = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/product?q=${inputFormatted}`;
-}
 
 export default class SearchProduct extends Component<{}> {
   constructor(props) {
@@ -22,7 +18,7 @@ export default class SearchProduct extends Component<{}> {
   }
 
   onPressSearch = (term) => {
-    const query = url(term);
+    const query = searchProducts(term);
     this._query(query);
   };
 
