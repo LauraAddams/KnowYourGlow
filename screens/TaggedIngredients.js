@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ActivityIndicator, ScrollView, Text, StyleSheet } from 'react-native';
-import { Icon, ButtonGroup, Button } from 'react-native-elements';
+import { View, ActivityIndicator, ScrollView, StyleSheet } from 'react-native';
+import { Icon, ButtonGroup } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Swiper from 'react-native-swiper';
 
@@ -14,9 +14,25 @@ import SearchBar from '../components/SearchBar';
 import { CONTAINER, BG_COLOR, HIGHLIGHT, BLACK } from '../config/styles';
 import text from '../config/text';
 
+const styles = StyleSheet.create({
+  slide: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: BG_COLOR,
+    paddingTop: 20,
+  },
+  buttonGroup: {
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0,
+    borderWidth: 0,
+  },
+});
+
 function url(input) {
-  input = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/ingredient?q=${input}`;
+  const inputFormatted = input.replace(new RegExp(' ', 'g'), '+');
+  return `https://skincare-api.herokuapp.com/ingredient?q=${inputFormatted}`;
 }
 
 class TaggedIngredients extends React.Component {
@@ -31,12 +47,9 @@ class TaggedIngredients extends React.Component {
       message: '',
       products: [],
       selectedIndex: 0,
+      taggedIngredients: Store.getState().main.tagData,
     };
     this.updateIndex = this.updateIndex.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({ taggedIngredients: Store.getState().main.tagData });
   }
 
   onPressSearch = (term) => {
@@ -52,7 +65,7 @@ class TaggedIngredients extends React.Component {
       .catch(error =>
         this.setState({
           isLoading: false,
-          message: `An error occured ${error}`
+          message: `An error occured ${error}`,
         }));
   };
 
@@ -65,7 +78,7 @@ class TaggedIngredients extends React.Component {
         products: response,
       });
     } else {
-      this.setState({ message: 'No results, try again.'});
+      this.setState({ message: 'No results, try again.' });
     }
   };
 
@@ -103,18 +116,24 @@ class TaggedIngredients extends React.Component {
 
     if (taggedIngredients) {
       tagged = taggedIngredients.map((name, index) =>
-        <RemoveForm key={index} name={name} index={index} _handlePress={this._onRemovePress.bind(this)} />)
+        <RemoveForm key={index} name={name} index={index} _handlePress={this._onRemovePress.bind(this)} />);
     }
 
     const ingredients = (this.state.products).map((name, index) => {
       const info = taggedIngredients.includes(name.ingredient) ? [HIGHLIGHT, true] : ['#FBFBFB', false];
       return (
-        <CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name.ingredient} checked={info[1]} tagColor={info[0]} />
+        <CheckForm
+          onPress={this._onCheckPress.bind(this, index)}
+          key={index}
+          name={name.ingredient}
+          checked={info[1]}
+          tagColor={info[0]}
+        />
       );
     });
 
     const icon1 = () => <Icon type="material-community" name="tag-multiple" size={24} color={BLACK} />;
-  const icon2 = () => <Icon name="add" size={24} color={BLACK} />;
+    const icon2 = () => <Icon name="add" size={24} color={BLACK} />;
     const buttons = [{ element: icon1 }, { element: icon2 }];
 
     return (
@@ -154,21 +173,5 @@ class TaggedIngredients extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  slide: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: BG_COLOR,
-    paddingTop: 20,
-  },
-  buttonGroup: {
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 0,
-    marginBottom: 0,
-    borderWidth: 0,
-  },
-});
 
 export default connect(mapStateToProps, { PostTagged })(TaggedIngredients);

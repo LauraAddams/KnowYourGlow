@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FONT_BOLD, FUTURA, HELVETICA, BLACK } from './styles';
+import { FONT_BOLD, FUTURA, BLACK } from './styles';
 
 const text = StyleSheet.create({
   smallBold: {

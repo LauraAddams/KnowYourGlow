@@ -6,6 +6,35 @@ import Modal from 'react-native-modal';
 import { CONTAINER, BLACK } from '../config/styles';
 import text from '../config/text';
 
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'pink',
+    marginTop: 15,
+    padding: 10,
+    borderRadius: 10,
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    margin: 140,
+    marginLeft: 30,
+    marginRight: 30,
+    borderRadius: 20,
+    flex: 1,
+  },
+  exitIcon: {
+    color: BLACK,
+    padding: 2,
+    borderWidth: 2,
+    borderColor: BLACK,
+    borderRadius: 13,
+    marginLeft: 230,
+    marginTop: 10,
+  },
+});
+
 function url(id) {
   return `https://skincare-api.herokuapp.com/products/${id}`;
 }
@@ -144,32 +173,3 @@ export default class AddProduct extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'pink',
-    marginTop: 15,
-    padding: 10,
-    borderRadius: 10,
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'rgba(0, 0, 0, 0.1)',
-    margin: 140,
-    marginLeft: 30,
-    marginRight: 30,
-    borderRadius: 20,
-    flex: 1,
-  },
-  exitIcon: {
-    color: BLACK,
-    padding: 2,
-    borderWidth: 2,
-    borderColor: BLACK,
-    borderRadius: 13,
-    marginLeft: 230,
-    marginTop: 10,
-  },
-});

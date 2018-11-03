@@ -15,6 +15,14 @@ import Settings from '../screens/Settings';
 import { BG_COLOR, BLACK } from './styles';
 import text from './text';
 
+const styles = StyleSheet.create({
+  icon: {
+    width: 37,
+    height: 26,
+    resizeMode: 'contain',
+  },
+});
+
 export const HomeStack = StackNavigator({
   Home: {
     screen: Landing,
@@ -137,7 +145,7 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Compare',
       tabBarIcon: ({ tintColor }) => (<Image source={require('../assets/compare.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
+        style={[styles.icon, { tintColor: tintColor }]}
       />)
     },
   },
@@ -163,13 +171,5 @@ export const RootStack = StackNavigator({
 }, {
   navigationOptions: {
     header: null,
-  },
-});
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 37,
-    height: 26,
-    resizeMode: 'contain',
   },
 });

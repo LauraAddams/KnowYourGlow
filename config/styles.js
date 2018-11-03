@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { StyleSheet } from 'react-native';
 
 export const FONT_BOLD = '900';
@@ -42,7 +40,6 @@ export const CONTAINER = StyleSheet.create({
     fontWeight: '500',
   },
   inputForm: {
-    backgroundColor: 'white',
     fontSize: 16,
     fontWeight: '300',
     paddingBottom: 7,

@@ -13,8 +13,8 @@ import SearchCompare from '../components/SearchCompare';
 import CheckForm from '../components/CheckForm';
 
 function url(input) {
-  input = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/product?q=${input}`;
+  const inputFormatted = input.replace(new RegExp(' ', 'g'), '+');
+  return `https://skincare-api.herokuapp.com/product?q=${inputFormatted}`;
 }
 
 function intersect(a, b) {
@@ -32,11 +32,8 @@ class CompareProduct extends React.Component {
       message: '',
       ing: [],
       ing2: [],
+      taggedIngredients: Store.getState().main.tagData,
     };
-  }
-
-  componentDidMount() {
-    this.setState({ taggedIngredients: Store.getState().main.tagData });
   }
 
   onPressSearch = (term, term2) => {
@@ -86,11 +83,18 @@ class CompareProduct extends React.Component {
 
     const ingredients = ingList.map((name, index) => {
       const info = taggedIngredients.includes(name) ? [HIGHLIGHT, true] : ['#FBFBFB', false];
-      return (<CheckForm onPress={this._onCheckPress.bind(this, index)} key={index} name={name} tagColor={info[0]} checked={info[1]} />);
+      return (
+        <CheckForm
+          onPress={this._onCheckPress.bind(this, index)}
+          key={index}
+          name={name}
+          tagColor={info[0]}
+          checked={info[1]}
+        />);
     });
 
     const addButton = ingList.length > 0 ? (<Button
-      containerViewStyle={{alignSelf: 'flex-end'}}
+      containerViewStyle={{ alignSelf: 'flex-end' }}
       iconRight={{ name: 'check', color: BLACK, size: 24 }}
       title="Add Checked"
       backgroundColor="rgba(0,0,0,0)"
@@ -102,7 +106,9 @@ class CompareProduct extends React.Component {
     return (
       <View style={CONTAINER.container}>
 
-        <Text style={[text.smallBold, {paddingBottom: 5}]}>Multiple products irritating your skin?</Text>
+        <Text style={[text.smallBold, { paddingBottom: 5 }]}>
+          Multiple products irritating your skin?
+        </Text>
         <Text style={text.smallBold}>Find their common ingredients</Text>
 
         <SearchCompare

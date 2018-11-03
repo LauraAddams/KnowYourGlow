@@ -6,8 +6,8 @@ import SearchBar from '../components/SearchBar';
 import { CONTAINER, BG_COLOR } from '../config/styles';
 
 function url(input) {
-  input = input.replace(new RegExp(' ', 'g'), '+');
-  return `https://skincare-api.herokuapp.com/product?q=${input}`;
+  const inputFormatted = input.replace(new RegExp(' ', 'g'), '+');
+  return `https://skincare-api.herokuapp.com/product?q=${inputFormatted}`;
 }
 
 export default class SearchProduct extends Component<{}> {
@@ -43,9 +43,14 @@ export default class SearchProduct extends Component<{}> {
     this.setState({ isLoading: false, message: '' });
 
     if (response.length) {
-      this.setState({ isLoading: false, message: '', products: response, emptyState: false });
+      this.setState({
+        isLoading: false,
+        message: '',
+        products: response,
+        emptyState: false
+      });
     } else {
-      this.setState({ message: 'No results, try again.'});
+      this.setState({ message: 'No results, try again.' });
     }
   };
 
@@ -57,13 +62,20 @@ export default class SearchProduct extends Component<{}> {
         </View>
       );
     }
+    return null;
   }
 
   render() {
-    const spinner = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
+    const spinner = this.state.isLoading ? <ActivityIndicator size="large" /> : null;
 
     return (
-      <View style={[CONTAINER.container, { paddingTop: 20, paddingLeft: 0, paddingRight: 0, backgroundColor: BG_COLOR }]}>
+      <View style={[CONTAINER.container, {
+          paddingTop: 20,
+          paddingLeft: 0,
+          paddingRight: 0,
+          backgroundColor: BG_COLOR,
+        }]}
+      >
 
         <SearchBar
           loading={this.state.isLoading}

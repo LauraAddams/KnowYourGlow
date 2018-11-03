@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import * as firebase from 'firebase';
 
-import { FormLabel, FormInput, Button, SocialIcon, Icon } from 'react-native-elements';
+import { FormLabel, FormInput, Button, SocialIcon } from 'react-native-elements';
 import { CONTAINER, GRAY, BLACK } from '../config/styles';
 import text from '../config/text';
 
@@ -41,12 +41,12 @@ export default class LoginScreen extends React.Component {
         this.props.navigation.navigate('Home');
       })
       .catch(() => {
-        this.setState({error: 'Authentication failed', loading: false});
-      })
+        this.setState({ error: 'Authentication failed', loading: false });
+      });
   }
 
   onSignUpPress() {
-    this.setState({error: '', loading: true});
+    this.setState({ error: '', loading: true });
 
     const { email, password } = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -55,8 +55,8 @@ export default class LoginScreen extends React.Component {
         this.props.navigation.navigate('Home');
       })
       .catch(() => {
-        this.setState({error: 'Sign up failed', loading: false});
-      })
+        this.setState({ error: 'Sign up failed', loading: false });
+      });
   }
 
   renderButtonOrLoading() {
@@ -65,7 +65,7 @@ export default class LoginScreen extends React.Component {
     }
 
     return (
-      <View style={{marginTop: 5}}>
+      <View style={{ marginTop: 5 }}>
         <Button
           raised
           rounded={true}
@@ -77,7 +77,12 @@ export default class LoginScreen extends React.Component {
         />
 
         <Text
-          style={{ textAlign: 'center', color: BLACK, margin: 10, fontSize: 12 }}
+          style={{
+            textAlign: 'center',
+            color: BLACK,
+            margin: 10,
+            fontSize: 12
+          }}
           onPress={this.onSignUpPress.bind(this)}
         >
           SIGN UP
@@ -89,10 +94,16 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={CONTAINER.container}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
-          <Text style={[text.medium, {fontSize: 35, letterSpacing: 20, marginLeft: 20}]}>ADA</Text>
-          <Text style={[text.medium, {fontSize: 35, letterSpacing: 25, marginLeft: 25}]}>CAP</Text>
-          <Text style={[text.medium, {fontSize: 35, letterSpacing: 25, marginLeft: 25}]}>APP</Text>
+        <View style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 30,
+          }}
+        >
+          <Text style={[text.medium, { fontSize: 35, letterSpacing: 20, marginLeft: 20 }]}>ADA</Text>
+          <Text style={[text.medium, { fontSize: 35, letterSpacing: 25, marginLeft: 25 }]}>CAP</Text>
+          <Text style={[text.medium, { fontSize: 35, letterSpacing: 25, marginLeft: 25 }]}>APP</Text>
         </View>
 
         <View style={{ flex: 2, width: 300, justifyContent: 'center' }}>
@@ -101,7 +112,7 @@ export default class LoginScreen extends React.Component {
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
             placeholder="name@email.com"
-            />
+          />
 
           <FormLabel>Password</FormLabel>
           <FormInput
@@ -109,8 +120,14 @@ export default class LoginScreen extends React.Component {
             secureTextEntry
             placeholder="********"
             onChangeText={password => this.setState({ password })}
-            />
-          <Text style={{ color: GRAY, textAlign: 'right', marginTop: 5, marginRight: 18}}>
+          />
+          <Text style={{
+              color: GRAY,
+              textAlign: 'right',
+              marginTop: 5,
+              marginRight: 18,
+            }}
+          >
             Forgot Password?
           </Text>
 
@@ -120,7 +137,15 @@ export default class LoginScreen extends React.Component {
           <View style={{ flex: 2, margin: 20 }}>
             <View>
               <Text style={{ height: 1, backgroundColor: '#999', marginBottom: -8 }} />
-              <Text style={{ textAlign: 'center', width: 130, alignSelf: 'center', fontSize: 12, marginBottom: 5, color: '#999' }}>
+              <Text style={{
+                  textAlign: 'center',
+                  width: 130,
+                  alignSelf: 'center',
+                  fontSize: 12,
+                  marginBottom: 5,
+                  color: '#999',
+                }}
+              >
                 OR CONNECT WITH
               </Text>
             </View>
